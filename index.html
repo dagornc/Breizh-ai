@@ -3,12 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Breizh AI - Votre partenaire en transformation digitale en Bretagne. Solutions sur mesure pour moderniser votre entreprise.">
+    <meta name="theme-color" content="#2563eb">
     <title>Breizh AI - Votre Coach Digital</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="assets/style.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="theme.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialisation d'EmailJS avec votre clé publique
+            emailjs.init("zcpUCFdECPiiDuUk-");
+        })();
+    </script>
+
+    <!-- Script d'initialisation du thème -->
+    <script type="module">
+        import { ThemeManager } from './theme.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialisation du gestionnaire de thème
+            const themeManager = new ThemeManager();
+            
+            // Rendre l'instance accessible globalement pour le débogage
+            window.themeManager = themeManager;
+        });
+    </script>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar animate-on-scroll">
         <div class="logo-container">
             <div class="logo-animation">
                 <div class="circle"></div>
@@ -17,84 +59,243 @@
             </div>
             <span class="brand-name">Breizh AI</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#chat">Coach Digital</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section id="accueil" class="hero">
-        <div class="hero-content">
-            <h1>Gagner du temps pour vous consacrer pleinement aux projets de vos clients</h1>
-            <p class="subtitle">Obtenez l'expertise de professionnels pour vos besoins spécifiques.</p>
-            <a href="#chat" class="cta-button">Commencer maintenant</a>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h2>Nos Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Digitalisation</h3>
-                <p>Solutions sur mesure pour moderniser votre entreprise</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-robot"></i>
-                <h3>Automatisation</h3>
-                <p>Optimisez vos processus métier</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Croissance</h3>
-                <p>Développez votre activité grâce au numérique</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="chat" class="chat-section">
-        <div class="chat-container">
-            <div class="chat-messages" id="chatMessages">
-                <!-- Les messages seront ajoutés ici dynamiquement -->
-            </div>
-            <div class="chat-input-container">
-                <textarea id="userInput" placeholder="Décrivez vos objectifs digitaux..."></textarea>
-                <button id="sendMessage">
-                    <i class="fas fa-paper-plane"></i>
+        <div class="theme-controls">
+            <button id="toggleDarkMode" class="theme-btn" aria-label="Basculer le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="toggleHighContrast" class="theme-btn" aria-label="Basculer le contraste élevé">
+                <i class="fas fa-adjust"></i>
+            </button>
+            <div class="font-size-controls">
+                <button id="decreaseFontSize" class="theme-btn" aria-label="Diminuer la taille du texte">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button id="increaseFontSize" class="theme-btn" aria-label="Augmenter la taille du texte">
+                    <i class="fas fa-plus"></i>
                 </button>
             </div>
         </div>
-    </section>
+        <ul class="nav-links">
+            <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#chat" class="nav-link">Coach Digital</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" aria-label="Menu mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
-    <section id="contact" class="contact">
-        <h2>Contactez-nous</h2>
-        <div class="contact-form">
-            <input type="text" placeholder="Nom">
-            <input type="email" placeholder="Email">
-            <textarea placeholder="Message"></textarea>
-            <button class="submit-button">Envoyer</button>
-        </div>
-    </section>
+    <main>
+        <section id="accueil" class="hero animate-on-scroll">
+            <div id="particles-js" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1 class="reveal-text">Gagner du temps pour vous consacrer pleinement aux projets de vos clients</h1>
+                <p class="subtitle reveal-text">Obtenez l'expertise de professionnels pour vos besoins spécifiques.</p>
+                <a href="#chat" class="cta-button">
+                    <span class="button-text">Commencer maintenant</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrows">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
 
-    <footer>
+        <section id="services" class="services">
+            <h2 class="section-title reveal-text">Nos Services</h2>
+            <div class="services-grid">
+                <article class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                    </div>
+                    <h3>Digitalisation</h3>
+                    <p>Solutions sur mesure pour moderniser votre entreprise</p>
+                    <div class="service-hover">
+                        <ul class="service-details">
+                            <li>Analyse de vos besoins</li>
+                            <li>Solutions personnalisées</li>
+                            <li>Accompagnement continu</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="service-card animate-on-scroll" data-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-robot" aria-hidden="true"></i>
+                    </div>
+                    <h3>Automatisation</h3>
+                    <p>Optimisez vos processus métier</p>
+                    <div class="service-hover">
+                        <ul class="service-details">
+                            <li>Workflows automatisés</li>
+                            <li>Intégration IA</li>
+                            <li>Gain de productivité</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="service-card animate-on-scroll" data-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    </div>
+                    <h3>Croissance</h3>
+                    <p>Développez votre activité grâce au numérique</p>
+                    <div class="service-hover">
+                        <ul class="service-details">
+                            <li>Stratégie digitale</li>
+                            <li>Analyse des données</li>
+                            <li>Optimisation continue</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="chat" class="chat-section animate-on-scroll">
+            <div class="chat-container">
+                <header class="chat-header">
+                    <h3>Votre Assistant Digital</h3>
+                    <div class="chat-status">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span class="status-text">En ligne</span>
+                    </div>
+                </header>
+                <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+                    <!-- Les messages seront ajoutés ici dynamiquement -->
+                </div>
+                <div class="chat-input-container">
+                    <textarea 
+                        id="userInput" 
+                        placeholder="Décrivez vos objectifs digitaux..." 
+                        rows="1"
+                        aria-label="Message"
+                    ></textarea>
+                    <div class="chat-actions">
+                        <button class="action-button" id="clearChat" title="Effacer la conversation">
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            <span class="sr-only">Effacer la conversation</span>
+                        </button>
+                        <button id="sendMessage" class="send-button" aria-label="Envoyer">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact animate-on-scroll">
+            <div class="contact-wrapper">
+                <h2 class="section-title reveal-text">Contactez-nous</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Restons en contact</h3>
+                        <p>Nous sommes là pour vous accompagner dans votre transformation digitale.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <span>Bretagne, France</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span>contact@breizh.ai</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <span>+33 (0)6 12 98 01 52</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form animate-on-scroll" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="userName" name="userName">
+                            <label for="userName">Nom</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="userEmail" name="userEmail">
+                            <label for="userEmail">Email</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="userCompany" name="userCompany">
+                            <label for="userCompany">Entreprise (optionnel)</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="userPhone" name="userPhone">
+                            <label for="userPhone">Téléphone (optionnel)</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="userSubject" name="userSubject">
+                            <label for="userSubject">Sujet</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="userMessage" name="userMessage"></textarea>
+                            <label for="userMessage">Message</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <span class="button-text">Envoyer</span>
+                            <span class="button-icon">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                        <div class="form-status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="animate-on-scroll">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Breizh AI</h3>
                 <p>Votre partenaire digital en Bretagne</p>
+                <div class="footer-logo">
+                    <div class="logo-animation">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#chat">Coach Digital</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Email: contact@breizh-ai.ai</p>
-                <p>Tél: +33 (0)2 XX XX XX XX</p>
+                <p>Email: contact@breizh.ai</p>
+                <p>Tél: +33 (0)6 12 98 01 52</p>
             </div>
             <div class="footer-section">
                 <h3>Suivez-nous</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -103,6 +304,8 @@
         </div>
     </footer>
 
-    <script src="assets/script.js"></script>
+    <!-- Scripts -->
+    <script type="module" src="services/openai.js"></script>
+    <script type="module" src="assets/script.js"></script>
 </body>
 </html>
