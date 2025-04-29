@@ -293,7 +293,7 @@ function initContact() {
 
     // Configuration EmailJS
     const emailjsConfig = {
-        serviceID: 'service_4mj53p6',
+        serviceID: 'mail_breizh.ai',
         templateID: 'template_contact',
         publicKey: 'zcpUCFdECPiiDuUk-'
     };

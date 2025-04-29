@@ -11,7 +11,7 @@ class EmailService {
             phone: '',
             to_email: 'contact@breizh.ai'
         };
-        this.serviceID = 'service_4mj53p6';  // ID du service EmailJS
+        this.serviceID = 'mail_breizh.ai';  // ID du service EmailJS
         this.templateID = 'template_contact';  // ID du template EmailJS
         this.publicKey = 'zcpUCFdECPiiDuUk-';  // Clé publique EmailJS
     }
