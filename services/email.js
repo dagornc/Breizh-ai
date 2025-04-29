@@ -3,14 +3,16 @@ import config from '../config.js';
 class EmailService {
     constructor() {
         this.templateParams = {
+            name: '',
             email: '',
-            from_email: 'contact@breizh.ai',
-            from_name: '',
             message: '',
-            subject: ''
+            subject: '',
+            company: '',
+            phone: '',
+            to_email: 'contact@breizh.ai'
         };
         this.serviceID = 'service_4mj53p6';  // ID du service EmailJS
-        this.templateID = 'template_4b3egvw';  // ID du template EmailJS
+        this.templateID = 'template_contact';  // ID du template EmailJS
         this.publicKey = 'zcpUCFdECPiiDuUk-';  // Clé publique EmailJS
     }
 
@@ -24,13 +26,13 @@ class EmailService {
 
             // Préparation des paramètres
             this.templateParams = {
+                name: formData.userName,
                 email: formData.userEmail,
-                from_email: 'contact@breizh.ai',
-                from_name: formData.userName,
                 message: formData.userMessage,
                 subject: formData.userSubject,
                 company: formData.userCompany || 'Non spécifié',
-                phone: formData.userPhone || 'Non spécifié'
+                phone: formData.userPhone || 'Non spécifié',
+                to_email: 'contact@breizh.ai'
             };
 
             // Envoi de l'email via EmailJS

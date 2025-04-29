@@ -294,7 +294,7 @@ function initContact() {
     // Configuration EmailJS
     const emailjsConfig = {
         serviceID: 'service_4mj53p6',
-        templateID: 'template_4b3egvw',
+        templateID: 'template_contact',
         publicKey: 'zcpUCFdECPiiDuUk-'
     };
 
@@ -373,13 +373,13 @@ function initContact() {
         try {
             // Préparation des données
             const formData = {
+                name: form.querySelector('#userName').value,
                 email: form.querySelector('#userEmail').value,
-                from_email: 'contact@breizh.ai',
-                from_name: form.querySelector('#userName').value,
+                message: form.querySelector('#userMessage').value,
+                subject: form.querySelector('#userSubject').value,
                 company: form.querySelector('#userCompany').value || 'Non spécifié',
                 phone: form.querySelector('#userPhone').value || 'Non spécifié',
-                subject: form.querySelector('#userSubject').value,
-                message: form.querySelector('#userMessage').value
+                to_email: 'contact@breizh.ai'
             };
 
             console.log('Envoi via EmailJS:', formData);
