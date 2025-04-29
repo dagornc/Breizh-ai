@@ -1,7 +1,9 @@
+import config from '../config/index.js';
+
 // Service OpenAI pour le frontend
 const OpenAIService = {
     // Configuration
-    apiKey: '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',
+    apiKey: config.api.openai.key,
     systemPrompt: `Tu es Morgan, un ingénieur de la société bretonne Breizh AI, spécialisée en services digitaux pour les artisans bretons. 
     Tu adoptes un ton professionnel et poli. En tant qu'expert en IA et en transformation digitale, tu aides les artisans à moderniser leurs processus 
     et à adopter les meilleures solutions numériques. Tu connais parfaitement les besoins spécifiques des artisans bretons et les solutions technologiques 
@@ -17,7 +19,7 @@ const OpenAIService = {
                     'Authorization': `Bearer ${this.apiKey}`
                 },
                 body: JSON.stringify({
-                    model: 'gpt-4',
+                    model: config.api.openai.model,
                     messages: [
                         { role: 'system', content: this.systemPrompt },
                         ...conversationHistory.map(msg => ({
@@ -26,8 +28,8 @@ const OpenAIService = {
                         })),
                         { role: 'user', content: message }
                     ],
-                    temperature: 0.7,
-                    max_tokens: 150
+                    temperature: config.api.openai.temperature,
+                    max_tokens: config.api.openai.maxTokens
                 })
             });
 
