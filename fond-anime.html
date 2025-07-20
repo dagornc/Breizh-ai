@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fond Animé - Breizh AI</title>
+    <style>
+        /* --- Styles pour la démo --- */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff; /* Texte blanc pour contraster */
+        }
+
+        /* --- Styles à intégrer à votre site --- */
+        #particles-js {
+            position: fixed; /* Reste en place au scroll */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place l'animation en arrière-plan */
+            /* Couleur de fond inspirée de votre site */
+            background-color: #0d1b2a; 
+        }
+
+        /* --- Contenu de votre page (pour l'exemple) --- */
+        .votre-contenu {
+            position: relative;
+            z-index: 1; /* S'assure que le contenu est AU-DESSUS de l'animation */
+            text-align: center;
+            padding-top: 20vh;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .bouton {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        .bouton:hover {
+            transform: scale(1.05);
+        }
+        .bouton-bleu {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+        }
+        .bouton-jaune {
+            background-color: #ffc107;
+            color: #0d1b2a;
+            border: 2px solid #ffc107;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="votre-contenu">
+        <h1>Transformez vos défis en solutions IA stratégiques.</h1>
+        <p>Breizh AI accompagne les innovateurs dans la conception, le développement et l'intégration de solutions d'intelligence artificielle sur-mesure, adaptées à vos enjeux métiers.</p>
+        <div>
+            <a href="#" class="bouton bouton-bleu">Demander une consultation</a>
+            <a href="#" class="bouton bouton-jaune">Découvrir nos services</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80, // Nombre de points. Augmentez pour plus de densité.
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#00aaff" // Couleur des points (bleu clair de votre charte)
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.6, // Opacité des points
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 0.8, // Vitesse du clignotement
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 2.5, // Taille des points
+          "random": true,
+          "anim": {
+            "enable": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150, // Distance à laquelle les lignes apparaissent
+          "color": "#005580", // Couleur des lignes (un bleu plus sombre)
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1, // Vitesse de déplacement des points. Gardez-la basse.
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab" // 'grab' crée une connexion avec la souris, 'repulse' repousse les points
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push" // Ajoute un point au clic
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 180,
+            "line_opacity": 1
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+    </script>
+
+</body>
+</html>
