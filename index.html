@@ -449,15 +449,104 @@
     }
     /* Menu mobile */
     .mobile-nav {
-      transition: opacity 0.3s, visibility 0.3s;
+      transition: all 0.3s ease-in-out;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      transform: translateY(-20px);
     }
     .mobile-nav.open {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+      transform: translateY(0);
+    }
+    /* Bouton hamburger */
+    #hamburger {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      transition: background 0.3s;
+    }
+    #hamburger:hover {
+      background: rgba(56, 189, 248, 0.2);
+    }
+    #hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-cta);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    /* Bouton fermeture */
+    #close-mobile {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      transition: background 0.3s, transform 0.3s;
+    }
+    #close-mobile:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: rotate(90deg);
+    }
+    /* Liens du menu mobile */
+    #mobile-nav .nav-link {
+      position: relative;
+      transition: color 0.2s;
+      font-size: 24px;
+      padding: 16px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    #mobile-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 25%;
+      right: 25%;
+      bottom: 12px;
+      height: 2px;
+      background: var(--color-cta);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    #mobile-nav .nav-link:hover::after,
+    #mobile-nav .nav-link:focus::after {
+      transform: scaleX(1);
+    }
+    #mobile-nav .btn-cta {
+      font-size: 20px;
+      padding: 16px 32px;
+      width: 80%;
+      max-width: 300px;
+      margin: 8px auto;
+      display: block;
+    }
+    #mobile-nav .icon-btn {
+      width: 48px;
+      height: 48px;
+      margin: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      transition: background 0.3s, transform 0.3s;
+    }
+    #mobile-nav .icon-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
     }
     /* Responsive fixes */
     @media (max-width: 640px) {
@@ -641,18 +730,18 @@
         <span class="block w-7 h-0.5 bg-sky-400 rounded"></span>
       </button>
     </nav>
-    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-[rgba(16,19,26,0.96)] flex flex-col items-center justify-center z-50 w-full min-h-screen px-4">
-      <button id="close-mobile" class="absolute top-6 right-6 text-3xl text-sky-400 icon-btn" aria-label="Fermer le menu">&times;</button>
-      <ul class="flex flex-col gap-10 text-2xl font-semibold w-full text-center">
-        <li><a href="#services" class="nav-link py-4 block w-full" data-i18n="nav_services">Services</a></li>
-        <li><a href="#tools" class="nav-link py-4 block w-full" data-i18n="nav_tools">Outils IA</a></li>
-        <li><a href="#approach" class="nav-link py-4 block w-full" data-i18n="nav_approach">Approche</a></li>
-        <li><a href="#contact" class="btn-cta px-8 py-4 text-xl w-full block" data-i18n="nav_contact">Contactez-nous</a></li>
-        <li>
-          <button id="theme-toggle-mobile" class="icon-btn p-2 text-3xl" aria-label="Changer de thème">
+    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-[rgba(16,19,26,0.98)] flex flex-col items-center justify-center z-50 w-full min-h-screen px-4">
+      <button id="close-mobile" class="absolute top-6 right-6" aria-label="Fermer le menu">&times;</button>
+      <ul class="flex flex-col gap-12 text-2xl font-semibold w-full text-center">
+        <li><a href="#services" class="nav-link" data-i18n="nav_services">Services</a></li>
+        <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Outils IA</a></li>
+        <li><a href="#approach" class="nav-link" data-i18n="nav_approach">Approche</a></li>
+        <li><a href="#contact" class="btn-cta" data-i18n="nav_contact">Contactez-nous</a></li>
+        <li class="flex justify-center gap-4 mt-8">
+          <button id="theme-toggle-mobile" class="icon-btn" aria-label="Changer de thème">
             <span id="theme-icon-mobile">🌙</span>
           </button>
-          <button id="lang-toggle-mobile" class="icon-btn p-2 text-3xl" aria-label="Changer de langue">
+          <button id="lang-toggle-mobile" class="icon-btn" aria-label="Changer de langue">
             <span id="lang-icon-mobile">🇫🇷</span>
           </button>
         </li>
