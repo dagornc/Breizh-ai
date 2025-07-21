@@ -931,20 +931,20 @@
 
   <div class="grain"></div>
   
-  <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all backdrop-blur-lg bg-white/30 dark:bg-slate-900/60 rounded-b-2xl shadow-lg">
+  <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all">
     <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-5 sm:gap-6 md:gap-8">
+      <div class="flex items-center gap-4">
         <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-12 sm:h-16 w-auto" style="display:inline-block;">
         <span class="logo-breizh text-sky-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">Breizh</span>
         <span class="text-amber-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">AI</span>
       </div>
-      <ul class="hidden md:flex items-center gap-8 font-medium">
+      <ul class="hidden md:flex items-center gap-6 lg:gap-8 font-medium">
         <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">Services</a></li>
         <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Outils IA</a></li>
         <li><a href="#approach" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Approche</a></li>
       </ul>
-      <div class="hidden md:flex items-center gap-5">
-        <a href="#contact" class="btn-cta px-6 lg:px-7 py-2 text-base lg:text-lg shadow-md" style="font-weight:700;letter-spacing:0.01em;" data-i18n="nav_contact">Contactez-nous</a>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#contact" class="btn-cta px-4 lg:px-5 py-2 text-base lg:text-lg" data-i18n="nav_contact">Contactez-nous</a>
         <button id="theme-toggle" class="icon-btn p-2" aria-label="Changer de thème">
           <span id="theme-icon" class="text-xl lg:text-2xl">🌙</span>
         </button>
@@ -1046,11 +1046,9 @@
         Outils IA interactifs
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-md mx-auto w-full">
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-          <label for="email-potentiel-ia" class="mb-1 text-base z-10 relative" data-i18n="tool1_email_label">Adresse email</label>
-          <input id="email-potentiel-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto" placeholder="Votre adresse email" required>
           <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d'activité</label>
           <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
           <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
@@ -1059,7 +1057,7 @@
           </button>
           <div id="ideas-result" class="mt-4 text-base"></div>
         </div>
-        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-md mx-auto w-full">
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
           <label for="desc-projet" class="mb-1 text-base z-10 relative" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
@@ -1080,25 +1078,25 @@
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
         <div class="flex flex-col items-center gap-2 flex-1">
           <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">1</div>
-          <span class="font-semibold text-sm md:text-base" data-i18n="approach1">Découverte</span>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach1">Audit & Stratégie</span>
           <span class="text-sky-200 text-xs md:text-sm text-center block mt-1" data-i18n="approach1_desc">Analyse de vos besoins et définition des objectifs.</span>
         </div>
         <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
         <div class="flex flex-col items-center gap-2 flex-1">
           <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">2</div>
-          <span class="font-semibold text-sm md:text-base" data-i18n="approach2">Prototypage</span>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach2">Conception & POC</span>
           <span class="text-sky-200 text-xs md:text-sm text-center block mt-1" data-i18n="approach2_desc">Création d'un prototype pour valider le concept.</span>
         </div>
         <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
         <div class="flex flex-col items-center gap-2 flex-1">
           <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">3</div>
-          <span class="font-semibold text-sm md:text-base" data-i18n="approach3">Développement</span>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach3">Développement & Tests</span>
           <span class="text-sky-200 text-xs md:text-sm text-center block mt-1" data-i18n="approach3_desc">Implémentation complète de la solution.</span>
         </div>
         <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
         <div class="flex flex-col items-center gap-2 flex-1">
           <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">4</div>
-          <span class="font-semibold text-sm md:text-base" data-i18n="approach4">Déploiement</span>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach4">Déploiement & Support</span>
           <span class="text-sky-200 text-xs md:text-sm text-center block mt-1" data-i18n="approach4_desc">Mise en production et accompagnement.</span>
         </div>
       </div>
@@ -1108,8 +1106,8 @@
       <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="innov_title">
         L'IA n'est pas magique, c'est un métier.
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
             <img src="Dirigeant.jpg" alt="Dirigeant travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
@@ -1117,7 +1115,7 @@
           </div>
           <p class="text-base text-sky-200" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
         </div>
-        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
             <img src="Ingénieurs.jpg" alt="Ingénieur travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
@@ -1125,7 +1123,7 @@
           </div>
           <p class="text-base text-sky-200" data-i18n="innov2_desc">Collaborez sur des projets IA avancés, du prototype à la mise en production.</p>
         </div>
-        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
             <img src="Managers du Digital.jpg" alt="Manager digital travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
@@ -1133,7 +1131,7 @@
           </div>
           <p class="text-base text-sky-200" data-i18n="innov3_desc">Accélérez l'innovation digitale grâce à l'IA, de l'idéation à l'intégration métier.</p>
         </div>
-        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
             <img src="Artisan.jpg" alt="Artisan travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
@@ -1299,14 +1297,10 @@
         tool2_label: "Briefly describe your project",
         tool2_btn: "Generate Business Case",
         approach_title: "Our 4-step approach",
-        approach1: "Discovery",
-        approach1_desc: "Analysis of your needs and definition of objectives.",
-        approach2: "Prototyping",
-        approach2_desc: "Creation of a prototype to validate the concept.",
-        approach3: "Development",
-        approach3_desc: "Full implementation of the solution.",
-        approach4: "Deployment",
-        approach4_desc: "Go-live and ongoing support.",
+        approach1: "Audit & Strategy",
+        approach2: "Design & POC",
+        approach3: "Development & Testing",
+        approach4: "Deployment & Support",
         innov_title: "AI isn't magic. It's a craft.",
         innov1_title: "For Executives",
         innov1_desc: "Drive your company's AI transformation with strategic vision and tangible results.",
@@ -1319,7 +1313,11 @@
         cta_title: "The essentials, intelligently. That's all.",
         cta_email: "Send an email",
         cta_call: "Call us",
-        footer_made: "Designed in Brittany, France."
+        footer_made: "Designed in Brittany, France.",
+        approach1_desc: "Analysis of your needs and definition of objectives.",
+        approach2_desc: "Creation of a prototype to validate the concept.",
+        approach3_desc: "Full implementation of the solution.",
+        approach4_desc: "Go-live and ongoing support."
       },
       fr: {} // Les textes français sont déjà dans le HTML
     };
@@ -1385,16 +1383,10 @@
     // Le reste de votre logique pour les outils IA... (inchangé)
     const genIdeasBtn = document.getElementById('gen-ideas');
     const secteurInput = document.getElementById('secteur');
-    const emailInput = document.getElementById('email-potentiel-ia');
     const ideasResult = document.getElementById('ideas-result');
     const loaderIdeas = document.getElementById('loader-ideas');
     genIdeasBtn.addEventListener('click', async () => {
       const secteur = secteurInput.value.trim();
-      const email = emailInput.value.trim();
-      if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
       if(!secteur) {
         ideasResult.innerHTML = '<span class="text-rose-400">Veuillez indiquer un secteur.</span>';
         return;
@@ -1402,23 +1394,39 @@
       genIdeasBtn.disabled = true;
       loaderIdeas.classList.remove('hidden');
       ideasResult.innerHTML = '';
-      // Envoi au webhook
+      const prompt = `Tu es un expert IA. Génère 3 cas d'usage pertinents d'IA pour le secteur "${secteur}". Réponds uniquement au format JSON : [{"titre": "...", "description": "..."}]`;
       try {
-        const resp = await fetch('http://localhost:5678/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const resp = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.mistral.ai/v1/chat/completions"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + MISTRAL_API_KEY
+          },
           body: JSON.stringify({
-            email: email,
-            prompt: secteur
+            model: "mistral-large-latest",
+            messages: [{role: "user", content: prompt}],
+            temperature: 0.7,
+            max_tokens: 512
           })
         });
-        if (resp.ok) {
-          ideasResult.innerHTML = '<span class="text-emerald-500">Votre demande a bien été transmise. Vous recevrez la réponse par email.</span>';
-        } else {
-          ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
+        const data = await resp.json();
+        let usages = [];
+        try {
+          const content = data.choices[0].message?.content || data.choices[0].content;
+          usages = JSON.parse(content.replace(/```json|```/g,'').trim());
+        } catch(e) {
+          ideasResult.innerHTML = '<span class="text-rose-400">Erreur de parsing de la réponse IA.</span>';
+        }
+        if(Array.isArray(usages)) {
+          ideasResult.innerHTML = usages.map(u => `
+            <div class="glass p-4 mb-3">
+              <div class="font-semibold text-sky-400 mb-1">${u.titre}</div>
+              <div class="text-sky-200">${u.description}</div>
+            </div>
+          `).join('');
         }
       } catch(e) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
+        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la génération.</span>';
       }
       genIdeasBtn.disabled = false;
       loaderIdeas.classList.add('hidden');

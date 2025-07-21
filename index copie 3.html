@@ -931,20 +931,20 @@
 
   <div class="grain"></div>
   
-  <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all backdrop-blur-lg bg-white/30 dark:bg-slate-900/60 rounded-b-2xl shadow-lg">
+  <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all">
     <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-5 sm:gap-6 md:gap-8">
+      <div class="flex items-center gap-4">
         <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-12 sm:h-16 w-auto" style="display:inline-block;">
         <span class="logo-breizh text-sky-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">Breizh</span>
         <span class="text-amber-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">AI</span>
       </div>
-      <ul class="hidden md:flex items-center gap-8 font-medium">
+      <ul class="hidden md:flex items-center gap-6 lg:gap-8 font-medium">
         <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">Services</a></li>
         <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Outils IA</a></li>
         <li><a href="#approach" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Approche</a></li>
       </ul>
-      <div class="hidden md:flex items-center gap-5">
-        <a href="#contact" class="btn-cta px-6 lg:px-7 py-2 text-base lg:text-lg shadow-md" style="font-weight:700;letter-spacing:0.01em;" data-i18n="nav_contact">Contactez-nous</a>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#contact" class="btn-cta px-4 lg:px-5 py-2 text-base lg:text-lg" data-i18n="nav_contact">Contactez-nous</a>
         <button id="theme-toggle" class="icon-btn p-2" aria-label="Changer de thème">
           <span id="theme-icon" class="text-xl lg:text-2xl">🌙</span>
         </button>
@@ -1049,8 +1049,6 @@
         <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-md mx-auto w-full">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-          <label for="email-potentiel-ia" class="mb-1 text-base z-10 relative" data-i18n="tool1_email_label">Adresse email</label>
-          <input id="email-potentiel-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto" placeholder="Votre adresse email" required>
           <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d'activité</label>
           <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
           <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
@@ -1300,13 +1298,9 @@
         tool2_btn: "Generate Business Case",
         approach_title: "Our 4-step approach",
         approach1: "Discovery",
-        approach1_desc: "Analysis of your needs and definition of objectives.",
         approach2: "Prototyping",
-        approach2_desc: "Creation of a prototype to validate the concept.",
         approach3: "Development",
-        approach3_desc: "Full implementation of the solution.",
         approach4: "Deployment",
-        approach4_desc: "Go-live and ongoing support.",
         innov_title: "AI isn't magic. It's a craft.",
         innov1_title: "For Executives",
         innov1_desc: "Drive your company's AI transformation with strategic vision and tangible results.",
@@ -1385,16 +1379,10 @@
     // Le reste de votre logique pour les outils IA... (inchangé)
     const genIdeasBtn = document.getElementById('gen-ideas');
     const secteurInput = document.getElementById('secteur');
-    const emailInput = document.getElementById('email-potentiel-ia');
     const ideasResult = document.getElementById('ideas-result');
     const loaderIdeas = document.getElementById('loader-ideas');
     genIdeasBtn.addEventListener('click', async () => {
       const secteur = secteurInput.value.trim();
-      const email = emailInput.value.trim();
-      if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
       if(!secteur) {
         ideasResult.innerHTML = '<span class="text-rose-400">Veuillez indiquer un secteur.</span>';
         return;
@@ -1402,23 +1390,39 @@
       genIdeasBtn.disabled = true;
       loaderIdeas.classList.remove('hidden');
       ideasResult.innerHTML = '';
-      // Envoi au webhook
+      const prompt = `Tu es un expert IA. Génère 3 cas d'usage pertinents d'IA pour le secteur "${secteur}". Réponds uniquement au format JSON : [{"titre": "...", "description": "..."}]`;
       try {
-        const resp = await fetch('http://localhost:5678/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const resp = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.mistral.ai/v1/chat/completions"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + MISTRAL_API_KEY
+          },
           body: JSON.stringify({
-            email: email,
-            prompt: secteur
+            model: "mistral-large-latest",
+            messages: [{role: "user", content: prompt}],
+            temperature: 0.7,
+            max_tokens: 512
           })
         });
-        if (resp.ok) {
-          ideasResult.innerHTML = '<span class="text-emerald-500">Votre demande a bien été transmise. Vous recevrez la réponse par email.</span>';
-        } else {
-          ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
+        const data = await resp.json();
+        let usages = [];
+        try {
+          const content = data.choices[0].message?.content || data.choices[0].content;
+          usages = JSON.parse(content.replace(/```json|```/g,'').trim());
+        } catch(e) {
+          ideasResult.innerHTML = '<span class="text-rose-400">Erreur de parsing de la réponse IA.</span>';
+        }
+        if(Array.isArray(usages)) {
+          ideasResult.innerHTML = usages.map(u => `
+            <div class="glass p-4 mb-3">
+              <div class="font-semibold text-sky-400 mb-1">${u.titre}</div>
+              <div class="text-sky-200">${u.description}</div>
+            </div>
+          `).join('');
         }
       } catch(e) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
+        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la génération.</span>';
       }
       genIdeasBtn.disabled = false;
       loaderIdeas.classList.add('hidden');

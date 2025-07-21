@@ -1049,8 +1049,6 @@
         <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-md mx-auto w-full">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-          <label for="email-potentiel-ia" class="mb-1 text-base z-10 relative" data-i18n="tool1_email_label">Adresse email</label>
-          <input id="email-potentiel-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto" placeholder="Votre adresse email" required>
           <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d'activité</label>
           <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
           <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
@@ -1385,16 +1383,10 @@
     // Le reste de votre logique pour les outils IA... (inchangé)
     const genIdeasBtn = document.getElementById('gen-ideas');
     const secteurInput = document.getElementById('secteur');
-    const emailInput = document.getElementById('email-potentiel-ia');
     const ideasResult = document.getElementById('ideas-result');
     const loaderIdeas = document.getElementById('loader-ideas');
     genIdeasBtn.addEventListener('click', async () => {
       const secteur = secteurInput.value.trim();
-      const email = emailInput.value.trim();
-      if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
       if(!secteur) {
         ideasResult.innerHTML = '<span class="text-rose-400">Veuillez indiquer un secteur.</span>';
         return;
@@ -1402,23 +1394,39 @@
       genIdeasBtn.disabled = true;
       loaderIdeas.classList.remove('hidden');
       ideasResult.innerHTML = '';
-      // Envoi au webhook
+      const prompt = `Tu es un expert IA. Génère 3 cas d'usage pertinents d'IA pour le secteur "${secteur}". Réponds uniquement au format JSON : [{"titre": "...", "description": "..."}]`;
       try {
-        const resp = await fetch('http://localhost:5678/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const resp = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.mistral.ai/v1/chat/completions"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + MISTRAL_API_KEY
+          },
           body: JSON.stringify({
-            email: email,
-            prompt: secteur
+            model: "mistral-large-latest",
+            messages: [{role: "user", content: prompt}],
+            temperature: 0.7,
+            max_tokens: 512
           })
         });
-        if (resp.ok) {
-          ideasResult.innerHTML = '<span class="text-emerald-500">Votre demande a bien été transmise. Vous recevrez la réponse par email.</span>';
-        } else {
-          ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
+        const data = await resp.json();
+        let usages = [];
+        try {
+          const content = data.choices[0].message?.content || data.choices[0].content;
+          usages = JSON.parse(content.replace(/```json|```/g,'').trim());
+        } catch(e) {
+          ideasResult.innerHTML = '<span class="text-rose-400">Erreur de parsing de la réponse IA.</span>';
+        }
+        if(Array.isArray(usages)) {
+          ideasResult.innerHTML = usages.map(u => `
+            <div class="glass p-4 mb-3">
+              <div class="font-semibold text-sky-400 mb-1">${u.titre}</div>
+              <div class="text-sky-200">${u.description}</div>
+            </div>
+          `).join('');
         }
       } catch(e) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
+        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la génération.</span>';
       }
       genIdeasBtn.disabled = false;
       loaderIdeas.classList.add('hidden');
