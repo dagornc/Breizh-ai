@@ -923,82 +923,6 @@
       background: rgba(56, 189, 248, 0.5);
       border-color: rgba(56, 189, 248, 0.8);
     }
-
-    .carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.55s cubic-bezier(.22,1.2,.36,1), box-shadow 0.4s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
-    }
-    .carousel-card {
-      min-width: 100%;
-      width: 100%;
-      flex-shrink: 0;
-      transition: box-shadow 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 2px 16px 0 rgba(56,189,248,0.10);
-      transform: scale(0.97);
-      cursor: grab;
-    }
-    .carousel-card.active {
-      box-shadow: 0 12px 48px 0 rgba(56,189,248,0.22), 0 2px 12px 0 rgba(30,41,59,0.10);
-      transform: scale(1.03);
-      z-index: 2;
-    }
-    .carousel-card.active:hover {
-      box-shadow: 0 20px 64px 0 rgba(56,189,248,0.28), 0 4px 16px 0 rgba(30,41,59,0.13);
-      transform: scale(1.045);
-    }
-    #tools-carousel .overflow-hidden {
-      overflow: hidden;
-      position: relative;
-      min-height: 600px;
-      height: 600px;
-    }
-    #carousel-dots button {
-      transition: transform 0.3s cubic-bezier(.4,0,.2,1), background 0.3s, box-shadow 0.3s;
-      width: 0.75rem;
-      height: 0.75rem;
-      margin: 0 0.2rem;
-      background: #bae6fd;
-      border-radius: 9999px;
-      box-shadow: none;
-    }
-    #carousel-dots button.opacity-80 {
-      background: #0ea5e9;
-      transform: scale(1.6);
-      box-shadow: 0 2px 8px 0 rgba(56,189,248,0.18);
-      width: 1.5rem;
-      height: 1rem;
-    }
-    #carousel-dots button:hover {
-      background: #38bdf8;
-      transform: scale(1.2);
-    }
-    #carousel-prev, #carousel-next {
-      transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
-      box-shadow: 0 2px 8px 0 rgba(56,189,248,0.10);
-    }
-    #carousel-prev:hover, #carousel-next:hover {
-      background: #0ea5e9;
-      color: #fff;
-      box-shadow: 0 4px 16px 0 rgba(56,189,248,0.18);
-      transform: scale(1.12);
-    }
-    .card-aurora .aurora {
-      animation: aurora-move 4s linear infinite alternate;
-    }
-    @keyframes aurora-move {
-      0% { opacity: 0.7; background: radial-gradient(ellipse at 30% 40%,rgba(56,189,248,0.25) 0%,rgba(56,189,248,0.0) 80%); }
-      100% { opacity: 0.7; background: radial-gradient(ellipse at 70% 60%,rgba(56,189,248,0.25) 0%,rgba(56,189,248,0.0) 80%); }
-    }
-    @media (max-width: 900px) {
-      #tools-carousel .overflow-hidden { min-height: 480px; height: 480px; }
-    }
-    @media (max-width: 600px) {
-      #tools-carousel .overflow-hidden { min-height: 340px; height: 340px; }
-      .carousel-card { padding: 0.5rem !important; }
-    }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -1121,105 +1045,44 @@
       <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="tools_title">
         Outils IA interactifs
       </h2>
-      <div id="tools-carousel" class="relative w-full max-w-3xl mx-auto flex flex-col justify-center items-center min-h-[600px] px-2">
-        <div class="flex flex-row justify-center items-center mb-2 gap-2">
-          <button id="carousel-prev" class="icon-btn p-3 bg-white/70 dark:bg-slate-800/70 shadow-lg rounded-full hover:bg-sky-100 dark:hover:bg-slate-700 transition" aria-label="Carte précédente"><span class="text-3xl">&#8592;</span></button>
-          <div class="flex-1"></div>
-          <button id="carousel-next" class="icon-btn p-3 bg-white/70 dark:bg-slate-800/70 shadow-lg rounded-full hover:bg-sky-100 dark:hover:bg-slate-700 transition" aria-label="Carte suivante"><span class="text-3xl">&#8594;</span></button>
-        </div>
-        <div class="overflow-hidden w-full h-full min-h-[600px] relative" style="position:relative;">
-          <div class="carousel-track flex transition-transform duration-500 ease-in-out w-full h-full" style="will-change: transform;">
-            <div class="carousel-card flex-shrink-0 w-full min-w-full" id="carousel-card-0">
-              <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
-                <div class="aurora z-0"></div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-                  <label for="email-potentiel-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool1_email_label">Adresse email</label>
-                  <input id="email-potentiel-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
-                  <label for="secteur" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool1_label">Votre secteur d'activité</label>
-                  <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
-                  <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool1_btn">
-                    <span data-i18n="tool1_btn">Générer les idées</span>
-                    <span id="loader-ideas" class="loader hidden"></span>
-                  </button>
-                  <div id="ideas-result" class="mt-4 text-base"></div>
-                </div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <label for="resume-ideas" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
-                  <div id="resume-ideas" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-card flex-shrink-0 w-full min-w-full" id="carousel-card-1">
-              <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
-                <div class="aurora z-0"></div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
-                  <label for="email-bc" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_email_label">Adresse email</label>
-                  <input id="email-bc" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
-                  <label for="desc-projet" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
-                  <textarea id="desc-projet" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : Automatiser la gestion des stocks..."></textarea>
-                  <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool2_btn">
-                    <span data-i18n="tool2_btn">Générer le Business Case</span>
-                    <span id="loader-bc" class="loader hidden"></span>
-                  </button>
-                  <div id="bc-result" class="mt-4 text-base"></div>
-                </div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <label for="resume-bc" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
-                  <div id="resume-bc" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-card flex-shrink-0 w-full min-w-full" id="carousel-card-2">
-              <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
-                <div class="aurora z-0"></div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <h3 class="font-semibold text-xl mb-2">Élaborez votre stratégie IA</h3>
-                  <label for="email-strategie-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Adresse email</label>
-                  <input id="email-strategie-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
-                  <label for="strategie-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Décrivez vos enjeux stratégiques</label>
-                  <textarea id="strategie-ia" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : Définir une feuille de route IA, aligner l'IA avec la vision d'entreprise..."></textarea>
-                  <button id="gen-strategie-ia" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold">
-                    <span>Générer la stratégie</span>
-                    <span id="loader-strategie-ia" class="loader hidden"></span>
-                  </button>
-                  <div id="strategie-ia-result" class="mt-4 text-base"></div>
-                </div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <label for="resume-strategie-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
-                  <div id="resume-strategie-ia" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-card flex-shrink-0 w-full min-w-full" id="carousel-card-3">
-              <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
-                <div class="aurora z-0"></div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <h3 class="font-semibold text-xl mb-2">Préparer l'acculturation à l'IA</h3>
-                  <label for="email-acculturation-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Adresse email</label>
-                  <input id="email-acculturation-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
-                  <label for="acculturation-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Décrivez vos besoins d'acculturation</label>
-                  <textarea id="acculturation-ia" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : Sensibiliser les équipes, organiser des ateliers IA..."></textarea>
-                  <button id="gen-acculturation-ia" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold">
-                    <span>Générer l'acculturation</span>
-                    <span id="loader-acculturation-ia" class="loader hidden"></span>
-                  </button>
-                  <div id="acculturation-ia-result" class="mt-4 text-base"></div>
-                </div>
-                <div class="flex flex-col flex-1 justify-between">
-                  <label for="resume-acculturation-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
-                  <div id="resume-acculturation-ia" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
-                </div>
-              </div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full">
+          <div class="aurora z-0"></div>
+          <div class="flex flex-col flex-1 justify-between">
+            <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
+            <label for="email-potentiel-ia" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool1_email_label">Adresse email</label>
+            <input id="email-potentiel-ia" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
+            <label for="secteur" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool1_label">Votre secteur d'activité</label>
+            <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
+            <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool1_btn">
+              <span data-i18n="tool1_btn">Générer les idées</span>
+              <span id="loader-ideas" class="loader hidden"></span>
+            </button>
+            <div id="ideas-result" class="mt-4 text-base"></div>
+          </div>
+          <div class="flex flex-col flex-1 justify-between">
+            <label for="resume-ideas" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
+            <div id="resume-ideas" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
           </div>
         </div>
-        <div class="flex flex-row justify-center items-center mt-4 gap-2" id="carousel-dots">
-          <button class="w-3 h-3 rounded-full bg-sky-300 opacity-80 hover:opacity-100 transition" data-index="0"></button>
-          <button class="w-3 h-3 rounded-full bg-sky-300 opacity-40 hover:opacity-80 transition" data-index="1"></button>
-          <button class="w-3 h-3 rounded-full bg-sky-300 opacity-40 hover:opacity-80 transition" data-index="2"></button>
-          <button class="w-3 h-3 rounded-full bg-sky-300 opacity-40 hover:opacity-80 transition" data-index="3"></button>
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full h-full">
+          <div class="aurora z-0"></div>
+          <div class="flex flex-col flex-1 justify-between">
+            <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
+            <label for="email-bc" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_email_label">Adresse email</label>
+            <input id="email-bc" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
+            <label for="desc-projet" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
+            <textarea id="desc-projet" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : Automatiser la gestion des stocks..."></textarea>
+            <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool2_btn">
+              <span data-i18n="tool2_btn">Générer le Business Case</span>
+              <span id="loader-bc" class="loader hidden"></span>
+            </button>
+            <div id="bc-result" class="mt-4 text-base"></div>
+          </div>
+          <div class="flex flex-col flex-1 justify-between">
+            <label for="resume-bc" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200">Résumé de la réponse</label>
+            <div id="resume-bc" class="rounded-2xl px-6 py-5 min-h-[160px] h-full bg-slate-100 dark:bg-slate-900/95 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-sky-800 shadow-inner text-base"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -1627,167 +1490,6 @@
       loaderBC.classList.add('hidden');
     });
     // J'ai supprimé votre parallaxe sur ".bg-img" car il n'existe plus
-  </script>
-  <script>
-    // --- Carrousel Outils IA ---
-    document.addEventListener('DOMContentLoaded', function() {
-      const track = document.querySelector('.carousel-track');
-      const cards = Array.from(track.children);
-      const dots = document.querySelectorAll('#carousel-dots button');
-      let current = 0;
-      let isDragging = false, startX = 0, currentX = 0, dragDelta = 0;
-      let animating = false;
-      function updateCarousel(idx, spring = false) {
-        if (animating) return;
-        animating = true;
-        track.style.transition = spring ? 'transform 0.7s cubic-bezier(.22,1.2,.36,1)' : 'transform 0.55s cubic-bezier(.4,0,.2,1)';
-        track.style.transform = `translateX(-${idx * 100}%)`;
-        cards.forEach((card, i) => card.classList.toggle('active', i === idx));
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('opacity-80', i === idx);
-          dot.classList.toggle('opacity-40', i !== idx);
-        });
-        setTimeout(() => { animating = false; }, spring ? 700 : 550);
-        current = idx;
-      }
-      function goTo(idx, spring = false) {
-        idx = (idx + cards.length) % cards.length;
-        updateCarousel(idx, spring);
-      }
-      document.getElementById('carousel-prev').addEventListener('click', () => goTo(current - 1, true));
-      document.getElementById('carousel-next').addEventListener('click', () => goTo(current + 1, true));
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => goTo(i, false));
-      });
-      // Drag/Swipe
-      track.addEventListener('mousedown', startDrag);
-      track.addEventListener('touchstart', startDrag, {passive:true});
-      function startDrag(e) {
-        if (animating) return;
-        isDragging = true;
-        startX = (e.touches ? e.touches[0].clientX : e.clientX);
-        currentX = startX;
-        track.style.transition = 'none';
-        document.addEventListener('mousemove', onDrag);
-        document.addEventListener('touchmove', onDrag, {passive:false});
-        document.addEventListener('mouseup', endDrag);
-        document.addEventListener('touchend', endDrag);
-      }
-      function onDrag(e) {
-        if (!isDragging) return;
-        let x = (e.touches ? e.touches[0].clientX : e.clientX);
-        dragDelta = x - startX;
-        track.style.transform = `translateX(calc(${-current * 100}% + ${dragDelta}px))`;
-        e.preventDefault && e.preventDefault();
-      }
-      function endDrag() {
-        if (!isDragging) return;
-        isDragging = false;
-        document.removeEventListener('mousemove', onDrag);
-        document.removeEventListener('touchmove', onDrag);
-        document.removeEventListener('mouseup', endDrag);
-        document.removeEventListener('touchend', endDrag);
-        // Seuil pour changer de slide
-        if (Math.abs(dragDelta) > 80) {
-          if (dragDelta < 0) goTo(current + 1, true);
-          else goTo(current - 1, true);
-        } else {
-          updateCarousel(current, true);
-        }
-        dragDelta = 0;
-      }
-      // Navigation clavier
-      document.getElementById('tools-carousel').addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') goTo(current - 1, true);
-        if (e.key === 'ArrowRight') goTo(current + 1, true);
-      });
-      // Focus sur le carrousel pour navigation clavier
-      document.getElementById('tools-carousel').tabIndex = 0;
-      updateCarousel(0);
-    });
-  </script>
-  <script>
-    // --- Génération Stratégie IA ---
-    const genStrategieBtn = document.getElementById('gen-strategie-ia');
-    const strategieInput = document.getElementById('strategie-ia');
-    const emailStrategieInput = document.getElementById('email-strategie-ia');
-    const strategieResult = document.getElementById('strategie-ia-result');
-    const loaderStrategie = document.getElementById('loader-strategie-ia');
-    if(genStrategieBtn) genStrategieBtn.addEventListener('click', async () => {
-      const strategie = strategieInput.value.trim();
-      const email = emailStrategieInput.value.trim();
-      if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
-      if(!strategie) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Veuillez décrire vos enjeux stratégiques.</span>';
-        return;
-      }
-      genStrategieBtn.disabled = true;
-      loaderStrategie.classList.remove('hidden');
-      strategieResult.innerHTML = '';
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, prompt: strategie })
-        });
-        if (resp.ok) {
-          let resume = '';
-          try { const data = await resp.json(); resume = data.resume || data.summary || data.result || ''; } catch(e) {}
-          document.getElementById('resume-strategie-ia').textContent = resume ? resume : 'Votre demande a bien été transmise. Vous recevrez la réponse par email.';
-          strategieResult.innerHTML = '';
-        } else {
-          strategieResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
-        }
-      } catch(e) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
-      }
-      genStrategieBtn.disabled = false;
-      loaderStrategie.classList.add('hidden');
-    });
-
-    // --- Génération Acculturation IA ---
-    const genAcculturationBtn = document.getElementById('gen-acculturation-ia');
-    const acculturationInput = document.getElementById('acculturation-ia');
-    const emailAcculturationInput = document.getElementById('email-acculturation-ia');
-    const acculturationResult = document.getElementById('acculturation-ia-result');
-    const loaderAcculturation = document.getElementById('loader-acculturation-ia');
-    if(genAcculturationBtn) genAcculturationBtn.addEventListener('click', async () => {
-      const acculturation = acculturationInput.value.trim();
-      const email = emailAcculturationInput.value.trim();
-      if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
-      if(!acculturation) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Veuillez décrire vos besoins d\'acculturation.</span>';
-        return;
-      }
-      genAcculturationBtn.disabled = true;
-      loaderAcculturation.classList.remove('hidden');
-      acculturationResult.innerHTML = '';
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, prompt: acculturation })
-        });
-        if (resp.ok) {
-          let resume = '';
-          try { const data = await resp.json(); resume = data.resume || data.summary || data.result || ''; } catch(e) {}
-          document.getElementById('resume-acculturation-ia').textContent = resume ? resume : 'Votre demande a bien été transmise. Vous recevrez la réponse par email.';
-          acculturationResult.innerHTML = '';
-        } else {
-          acculturationResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
-        }
-      } catch(e) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
-      }
-      genAcculturationBtn.disabled = false;
-      loaderAcculturation.classList.add('hidden');
-    });
   </script>
 </body>
 </html>
