@@ -454,12 +454,32 @@
       visibility: hidden;
       pointer-events: none;
       transform: translateY(-20px);
+      height: 100vh;
+      height: 100dvh; /* Pour iOS */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
     .mobile-nav.open {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
       transform: translateY(0);
+    }
+    /* Contenu du menu mobile */
+    .mobile-nav-content {
+      min-height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
     }
     /* Bouton hamburger */
     #hamburger {
@@ -730,22 +750,24 @@
         <span class="block w-7 h-0.5 bg-sky-400 rounded"></span>
       </button>
     </nav>
-    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-[rgba(16,19,26,0.98)] flex flex-col items-center justify-center z-50 w-full min-h-screen px-4">
-      <button id="close-mobile" class="absolute top-6 right-6" aria-label="Fermer le menu">&times;</button>
-      <ul class="flex flex-col gap-12 text-2xl font-semibold w-full text-center">
-        <li><a href="#services" class="nav-link" data-i18n="nav_services">Services</a></li>
-        <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Outils IA</a></li>
-        <li><a href="#approach" class="nav-link" data-i18n="nav_approach">Approche</a></li>
-        <li><a href="#contact" class="btn-cta" data-i18n="nav_contact">Contactez-nous</a></li>
-        <li class="flex justify-center gap-4 mt-8">
-          <button id="theme-toggle-mobile" class="icon-btn" aria-label="Changer de thème">
-            <span id="theme-icon-mobile">🌙</span>
-          </button>
-          <button id="lang-toggle-mobile" class="icon-btn" aria-label="Changer de langue">
-            <span id="lang-icon-mobile">🇫🇷</span>
-          </button>
-        </li>
-      </ul>
+    <div id="mobile-nav" class="mobile-nav bg-[rgba(16,19,26,0.98)] z-50">
+      <div class="mobile-nav-content">
+        <button id="close-mobile" class="fixed top-6 right-6" aria-label="Fermer le menu">&times;</button>
+        <ul class="flex flex-col gap-12 text-2xl font-semibold w-full text-center">
+          <li><a href="#services" class="nav-link" data-i18n="nav_services">Services</a></li>
+          <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Outils IA</a></li>
+          <li><a href="#approach" class="nav-link" data-i18n="nav_approach">Approche</a></li>
+          <li><a href="#contact" class="btn-cta" data-i18n="nav_contact">Contactez-nous</a></li>
+          <li class="flex justify-center gap-4 mt-8">
+            <button id="theme-toggle-mobile" class="icon-btn" aria-label="Changer de thème">
+              <span id="theme-icon-mobile">🌙</span>
+            </button>
+            <button id="lang-toggle-mobile" class="icon-btn" aria-label="Changer de langue">
+              <span id="lang-icon-mobile">🇫🇷</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
   
