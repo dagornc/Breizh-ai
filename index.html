@@ -1062,6 +1062,8 @@
         <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-md mx-auto w-full">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
+          <label for="email-bc" class="mb-1 text-base z-10 relative" data-i18n="tool2_email_label">Adresse email</label>
+          <input id="email-bc" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto" placeholder="Votre adresse email" required>
           <label for="desc-projet" class="mb-1 text-base z-10 relative" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
           <textarea id="desc-projet" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : Automatiser la gestion des stocks..."></textarea>
           <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool2_btn">
@@ -1427,8 +1429,14 @@
     const descProjet = document.getElementById('desc-projet');
     const bcResult = document.getElementById('bc-result');
     const loaderBC = document.getElementById('loader-bc');
+    const emailBC = document.getElementById('email-bc');
     genBCBtn.addEventListener('click', async () => {
       const desc = descProjet.value.trim();
+      const email = emailBC.value.trim();
+      if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
+        return;
+      }
       if(!desc) {
         bcResult.innerHTML = '<span class="text-rose-400">Veuillez décrire votre projet.</span>';
         return;
@@ -1436,41 +1444,23 @@
       genBCBtn.disabled = true;
       loaderBC.classList.remove('hidden');
       bcResult.innerHTML = '';
-      const prompt = `Tu es un consultant IA. À partir de la description suivante : "${desc}", génère une ébauche de business case IA au format JSON : {"Problématique":"...", "Solution":"...", "Bénéfices":"...", "Risques":"..."}`;
+      // Envoi au webhook
       try {
-        const resp = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.mistral.ai/v1/chat/completions"), {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + MISTRAL_API_KEY
-          },
+        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: "mistral-large-latest",
-            messages: [{role: "user", content: prompt}],
-            temperature: 0.7,
-            max_tokens: 512
+            email: email,
+            prompt: desc
           })
         });
-        const data = await resp.json();
-        let bc = {};
-        try {
-          const content = data.choices[0].message?.content || data.choices[0].content;
-          bc = JSON.parse(content.replace(/```json|```/g,'').trim());
-        } catch(e) {
-          bcResult.innerHTML = '<span class="text-rose-400">Erreur de parsing de la réponse IA.</span>';
-        }
-        if(bc && bc.Problématique) {
-          bcResult.innerHTML = `
-            <div class="glass p-4 mb-3">
-              <div><span class="font-semibold text-sky-400">Problématique :</span> <span class="text-sky-200">${bc.Problématique}</span></div>
-              <div><span class="font-semibold text-sky-400">Solution :</span> <span class="text-sky-200">${bc.Solution}</span></div>
-              <div><span class="font-semibold text-sky-400">Bénéfices :</span> <span class="text-sky-200">${bc.Bénéfices}</span></div>
-              <div><span class="font-semibold text-sky-400">Risques :</span> <span class="text-sky-200">${bc.Risques}</span></div>
-            </div>
-          `;
+        if (resp.ok) {
+          bcResult.innerHTML = '<span class="text-emerald-500">Votre demande a bien été transmise. Vous recevrez la réponse par email.</span>';
+        } else {
+          bcResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
         }
       } catch(e) {
-        bcResult.innerHTML = '<span class="text-rose-400">Erreur lors de la génération.</span>';
+        bcResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
       }
       genBCBtn.disabled = false;
       loaderBC.classList.add('hidden');
