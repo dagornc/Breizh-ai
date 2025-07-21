@@ -871,6 +871,58 @@
         display: none;
       }
     }
+
+    /* Menu mobile - couleurs constantes */
+    #mobile-nav {
+      background: rgba(16,19,26,0.98);
+      color: #f3f4f6;
+    }
+
+    #mobile-nav .nav-link,
+    #mobile-nav .btn-cta,
+    #mobile-nav .icon-btn {
+      color: #f3f4f6 !important;
+    }
+
+    #mobile-nav .nav-link::after {
+      background: #38bdf8;
+    }
+
+    #mobile-nav .btn-cta {
+      background: rgba(56, 189, 248, 0.4);
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    #mobile-nav .btn-cta:hover {
+      background: rgba(56, 189, 248, 0.5);
+      border-color: rgba(56, 189, 248, 0.8);
+    }
+
+    /* Forcer les couleurs en mode clair */
+    html.light #mobile-nav {
+      background: rgba(16,19,26,0.98);
+      color: #f3f4f6;
+    }
+
+    html.light #mobile-nav .nav-link,
+    html.light #mobile-nav .btn-cta,
+    html.light #mobile-nav .icon-btn {
+      color: #f3f4f6 !important;
+    }
+
+    html.light #mobile-nav .nav-link::after {
+      background: #38bdf8;
+    }
+
+    html.light #mobile-nav .btn-cta {
+      background: rgba(56, 189, 248, 0.4);
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    html.light #mobile-nav .btn-cta:hover {
+      background: rgba(56, 189, 248, 0.5);
+      border-color: rgba(56, 189, 248, 0.8);
+    }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -930,7 +982,7 @@
   <main class="pt-20 sm:pt-24 md:pt-32">
     <section class="container mx-auto px-4 text-center">
       <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6" data-i18n="hero_title">
-        Arrêtez de courir après la technologie, mettez-la au travail.
+        Arrêtez de courir après la technologie,<br> mettez-la au travail.
       </h1>
       <p class="text-base sm:text-lg md:text-xl text-sky-200 mb-8 sm:mb-10 max-w-3xl mx-auto" data-i18n="hero_subtitle">
         Breizh AI accompagne les entreprises dans la conception, le développement et l'intégration de solutions d'intelligence artificielle sur-mesure, adaptées à leurs enjeux métiers.
@@ -964,7 +1016,7 @@
               <h3 class="font-semibold text-xl text-center w-full" data-i18n="service2_title">Développement sur-mesure</h3>
             </div>
           </div>
-          <p class="text-base text-sky-200" data-i18n="service2_desc">Conception et développement d’outils IA adaptés à vos besoins métiers.</p>
+          <p class="text-base text-sky-200" data-i18n="service2_desc">Conception et développement d'outils IA adaptés à vos besoins métiers.</p>
         </div>
         <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
           <div class="aurora"></div>
@@ -997,7 +1049,7 @@
         <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
           <div class="aurora z-0"></div>
           <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-          <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d’activité</label>
+          <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d'activité</label>
           <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
           <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
             <span data-i18n="tool1_btn">Générer les idées</span>
@@ -1073,7 +1125,7 @@
             <img src="Managers du Digital.jpg" alt="Manager digital travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
             <h3 class="font-semibold text-xl" data-i18n="innov3_title">Pour les Managers du Digital</h3>
           </div>
-          <p class="text-base text-sky-200" data-i18n="innov3_desc">Accélérez l’innovation digitale grâce à l’IA, de l’idéation à l’intégration métier.</p>
+          <p class="text-base text-sky-200" data-i18n="innov3_desc">Accélérez l'innovation digitale grâce à l'IA, de l'idéation à l'intégration métier.</p>
         </div>
         <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
           <div class="aurora"></div>
@@ -1220,7 +1272,7 @@
         nav_tools: "AI Tools",
         nav_approach: "Approach",
         nav_contact: "Contact us",
-        hero_title: "Stop chasing technology.<br>Put it to work.",
+        hero_title: "Stop chasing technology,<br class='md:block hidden'> put it to work.",
         hero_subtitle: "Breizh AI supports innovators in designing, developing and integrating custom AI solutions tailored to their business challenges.",
         hero_cta1: "Request a consultation",
         hero_cta2: "Discover our services",
@@ -1269,14 +1321,27 @@
       localStorage.setItem('lang', lang);
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if(!isFr && translations.en[key]) el.innerHTML = translations.en[key];
-        else if(isFr && el.dataset.default) el.textContent = el.dataset.default;
+        if(!isFr && translations.en[key]) {
+          el.innerHTML = translations.en[key];
+        } else if(isFr && el.dataset.default) {
+          el.innerHTML = el.dataset.default;
+        }
       });
     }
+
     // Store default FR for i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      if(!el.dataset.default) el.dataset.default = el.textContent;
+      if(!el.dataset.default) el.dataset.default = el.innerHTML;
     });
+
+    // Le titre en HTML
+    const titleHtml = `Arrêtez de courir après la technologie,<br> mettez-la au travail.`;
+    const titleElement = document.querySelector('[data-i18n="hero_title"]');
+    titleElement.innerHTML = titleHtml;
+    titleElement.dataset.default = titleHtml;
+    
+    translations.en.hero_title = `Stop chasing technology,<br> put it to work.`;
+
     // Init lang
     const userLang = localStorage.getItem('lang') || 'fr';
     setLang(userLang);
