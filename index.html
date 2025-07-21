@@ -1404,7 +1404,7 @@
       ideasResult.innerHTML = '';
       // Envoi au webhook
       try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook-test/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
+        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
