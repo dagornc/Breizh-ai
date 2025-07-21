@@ -27,6 +27,17 @@
       --color-aurora: radial-gradient(ellipse at var(--x,50%) var(--y,50%),rgba(56,189,248,0.25) 0%,rgba(56,189,248,0.0) 80%);
       --flag-fr: "🇫🇷";
       --flag-en: "🇬🇧";
+      /* Responsive Design System */
+      --container-padding: clamp(1rem, 5vw, 2rem);
+      --section-spacing: clamp(3rem, 8vw, 8rem);
+      --card-padding: clamp(1rem, 3vw, 2rem);
+      --text-base: clamp(0.875rem, 1vw, 1rem);
+      --text-lg: clamp(1rem, 1.2vw, 1.125rem);
+      --text-xl: clamp(1.125rem, 1.5vw, 1.25rem);
+      --text-2xl: clamp(1.25rem, 2vw, 1.5rem);
+      --text-3xl: clamp(1.5rem, 2.5vw, 1.875rem);
+      --text-4xl: clamp(1.875rem, 3vw, 2.25rem);
+      --text-5xl: clamp(2.25rem, 4vw, 3rem);
     }
     html.light {
       --color-bg: linear-gradient(135deg, #e5e7eb 0%, #f5ecd7 100%);
@@ -716,38 +727,183 @@
     html.light .glass-card-amber:hover {
       background: rgba(251, 191, 36, 0.13) !important;
     }
+    /* Container */
+    .container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--container-padding);
+      padding-right: var(--container-padding);
+      max-width: min(100%, 1280px);
+    }
+
+    /* Section Spacing */
+    section {
+      padding-top: var(--section-spacing);
+      padding-bottom: var(--section-spacing);
+    }
+
+    /* Card Styles */
+    .glass-card {
+      padding: var(--card-padding) !important;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .glass-card > * {
+      flex: none;
+    }
+
+    .glass-card > p {
+      flex: 1;
+    }
+
+    /* Typography */
+    .text-base { font-size: var(--text-base); }
+    .text-lg { font-size: var(--text-lg); }
+    .text-xl { font-size: var(--text-xl); }
+    .text-2xl { font-size: var(--text-2xl); }
+    .text-3xl { font-size: var(--text-3xl); }
+    .text-4xl { font-size: var(--text-4xl); }
+    .text-5xl { font-size: var(--text-5xl); }
+
+    /* Responsive Grid */
+    .grid {
+      display: grid;
+      gap: clamp(1rem, 3vw, 2rem);
+    }
+
+    /* Responsive Flexbox */
+    .flex-responsive {
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    @media (max-width: 640px) {
+      .flex-responsive {
+        flex-direction: column;
+      }
+      
+      button, 
+      [role="button"],
+      a.btn-cta {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+
+    /* Responsive Images */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Responsive Buttons */
+    .btn-cta {
+      padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+      font-size: var(--text-base);
+    }
+
+    /* Responsive Icons */
+    .icon-btn {
+      width: clamp(2.5rem, 6vw, 3rem);
+      height: clamp(2.5rem, 6vw, 3rem);
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+    }
+
+    /* Improved Mobile Navigation */
+    @media (max-width: 768px) {
+      .mobile-nav {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      
+      .mobile-nav-content {
+        min-height: 100%;
+        padding: 4rem var(--container-padding);
+      }
+      
+      #mobile-nav .nav-link {
+        font-size: var(--text-xl);
+        padding: 1rem;
+      }
+      
+      #mobile-nav .btn-cta {
+        width: 100%;
+        max-width: 300px;
+        margin: 0.5rem auto;
+      }
+
+      footer {
+        text-align: center;
+      }
+      
+      footer .flex-col {
+        align-items: center;
+      }
+    }
+
+    /* Animation Performance */
+    .fade-up,
+    .mobile-nav,
+    .btn-cta,
+    .nav-link::after {
+      will-change: transform, opacity;
+    }
+
+    /* Better Focus States */
+    :focus-visible {
+      outline: 2px solid var(--color-cta);
+      outline-offset: 2px;
+    }
+
+    /* Print Styles */
+    @media print {
+      .btn-cta,
+      .mobile-nav,
+      #particles-js {
+        display: none;
+      }
+    }
   </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
   <div id="particles-js"></div>
 
   <div class="grain"></div>
   
   <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all">
-    <nav class="flex items-center justify-between max-w-7xl mx-auto px-4 py-3">
+    <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-4">
-        <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-16 w-auto" style="display:inline-block;">
-        <span class="logo-breizh text-sky-400 font-extrabold text-3xl md:text-4xl tracking-tight select-none">Breizh</span> <span class="text-amber-400 font-extrabold text-3xl md:text-4xl tracking-tight select-none">AI</span>
+        <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-12 sm:h-16 w-auto" style="display:inline-block;">
+        <span class="logo-breizh text-sky-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">Breizh</span>
+        <span class="text-amber-400 font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none">AI</span>
       </div>
-      <ul class="hidden md:flex items-center gap-8 font-medium">
-        <li><a href="#services" class="nav-link text-base" data-i18n="nav_services">Services</a></li>
-        <li><a href="#tools" class="nav-link text-base" data-i18n="nav_tools">Outils IA</a></li>
-        <li><a href="#approach" class="nav-link text-base" data-i18n="nav_approach">Approche</a></li>
+      <ul class="hidden md:flex items-center gap-6 lg:gap-8 font-medium">
+        <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">Services</a></li>
+        <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Outils IA</a></li>
+        <li><a href="#approach" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Approche</a></li>
       </ul>
       <div class="hidden md:flex items-center gap-3">
-        <a href="#contact" class="btn-cta px-5 py-2 text-base" data-i18n="nav_contact">Contactez-nous</a>
-        <button id="theme-toggle" class="icon-btn p-2 ml-2" aria-label="Changer de thème">
-          <span id="theme-icon" class="text-2xl">🌙</span>
+        <a href="#contact" class="btn-cta px-4 lg:px-5 py-2 text-base lg:text-lg" data-i18n="nav_contact">Contactez-nous</a>
+        <button id="theme-toggle" class="icon-btn p-2" aria-label="Changer de thème">
+          <span id="theme-icon" class="text-xl lg:text-2xl">🌙</span>
         </button>
-        <button id="lang-toggle" class="icon-btn p-2 ml-2" aria-label="Changer de langue">
-          <span id="lang-icon" class="text-2xl">🇫🇷</span>
+        <button id="lang-toggle" class="icon-btn p-2" aria-label="Changer de langue">
+          <span id="lang-icon" class="text-xl lg:text-2xl">🇫🇷</span>
         </button>
       </div>
       <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Ouvrir le menu">
-        <span class="block w-7 h-0.5 bg-sky-400 rounded"></span>
-        <span class="block w-7 h-0.5 bg-sky-400 rounded"></span>
-        <span class="block w-7 h-0.5 bg-sky-400 rounded"></span>
+        <span class="block w-6 h-0.5 bg-sky-400 rounded"></span>
+        <span class="block w-6 h-0.5 bg-sky-400 rounded"></span>
+        <span class="block w-6 h-0.5 bg-sky-400 rounded"></span>
       </button>
     </nav>
     <div id="mobile-nav" class="mobile-nav bg-[rgba(16,19,26,0.98)] z-50">
@@ -770,173 +926,198 @@
       </div>
     </div>
   </header>
-  
-  <section class="pt-32 pb-20 max-w-4xl mx-auto px-4 text-center fade-up">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6" data-i18n="hero_title">
-      Arrêtez de courir après la technologie, mettez-la au travail.
-    </h1>
-    <p class="text-base sm:text-lg md:text-xl text-sky-200 mb-10" data-i18n="hero_subtitle">
-      Breizh AI accompagne les entreprises dans la conception, le développement et l'intégration de solutions d'intelligence artificielle sur-mesure, adaptées à leurs enjeux métiers.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#contact" class="btn-cta px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="hero_cta1">Demander une consultation</a>
-      <a href="#services" class="btn-cta bg-amber-400 px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="hero_cta2">Découvrir nos services</a>
-    </div>
-  </section>
-  <section id="services" class="max-w-6xl mx-auto px-4 py-32 fade-up">
-    <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center" data-i18n="services_title">Passez de l'IA qui impressionne à l'IA qui rapporte.</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (1).jpg" alt="Icône IA 1" class="h-24 w-24 object-contain mr-1 rounded-xl">
-          <div class="flex flex-col justify-center w-full">
-            <h3 class="font-semibold text-xl text-center w-full" data-i18n="service1_title">Conseil & Stratégie IA</h3>
+
+  <main class="pt-20 sm:pt-24 md:pt-32">
+    <section class="container mx-auto px-4 text-center">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6" data-i18n="hero_title">
+        Arrêtez de courir après la technologie, mettez-la au travail.
+      </h1>
+      <p class="text-base sm:text-lg md:text-xl text-sky-200 mb-8 sm:mb-10 max-w-3xl mx-auto" data-i18n="hero_subtitle">
+        Breizh AI accompagne les entreprises dans la conception, le développement et l'intégration de solutions d'intelligence artificielle sur-mesure, adaptées à leurs enjeux métiers.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contact" class="btn-cta px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="hero_cta1">Demander une consultation</a>
+        <a href="#services" class="btn-cta bg-amber-400 px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="hero_cta2">Découvrir nos services</a>
+      </div>
+    </section>
+
+    <section id="services" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="services_title">
+        Passez de l'IA qui impressionne à l'IA qui rapporte.
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (1).jpg" alt="Icône IA 1" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service1_title">Conseil & Stratégie IA</h3>
+            </div>
           </div>
+          <p class="text-base text-sky-200" data-i18n="service1_desc">Audit, feuille de route, acculturation IA et accompagnement stratégique.</p>
         </div>
-        <p class="text-base text-sky-200" data-i18n="service1_desc">Audit, feuille de route, acculturation IA et accompagnement stratégique.</p>
-      </div>
-      <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (2).jpg" alt="Icône IA 2" class="h-24 w-24 object-contain mr-1 rounded-xl">
-          <div class="flex flex-col justify-center w-full">
-            <h3 class="font-semibold text-xl text-center w-full" data-i18n="service2_title">Développement sur-mesure</h3>
+        <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (2).jpg" alt="Icône IA 2" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service2_title">Développement sur-mesure</h3>
+            </div>
           </div>
+          <p class="text-base text-sky-200" data-i18n="service2_desc">Conception et développement d’outils IA adaptés à vos besoins métiers.</p>
         </div>
-        <p class="text-base text-sky-200" data-i18n="service2_desc">Conception et développement d’outils IA adaptés à vos besoins métiers.</p>
-      </div>
-      <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (3).jpg" alt="Icône IA 3" class="h-24 w-24 object-contain mr-1 rounded-xl">
-          <div class="flex flex-col justify-center w-full">
-            <h3 class="font-semibold text-xl text-center w-full" data-i18n="service3_title">Intégration & Déploiement</h3>
+        <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (3).jpg" alt="Icône IA 3" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service3_title">Intégration & Déploiement</h3>
+            </div>
           </div>
+          <p class="text-base text-sky-200" data-i18n="service3_desc">Mise en production, interfaçage, automatisation et maintenance IA.</p>
         </div>
-        <p class="text-base text-sky-200" data-i18n="service3_desc">Mise en production, interfaçage, automatisation et maintenance IA.</p>
-      </div>
-      <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (4).jpg" alt="Icône IA 4" class="h-24 w-24 object-contain mr-1 rounded-xl">
-          <div class="flex flex-col justify-center w-full">
-            <h3 class="font-semibold text-xl text-center w-full" data-i18n="service4_title">Analyse de Données & BI</h3>
+        <div class="glass-card group relative px-2 py-4 flex flex-col items-start hover:bg-sky-50/10 transition-all cursor-pointer card-aurora w-[105%]">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Gemini_Generated_Image_x5r79mx5r79mx5r7 (4).jpg" alt="Icône IA 4" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service4_title">Analyse de Données & BI</h3>
+            </div>
           </div>
+          <p class="text-base text-sky-200" data-i18n="service4_desc">Valorisation de vos données, dashboards, reporting et dataviz IA.</p>
         </div>
-        <p class="text-base text-sky-200" data-i18n="service4_desc">Valorisation de vos données, dashboards, reporting et dataviz IA.</p>
       </div>
-    </div>
-  </section>
-  <section id="tools" class="max-w-5xl mx-auto px-4 py-32 fade-up">
-    <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center" data-i18n="tools_title">Outils IA interactifs</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
-        <div class="aurora z-0"></div>
-        <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
-        <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d’activité</label>
-        <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
-        <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
-          <span data-i18n="tool1_btn">Générer les idées</span>
-          <span id="loader-ideas" class="loader hidden"></span>
-        </button>
-        <div id="ideas-result" class="mt-4 text-base"></div>
-      </div>
-      <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
-        <div class="aurora z-0"></div>
-        <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
-        <label for="desc-projet" class="mb-1 text-base z-10 relative" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
-        <textarea id="desc-projet" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : Automatiser la gestion des stocks..."></textarea>
-        <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool2_btn">
-          <span data-i18n="tool2_btn">Générer le Business Case</span>
-          <span id="loader-bc" class="loader hidden"></span>
-        </button>
-        <div id="bc-result" class="mt-4 text-base"></div>
-      </div>
-    </div>
-  </section>
-  <section id="approach" class="max-w-5xl mx-auto px-4 py-32 fade-up">
-    <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center" data-i18n="approach_title">Notre approche en 4 étapes</h2>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
-      <div class="flex flex-col items-center gap-2 flex-1">
-        <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">1</div>
-        <span class="font-semibold text-sm md:text-base" data-i18n="approach1">Découverte</span>
-      </div>
-      <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
-      <div class="flex flex-col items-center gap-2 flex-1">
-        <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">2</div>
-        <span class="font-semibold text-sm md:text-base" data-i18n="approach2">Prototypage</span>
-      </div>
-      <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
-      <div class="flex flex-col items-center gap-2 flex-1">
-        <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">3</div>
-        <span class="font-semibold text-sm md:text-base" data-i18n="approach3">Développement</span>
-      </div>
-      <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
-      <div class="flex flex-col items-center gap-2 flex-1">
-        <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">4</div>
-        <span class="font-semibold text-sm md:text-base" data-i18n="approach4">Déploiement</span>
-      </div>
-    </div>
-  </section>
-  <section class="max-w-6xl mx-auto px-4 py-32 fade-up">
-    <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center" data-i18n="innov_title">L'IA n'est pas magique, c'est un métier.</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-      <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Dirigeant.jpg" alt="Dirigeant travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
-          <h3 class="font-semibold text-xl" data-i18n="innov1_title">Pour les Dirigeants</h3>
+    </section>
+
+    <section id="tools" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="tools_title">
+        Outils IA interactifs
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+          <div class="aurora z-0"></div>
+          <h3 class="font-semibold text-xl mb-2" data-i18n="tool1_title">Découvrez votre potentiel IA</h3>
+          <label for="secteur" class="mb-1 text-base z-10 relative" data-i18n="tool1_label">Votre secteur d’activité</label>
+          <textarea id="secteur" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : BTP, Santé, Commerce..."></textarea>
+          <button id="gen-ideas" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool1_btn">
+            <span data-i18n="tool1_btn">Générer les idées</span>
+            <span id="loader-ideas" class="loader hidden"></span>
+          </button>
+          <div id="ideas-result" class="mt-4 text-base"></div>
         </div>
-        <p class="text-base text-sky-200" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
-      </div>
-      <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Ingénieurs.jpg" alt="Ingénieur travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
-          <h3 class="font-semibold text-xl" data-i18n="innov2_title">Pour les Ingénieurs</h3>
+        <div class="glass-card glass-card-amber group relative p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+          <div class="aurora z-0"></div>
+          <h3 class="font-semibold text-xl mb-2" data-i18n="tool2_title">Ébauchez votre Business Case IA</h3>
+          <label for="desc-projet" class="mb-1 text-base z-10 relative" data-i18n="tool2_label">Décrivez brièvement votre projet</label>
+          <textarea id="desc-projet" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full max-w-md mx-auto resize-none text-center flex items-center justify-center" placeholder="Ex : Automatiser la gestion des stocks..."></textarea>
+          <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto" data-i18n="tool2_btn">
+            <span data-i18n="tool2_btn">Générer le Business Case</span>
+            <span id="loader-bc" class="loader hidden"></span>
+          </button>
+          <div id="bc-result" class="mt-4 text-base"></div>
         </div>
-        <p class="text-base text-sky-200" data-i18n="innov2_desc">Collaborez sur des projets IA avancés, du prototype à la mise en production.</p>
       </div>
-      <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Managers du Digital.jpg" alt="Manager digital travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
-          <h3 class="font-semibold text-xl" data-i18n="innov3_title">Pour les Managers du Digital</h3>
+    </section>
+
+    <section id="approach" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="approach_title">
+        Notre approche en 4 étapes
+      </h2>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">1</div>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach1">Découverte</span>
         </div>
-        <p class="text-base text-sky-200" data-i18n="innov3_desc">Accélérez l’innovation digitale grâce à l’IA, de l’idéation à l’intégration métier.</p>
-      </div>
-      <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
-        <div class="aurora"></div>
-        <div class="flex flex-row items-center w-full mb-2">
-          <img src="Artisan.jpg" alt="Artisan travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
-          <h3 class="font-semibold text-xl" data-i18n="innov4_title">Pour les Artisans</h3>
+        <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">2</div>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach2">Prototypage</span>
         </div>
-        <p class="text-base text-sky-200" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
+        <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">3</div>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach3">Développement</span>
+        </div>
+        <div class="h-8 w-1 bg-sky-400 md:h-1 md:w-12 md:mx-2 md:my-0 my-2 rounded-full mx-4 -translate-y-[20px] transform"></div>
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <div class="glass-card w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-2">4</div>
+          <span class="font-semibold text-sm md:text-base" data-i18n="approach4">Déploiement</span>
+        </div>
       </div>
-    </div>
-  </section>
-  <section id="contact" class="max-w-3xl mx-auto px-4 py-32 text-center fade-up">
-    <h2 class="text-2xl sm:text-3xl font-bold mb-8" data-i18n="cta_title">L'essentiel, intelligemment. C'est tout !</h2>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="mailto:contact@breizh.ai" class="btn-cta px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="cta_email">Envoyer un e-mail</a>
-      <a href="tel:+33612980152" class="btn-cta bg-amber-400 px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="cta_call">Appelez-nous</a>
-    </div>
-  </section>
-  <footer class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-sky-200 fade-up">
-    <div class="flex items-center gap-2 font-extrabold text-2xl md:text-3xl">
-      <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-16 w-auto" style="display:inline-block;">
-      <span class="logo-breizh text-sky-400">Breizh</span> <span class="text-amber-400">AI</span>
+    </section>
+
+    <section class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="innov_title">
+        L'IA n'est pas magique, c'est un métier.
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Dirigeant.jpg" alt="Dirigeant travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
+            <h3 class="font-semibold text-xl" data-i18n="innov1_title">Pour les Dirigeants</h3>
+          </div>
+          <p class="text-base text-sky-200" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
+        </div>
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Ingénieurs.jpg" alt="Ingénieur travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
+            <h3 class="font-semibold text-xl" data-i18n="innov2_title">Pour les Ingénieurs</h3>
+          </div>
+          <p class="text-base text-sky-200" data-i18n="innov2_desc">Collaborez sur des projets IA avancés, du prototype à la mise en production.</p>
+        </div>
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Managers du Digital.jpg" alt="Manager digital travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
+            <h3 class="font-semibold text-xl" data-i18n="innov3_title">Pour les Managers du Digital</h3>
+          </div>
+          <p class="text-base text-sky-200" data-i18n="innov3_desc">Accélérez l’innovation digitale grâce à l’IA, de l’idéation à l’intégration métier.</p>
+        </div>
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="Artisan.jpg" alt="Artisan travaillant avec IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg">
+            <h3 class="font-semibold text-xl" data-i18n="innov4_title">Pour les Artisans</h3>
+          </div>
+          <p class="text-base text-sky-200" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container mx-auto px-4 py-16 sm:py-24 md:py-32 text-center">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8" data-i18n="cta_title">
+        L'essentiel, intelligemment. C'est tout !
+      </h2>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="mailto:contact@breizh.ai" class="btn-cta px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="cta_email">
+          Envoyer un e-mail
+        </a>
+        <a href="tel:+33612980152" class="btn-cta bg-amber-400 px-6 sm:px-8 py-3 text-base sm:text-lg" data-i18n="cta_call">
+          Appelez-nous
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-sky-200">
+    <div class="flex items-center gap-2 font-extrabold text-xl sm:text-2xl md:text-3xl">
+      <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-12 sm:h-16 w-auto" style="display:inline-block;">
+      <span class="logo-breizh text-sky-400">Breizh</span>
+      <span class="text-amber-400">AI</span>
     </div>
     <div class="flex flex-col md:flex-row items-center gap-2">
       <a href="mailto:contact@breizh.ai" class="hover:underline">contact@breizh.ai</a>
-      <span>|</span>
+      <span class="hidden md:inline">|</span>
       <a href="https://www.linkedin.com/company/breizh-ai/" target="_blank" rel="noopener" aria-label="Suivre Breizh AI sur LinkedIn" class="hover:text-sky-400 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 inline-block mr-1"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 inline-block mr-1">
+          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z"/>
+        </svg>
         <span class="sr-only">LinkedIn</span>
       </a>
     </div>
-    <div class="text-xs text-sky-300">
+    <div class="text-xs sm:text-sm text-sky-300">
       &copy; <span id="year"></span> Breizh AI. <span data-i18n="footer_made">Conçu en Bretagne, France.</span>
     </div>
   </footer>
