@@ -1082,6 +1082,24 @@
       </div>
     </section>
 
+    <!-- Section Preuve Sociale -->
+    <section class="container mx-auto px-4 py-16 sm:py-20 md:py-24">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
+            <div class="glass-card p-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-300">+20</h3>
+                <p class="text-base sm:text-lg font-semibold text-sky-200 mt-2" data-i18n="proof1">Projets IA Réalisés</p>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-300">98%</h3>
+                <p class="text-base sm:text-lg font-semibold text-sky-200 mt-2" data-i18n="proof2">Satisfaction Client</p>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-300">+5</h3>
+                <p class="text-base sm:text-lg font-semibold text-sky-200 mt-2" data-i18n="proof3">Ans d'Expertise IA</p>
+            </div>
+        </div>
+    </section>
+
     <section id="services" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
       <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="services_title">
         Passez de l'IA qui impressionne à l'IA qui rapporte.
@@ -1130,25 +1148,155 @@
       </div>
     </section>
 
-    <section id="tools" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
-      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="tool2_title">
-        Obtenez gratuitement la stratégie de croissance pour votre entreprise .
-      </h2>
-      <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-3xl mx-auto w-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
-        <div class="aurora z-0"></div>
-        <div class="flex flex-col flex-1 justify-between">
-          <label for="email-bc" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_email_label">Adresse email</label>
-          <input id="email-bc" type="email" class="rounded-lg px-4 py-2 mb-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
-          <label for="desc-projet" class="mb-1 text-base font-semibold z-10 relative text-slate-700 dark:text-slate-200" data-i18n="tool2_label">Décrivez la stratégie que vous souhaitez</label>
-          <textarea id="desc-projet" data-i18n="tool2_placeholder" rows="4" class="rounded-lg px-4 py-2 h-32 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full resize-none text-center flex items-center justify-center" placeholder="Ex : Stratégie de croissance sur 3 ans pour la société de conseil dans le digital Breizh AI"></textarea>
-          <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-2 mt-2 flex items-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool2_btn">
-            <span data-i18n="tool2_btn">Obtenez votre stratégie</span>
-            <span id="loader-bc" class="loader hidden"></span>
-          </button>
-          <div id="bc-result" class="mt-4 text-base"></div>
+ <section id="tools" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="tool2_title">
+    Obtenez gratuitement la stratégie de croissance de votre entreprise .
+    </h2>
+    <div class="glass-card glass-card-amber group relative p-8 flex flex-col md:flex-row gap-8 items-stretch hover:bg-sky-50/10 transition-all cursor-pointer card-aurora max-w-4xl mx-auto w-full rounded-2xl overflow-hidden border border-slate-200 bg-white/80 dark:bg-slate-900/80">
+    <div class="aurora z-0"></div>
+    <div class="flex flex-col flex-1 justify-between">
+        <!-- Informations de base -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex-1">
+                <label for="email-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;" data-i18n="tool2_email_label">Votre adresse email</label>
+                <input id="email-bc" type="email" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Votre adresse email" required>
+            </div>
+            <div class="flex-1">
+                <label for="nom-entreprise-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Nom de votre entreprise</label>
+                <input id="nom-entreprise-bc" type="text" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" placeholder="Nom de votre entreprise" required>
+            </div>
         </div>
-      </div>
-    </section>
+
+        <!-- Secteur d'activité -->
+        <div class="mb-4">
+            <label for="secteur-activite-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Secteur d'activité</label>
+            <select id="secteur-activite-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                <option value="">Sélectionnez votre secteur</option>
+                <option value="Technologie">Technologie</option>
+                <option value="Finance">Finance</option>
+                <option value="Santé">Santé</option>
+                <option value="Éducation">Éducation</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Industrie">Industrie</option>
+                <option value="Transport">Transport</option>
+                <option value="Énergie">Énergie</option>
+                <option value="Construction">Construction</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Tourisme">Tourisme</option>
+                <option value="Médias">Médias</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Autre">Autre</option>
+            </select>
+        </div>
+
+        <!-- Taille et chiffres -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div class="flex-1">
+                <label for="taille-organisation-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Taille de l'organisation</label>
+                <select id="taille-organisation-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="PME">PME (1-250 employés)</option>
+                    <option value="ETI">ETI (250-5000 employés)</option>
+                    <option value="GRANDE_ENTREPRISE">Grande Entreprise (5000+ employés)</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="chiffre-affaires-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Chiffre d'affaires</label>
+                <select id="chiffre-affaires-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="< 1M€">Moins de 1M€</option>
+                    <option value="1M€ - 10M€">1M€ - 10M€</option>
+                    <option value="10M€ - 50M€">10M€ - 50M€</option>
+                    <option value="50M€ - 100M€">50M€ - 100M€</option>
+                    <option value="100M€ - 500M€">100M€ - 500M€</option>
+                    <option value="500M€ - 1Md€">500M€ - 1Md€</option>
+                    <option value="> 1Md€">Plus de 1Md€</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="effectifs-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Effectifs</label>
+                <select id="effectifs-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="1-10">1-10 employés</option>
+                    <option value="11-50">11-50 employés</option>
+                    <option value="51-250">51-250 employés</option>
+                    <option value="251-1000">251-1000 employés</option>
+                    <option value="1001-5000">1001-5000 employés</option>
+                    <option value="5001-10000">5001-10000 employés</option>
+                    <option value="> 10000">Plus de 10000 employés</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Maturité digitale -->
+        <div class="mb-4">
+            <label for="maturite-digitale-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Maturité digitale</label>
+            <select id="maturite-digitale-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                <option value="">Sélectionnez votre niveau</option>
+                <option value="INITIALE">Initiale - Début de transformation</option>
+                <option value="EXPERIMENTALE">Expérimentale - Tests en cours</option>
+                <option value="DÉVELOPPÉE">Développée - Solutions en place</option>
+                <option value="OPTIMISÉE">Optimisée - Excellence digitale</option>
+            </select>
+        </div>
+
+        <!-- Géographie et contraintes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex-1">
+                <label for="geographie-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Zones d'activité</label>
+                <select id="geographie-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="Locale">Locale</option>
+                    <option value="Régionale">Régionale</option>
+                    <option value="Nationale">Nationale</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Internationale">Internationale</option>
+                    <option value="Mondiale">Mondiale</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="contraintes-specifiques-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Contraintes spécifiques</label>
+                <select id="contraintes-specifiques-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="RÉGLEMENTAIRES">Réglementaires</option>
+                    <option value="BUDGÉTAIRES">Budgétaires</option>
+                    <option value="CULTURELLES">Culturelles</option>
+                    <option value="TECHNIQUES">Techniques</option>
+                    <option value="AUCUNE">Aucune contrainte majeure</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Ambition et horizon -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex-1">
+                <label for="ambition-transformation-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Ambition de transformation</label>
+                <select id="ambition-transformation-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="CONSERVATIVE">Conservative - Amélioration progressive</option>
+                    <option value="AMBITIEUSE">Ambitieuse - Transformation significative</option>
+                    <option value="DISRUPTIVE">Disruptive - Innovation radicale</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="horizon-temporel-bc" class="mb-1 text-base font-bold z-10 relative" style="color: #1e3a8a;">Horizon temporel</label>
+                <select id="horizon-temporel-bc" class="rounded-lg px-4 py-2 bg-white/70 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-400 z-10 relative w-full" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="3_ANS">3 ans</option>
+                    <option value="5_ANS">5 ans</option>
+                    <option value="7_ANS">7 ans</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="gen-bc" class="btn-cta bg-emerald-400 px-6 py-3 mt-2 flex items-center justify-center gap-2 z-10 relative mx-auto font-semibold" data-i18n="tool2_btn">
+        <span data-i18n="tool2_btn">Obtenez votre stratégie</span>
+        <span id="loader-bc" class="loader hidden"></span>
+        </button>
+        <div id="bc-result" class="mt-4 text-base"></div>
+    </div>
+    </div>
+</section>
 
     <section id="approach" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
       <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 sm:mb-10 text-center" data-i18n="approach_title">
@@ -1368,15 +1516,11 @@
         service3_desc: "Production, interfacing, automation and AI maintenance.",
         service4_title: "Data Analysis & BI",
         service4_desc: "Data enhancement, dashboards, reporting and AI dataviz.",
-        tools_title: "Interactive AI tools",
-        tool1_title: "Discover your AI potential",
-        tool1_label: "Your business sector",
-        tool1_btn: "Generate ideas",
         tool2_title: "Get your company's growth strategy for free.",
-        tool2_email_label: "Email address",
-        tool2_label: "Describe the strategy you want",
+        tool2_email_label: "Your email address",
+        tool2_company_label: "Your company name",
         tool2_btn: "Get your strategy",
-        tool2_placeholder: "Ex: 3-year growth strategy for the digital consulting company Breizh AI",
+        tool2_company_placeholder: "Your company name",
         approach_title: "Our 4-step approach",
         approach1: "Discovery",
         approach1_desc: "Analysis of your needs and definition of objectives.",
@@ -1398,7 +1542,10 @@
         cta_title: "The essentials, intelligently. That's all.",
         cta_email: "Send an email",
         cta_call: "Call us",
-        footer_made: "Designed in Brittany, France."
+        footer_made: "Designed in Brittany, France.",
+        proof1: "AI Projects Completed",
+        proof2: "Customer Satisfaction",
+        proof3: "Years of AI Expertise"
       },
       fr: {} // Les textes français sont déjà dans le HTML
     };
@@ -1464,96 +1611,129 @@
       });
     });
 
-    // --- Outils IA (API OpenAI) - Votre clé API reste ici
-    const MISTRAL_API_KEY = "76cwpvjZqnFw1U0jLCEBKOHh5FprX2OJ";
-    // Le reste de votre logique pour les outils IA... (inchangé)
-    const genIdeasBtn = document.getElementById('gen-ideas');
-    const secteurInput = document.getElementById('secteur');
-    const emailInput = document.getElementById('email-potentiel-ia');
-    const ideasResult = document.getElementById('ideas-result');
-    const loaderIdeas = document.getElementById('loader-ideas');
-    genIdeasBtn.addEventListener('click', async () => {
-      const secteur = secteurInput.value.trim();
-      const email = emailInput.value.trim();
-      if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
-      if(!secteur) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Veuillez indiquer un secteur.</span>';
-        return;
-      }
-      genIdeasBtn.disabled = true;
-      loaderIdeas.classList.remove('hidden');
-      ideasResult.innerHTML = '';
-      // Envoi au webhook
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            prompt: secteur
-          })
-        });
-        if (resp.ok) {
-          let resume = '';
-          try {
-            const data = await resp.json();
-            resume = data.resume || data.summary || data.result || '';
-          } catch(e) {}
-          document.getElementById('resume-ideas').textContent = resume ? resume : 'Votre demande a bien été transmise. Vous recevrez la réponse par email.';
-          ideasResult.innerHTML = '';
-        } else {
-          ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
-        }
-      } catch(e) {
-        ideasResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
-      }
-      genIdeasBtn.disabled = false;
-      loaderIdeas.classList.add('hidden');
-    });
+    // --- Outil IA pour stratégie d'entreprise ---
     const genBCBtn = document.getElementById('gen-bc');
-    const descProjet = document.getElementById('desc-projet');
+    const emailBC = document.getElementById('email-bc');
+    const nomEntrepriseBC = document.getElementById('nom-entreprise-bc');
+    const secteurActiviteBC = document.getElementById('secteur-activite-bc');
+    const tailleOrganisationBC = document.getElementById('taille-organisation-bc');
+    const chiffreAffairesBC = document.getElementById('chiffre-affaires-bc');
+    const effectifsBC = document.getElementById('effectifs-bc');
+    const maturiteDigitaleBC = document.getElementById('maturite-digitale-bc');
+    const geographieBC = document.getElementById('geographie-bc');
+    const contraintesSpecifiquesBC = document.getElementById('contraintes-specifiques-bc');
+    const ambitionTransformationBC = document.getElementById('ambition-transformation-bc');
+    const horizonTemporelBC = document.getElementById('horizon-temporel-bc');
     const bcResult = document.getElementById('bc-result');
     const loaderBC = document.getElementById('loader-bc');
-    const emailBC = document.getElementById('email-bc');
+
     genBCBtn.addEventListener('click', async () => {
-      const desc = descProjet.value.trim();
       const email = emailBC.value.trim();
+      const nomEntreprise = nomEntrepriseBC.value.trim();
+      const secteurActivite = secteurActiviteBC.value;
+      const tailleOrganisation = tailleOrganisationBC.value;
+      const chiffreAffaires = chiffreAffairesBC.value;
+      const effectifs = effectifsBC.value;
+      const maturiteDigitale = maturiteDigitaleBC.value;
+      const geographie = geographieBC.value;
+      const contraintesSpecifiques = contraintesSpecifiquesBC.value;
+      const ambitionTransformation = ambitionTransformationBC.value;
+      const horizonTemporel = horizonTemporelBC.value;
+
+      // Validation des champs
       if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
         bcResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
         return;
       }
-      if(!desc) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez décrire votre projet.</span>';
+      if(!nomEntreprise) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez saisir le nom de votre entreprise.</span>';
         return;
       }
+      if(!secteurActivite) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre secteur d\'activité.</span>';
+        return;
+      }
+      if(!tailleOrganisation) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner la taille de votre organisation.</span>';
+        return;
+      }
+      if(!chiffreAffaires) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre chiffre d\'affaires.</span>';
+        return;
+      }
+      if(!effectifs) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos effectifs.</span>';
+        return;
+      }
+      if(!maturiteDigitale) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre maturité digitale.</span>';
+        return;
+      }
+      if(!geographie) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos zones d\'activité.</span>';
+        return;
+      }
+      if(!contraintesSpecifiques) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos contraintes spécifiques.</span>';
+        return;
+      }
+      if(!ambitionTransformation) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre ambition de transformation.</span>';
+        return;
+      }
+      if(!horizonTemporel) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre horizon temporel.</span>';
+        return;
+      }
+
       genBCBtn.disabled = true;
       loaderBC.classList.remove('hidden');
       bcResult.innerHTML = '';
-      // Envoi au webhook
+      
+      // Envoi au webhook avec les paramètres exacts demandés
       try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
+        const resp = await fetch('https://n8n.breizh.ai/webhook-test/4f689afe-b03d-4b1d-9cca-43083d9cd8d5', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'cors',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
           body: JSON.stringify({
-            email: email,
-            prompt: desc
+            nom_entreprise: nomEntreprise,
+            secteur_activite: secteurActivite,
+            taille_organisation: tailleOrganisation,
+            chiffre_affaires: chiffreAffaires,
+            effectifs: effectifs,
+            maturite_digitale: maturiteDigitale,
+            geographie: geographie,
+            contraintes_specifiques: contraintesSpecifiques,
+            ambition_transformation: ambitionTransformation,
+            horizon_temporel: horizonTemporel,
+            email: email
           })
         });
+        
         if (resp.ok) {
-          let resume = '';
-          try {
-            const data = await resp.json();
-            resume = data.resume || data.summary || data.result || '';
-          } catch(e) {}
-          bcResult.innerHTML = '<span class="text-green-400">Votre demande a bien été transmise. Vous recevrez la réponse par email.</span>';
+          const responseData = await resp.text();
+          bcResult.innerHTML = '<span class="text-green-400">Votre demande a bien été transmise ! Vous recevrez le document par mail.</span>';
         } else {
-          bcResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
+          const errorData = await resp.text();
+          
+          if (resp.status === 500 && errorData.includes('Workflow could not be started')) {
+            bcResult.innerHTML = '<span class="text-rose-400">⚠️ Service temporairement indisponible. Nous résolvons le problème. Veuillez réessayer dans quelques minutes ou contactez-nous directement.</span>';
+          } else {
+            bcResult.innerHTML = `<span class="text-rose-400">Erreur lors de l'envoi (${resp.status}). Veuillez réessayer.</span>`;
+          }
         }
       } catch(e) {
-        bcResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
+        if (e.name === 'TypeError' && e.message.includes('Failed to fetch')) {
+          bcResult.innerHTML = '<span class="text-rose-400">Erreur de connexion. Vérifiez que le serveur n8n est bien démarré sur le port 5678.</span>';
+        } else if (e.message.includes('CORS')) {
+          bcResult.innerHTML = '<span class="text-rose-400">Erreur CORS. Configurez n8n pour accepter les requêtes cross-origin.</span>';
+        } else {
+          bcResult.innerHTML = `<span class="text-rose-400">Erreur: ${e.message}</span>`;
+        }
       }
       genBCBtn.disabled = false;
       loaderBC.classList.add('hidden');
@@ -1566,11 +1746,23 @@
     // --- Carrousel Outils IA ---
     document.addEventListener('DOMContentLoaded', function() {
       const track = document.querySelector('.carousel-track');
+      if (!track) return; // Stop if carousel not present
       const cards = Array.from(track.children);
       const dots = document.querySelectorAll('#carousel-dots button');
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
+
+      if (cards.length <= 1) {
+        if(prevBtn) prevBtn.style.display = 'none';
+        if(nextBtn) nextBtn.style.display = 'none';
+        if(dots.length > 0) document.getElementById('carousel-dots').style.display = 'none';
+        return;
+      };
+
       let current = 0;
       let isDragging = false, startX = 0, currentX = 0, dragDelta = 0;
       let animating = false;
+
       function updateCarousel(idx, spring = false) {
         if (animating) return;
         animating = true;
@@ -1584,18 +1776,22 @@
         setTimeout(() => { animating = false; }, spring ? 700 : 550);
         current = idx;
       }
+
       function goTo(idx, spring = false) {
         idx = (idx + cards.length) % cards.length;
         updateCarousel(idx, spring);
       }
-      document.getElementById('carousel-prev').addEventListener('click', () => goTo(current - 1, true));
-      document.getElementById('carousel-next').addEventListener('click', () => goTo(current + 1, true));
+
+      if(prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1, true));
+      if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1, true));
       dots.forEach((dot, i) => {
         dot.addEventListener('click', () => goTo(i, false));
       });
+
       // Drag/Swipe
       track.addEventListener('mousedown', startDrag);
       track.addEventListener('touchstart', startDrag, {passive:true});
+
       function startDrag(e) {
         if (animating) return;
         isDragging = true;
@@ -1607,13 +1803,15 @@
         document.addEventListener('mouseup', endDrag);
         document.addEventListener('touchend', endDrag);
       }
+
       function onDrag(e) {
         if (!isDragging) return;
         let x = (e.touches ? e.touches[0].clientX : e.clientX);
         dragDelta = x - startX;
         track.style.transform = `translateX(calc(${-current * 100}% + ${dragDelta}px))`;
-        e.preventDefault && e.preventDefault();
+        if (e.preventDefault) e.preventDefault();
       }
+
       function endDrag() {
         if (!isDragging) return;
         isDragging = false;
@@ -1630,100 +1828,23 @@
         }
         dragDelta = 0;
       }
+
       // Navigation clavier
-      document.getElementById('tools-carousel').addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') goTo(current - 1, true);
-        if (e.key === 'ArrowRight') goTo(current + 1, true);
-      });
-      // Focus sur le carrousel pour navigation clavier
-      document.getElementById('tools-carousel').tabIndex = 0;
+      const carouselContainer = document.getElementById('tools-carousel');
+      if (carouselContainer) {
+        carouselContainer.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft') goTo(current - 1, true);
+          if (e.key === 'ArrowRight') goTo(current + 1, true);
+        });
+        // Focus sur le carrousel pour navigation clavier
+        carouselContainer.tabIndex = 0;
+      }
+      
       updateCarousel(0);
     });
   </script>
   <!-- END_CAROUSEL_JS -->
 
-  <script>
-    // --- Génération Stratégie IA ---
-    const genStrategieBtn = document.getElementById('gen-strategie-ia');
-    const strategieInput = document.getElementById('strategie-ia');
-    const emailStrategieInput = document.getElementById('email-strategie-ia');
-    const strategieResult = document.getElementById('strategie-ia-result');
-    const loaderStrategie = document.getElementById('loader-strategie-ia');
-    if(genStrategieBtn) genStrategieBtn.addEventListener('click', async () => {
-      const strategie = strategieInput.value.trim();
-      const email = emailStrategieInput.value.trim();
-      if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
-      if(!strategie) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Veuillez décrire vos enjeux stratégiques.</span>';
-        return;
-      }
-      genStrategieBtn.disabled = true;
-      loaderStrategie.classList.remove('hidden');
-      strategieResult.innerHTML = '';
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, prompt: strategie })
-        });
-        if (resp.ok) {
-          let resume = '';
-          try { const data = await resp.json(); resume = data.resume || data.summary || data.result || ''; } catch(e) {}
-          document.getElementById('resume-strategie-ia').textContent = resume ? resume : 'Votre demande a bien été transmise. Vous recevrez la réponse par email.';
-          strategieResult.innerHTML = '';
-        } else {
-          strategieResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
-        }
-      } catch(e) {
-        strategieResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
-      }
-      genStrategieBtn.disabled = false;
-      loaderStrategie.classList.add('hidden');
-    });
 
-    // --- Génération Acculturation IA ---
-    const genAcculturationBtn = document.getElementById('gen-acculturation-ia');
-    const acculturationInput = document.getElementById('acculturation-ia');
-    const emailAcculturationInput = document.getElementById('email-acculturation-ia');
-    const acculturationResult = document.getElementById('acculturation-ia-result');
-    const loaderAcculturation = document.getElementById('loader-acculturation-ia');
-    if(genAcculturationBtn) genAcculturationBtn.addEventListener('click', async () => {
-      const acculturation = acculturationInput.value.trim();
-      const email = emailAcculturationInput.value.trim();
-      if(!email || !email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
-        return;
-      }
-      if(!acculturation) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Veuillez décrire vos besoins d\'acculturation.</span>';
-        return;
-      }
-      genAcculturationBtn.disabled = true;
-      loaderAcculturation.classList.remove('hidden');
-      acculturationResult.innerHTML = '';
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook/f6561bde-cb34-45ac-94f8-4f69f53acdb9', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, prompt: acculturation })
-        });
-        if (resp.ok) {
-          let resume = '';
-          try { const data = await resp.json(); resume = data.resume || data.summary || data.result || ''; } catch(e) {}
-          document.getElementById('resume-acculturation-ia').textContent = resume ? resume : 'Votre demande a bien été transmise. Vous recevrez la réponse par email.';
-          acculturationResult.innerHTML = '';
-        } else {
-          acculturationResult.innerHTML = '<span class="text-rose-400">Erreur lors de l\'envoi au serveur.</span>';
-        }
-      } catch(e) {
-        acculturationResult.innerHTML = '<span class="text-rose-400">Erreur lors de la transmission.</span>';
-      }
-      genAcculturationBtn.disabled = false;
-      loaderAcculturation.classList.add('hidden');
-    });
-  </script>
 </body>
 </html>
