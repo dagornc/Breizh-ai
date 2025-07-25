@@ -1690,9 +1690,9 @@
       loaderBC.classList.remove('hidden');
       bcResult.innerHTML = '';
       
-      // Envoi au webhook avec les paramètres exacts demandés
-      try {
-        const resp = await fetch('https://n8n.breizh.ai/webhook-test/4f689afe-b03d-4b1d-9cca-43083d9cd8d5', {
+              // Envoi au webhook avec les paramètres exacts demandés
+        try {
+          const resp = await fetch('https://n8n.breizh.ai/webhook/4f689afe-b03d-4b1d-9cca-43083d9cd8d5', {
           method: 'POST',
           mode: 'cors',
           headers: { 
