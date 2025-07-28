@@ -82,6 +82,19 @@
       }
     }
     
+    /* Fallback pour les images qui ne se chargent pas */
+    .glass-card picture img {
+      min-width: 97px;
+      min-height: 97px;
+    }
+    
+    .glass-card picture img:not([src]) {
+      background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
     html, body {
       min-height: 100%;
     }
@@ -1318,7 +1331,10 @@
         <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
-            <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg" loading="lazy" decoding="async" style="max-width: 97px; max-height: 97px;">
+            <picture>
+              <source srcset="dirigeant-ios.png" media="(max-width: 768px)">
+              <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg" loading="lazy" decoding="async" style="max-width: 97px; max-height: 97px;">
+            </picture>
             <h3 class="font-semibold text-xl" data-i18n="innov1_title">Pour les Dirigeants</h3>
           </div>
           <p class="text-base text-sky-200" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
@@ -1342,7 +1358,10 @@
         <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-2">
-            <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg" loading="lazy" decoding="async" style="max-width: 97px; max-height: 97px;">
+            <picture>
+              <source srcset="artisan-ios.png" media="(max-width: 768px)">
+              <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-[97px] w-[97px] object-contain mr-4 rounded-xl shadow-lg" loading="lazy" decoding="async" style="max-width: 97px; max-height: 97px;">
+            </picture>
             <h3 class="font-semibold text-xl" data-i18n="innov4_title">Pour les Artisans</h3>
           </div>
           <p class="text-base text-sky-200" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
