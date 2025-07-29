@@ -1847,6 +1847,34 @@
       visibility: visible;
     }
 
+    /* DEBUG: Styles de secours pour les images iOS */
+    .ios-image-debug {
+      background-color: red !important;
+      border: 3px solid yellow !important;
+      min-width: 96px !important;
+      min-height: 96px !important;
+    }
+    
+    /* Forcer l'affichage des images sur iOS avec des styles très spécifiques */
+    @supports (-webkit-touch-callout: none) {
+      img[alt*="Dirigeant"], 
+      img[alt*="Artisan"] {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        width: 96px !important;
+        height: 96px !important;
+        object-fit: contain !important;
+        border-radius: 0.75rem !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(245, 158, 11, 0.3) !important;
+      }
+    }
+
     /* Responsive pour éléments sticky */
     @media (max-width: 768px) {
       .floating-nav {
@@ -2591,8 +2619,9 @@
           <div class="text-center mb-6">
             <div class="relative mb-4 mx-auto w-fit">
               <picture>
+                <source srcset="dirigeant-ios.png" type="image/png" media="(-webkit-min-device-pixel-ratio: 1.5)">
                 <source srcset="dirigeant.jpg" type="image/jpeg">
-                <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;" loading="eager" decoding="sync">
+                <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 rounded-xl mx-auto block" style="object-fit: contain !important; transform: translateZ(0) !important; -webkit-transform: translateZ(0) !important; -webkit-backface-visibility: hidden !important; backface-visibility: hidden !important; max-width: 100% !important; height: auto !important; display: block !important; opacity: 1 !important; visibility: visible !important; width: 96px !important; height: 96px !important;" loading="eager" decoding="sync" onload="this.style.opacity='1'" onerror="this.src='dirigeant-ios.png'; this.onerror=null;">
               </picture>
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
             </div>
@@ -2664,8 +2693,9 @@
           <div class="text-center mb-4">
             <div class="relative mb-4 mx-auto w-fit">
               <picture>
+                <source srcset="artisan-ios.png" type="image/png" media="(-webkit-min-device-pixel-ratio: 1.5)">
                 <source srcset="artisan.jpg" type="image/jpeg">
-                <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;" loading="eager" decoding="sync">
+                <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 rounded-xl mx-auto block" style="object-fit: contain !important; transform: translateZ(0) !important; -webkit-transform: translateZ(0) !important; -webkit-backface-visibility: hidden !important; backface-visibility: hidden !important; max-width: 100% !important; height: auto !important; display: block !important; opacity: 1 !important; visibility: visible !important; width: 96px !important; height: 96px !important;" loading="eager" decoding="sync" onload="this.style.opacity='1'" onerror="this.src='artisan-ios.png'; this.onerror=null;">
               </picture>
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full animate-pulse"></div>
             </div>
@@ -4086,55 +4116,102 @@
           const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
           
           if (isIOS || isSafari) {
-            // Forcer le rechargement des images problématiques
-            const problematicImages = [
-              'dirigeant.jpg',
-              'artisan.jpg',
-              'ingenieurs.jpg',
-              'managers-digital.jpg'
+            console.log('iOS/Safari détecté - Application des correctifs images');
+            
+            // Correctif spécifique pour les images dirigeant et artisan
+            const specificFixes = [
+              { src: 'dirigeant.jpg', fallback: 'dirigeant-ios.png', alt: 'Dirigeant travaillant avec une interface IA' },
+              { src: 'artisan.jpg', fallback: 'artisan-ios.png', alt: 'Artisan utilisant une tablette pour son activité' }
             ];
             
-            problematicImages.forEach(imageName => {
-              const imgs = document.querySelectorAll(`img[src="${imageName}"]`);
-              imgs.forEach(img => {
-                // Forcer les propriétés CSS iOS
-                img.style.transform = 'translateZ(0)';
-                img.style.webkitTransform = 'translateZ(0)';
-                img.style.webkitBackfaceVisibility = 'hidden';
-                img.style.backfaceVisibility = 'hidden';
-                img.style.willChange = 'transform';
-                img.style.display = 'block';
-                img.style.opacity = '1';
-                img.style.visibility = 'visible';
-                img.style.position = 'relative';
-                img.style.zIndex = '1';
+            specificFixes.forEach(fix => {
+              const imgs = document.querySelectorAll(`img[alt*="${fix.alt.split(' ')[0]}"]`);
+              console.log(`Trouvé ${imgs.length} images pour ${fix.src}`);
+              
+              imgs.forEach((img, index) => {
+                console.log(`Traitement image ${index + 1}:`, img);
                 
-                // Forcer le rechargement si l'image n'est pas chargée
-                if (!img.complete || img.naturalHeight === 0) {
-                  const src = img.src;
-                  img.src = '';
-                  setTimeout(() => {
-                    img.src = src + '?t=' + Date.now();
-                  }, 10);
-                }
+                // Créer une nouvelle image pour tester le chargement
+                const testImg = new Image();
+                testImg.onload = () => {
+                  console.log(`Image ${fix.src} chargée avec succès`);
+                  img.src = fix.src;
+                  applyiOSStyles(img);
+                };
+                testImg.onerror = () => {
+                  console.log(`Échec chargement ${fix.src}, utilisation fallback ${fix.fallback}`);
+                  img.src = fix.fallback;
+                  applyiOSStyles(img);
+                };
+                testImg.src = fix.src;
+                
+                // Appliquer immédiatement les styles iOS
+                applyiOSStyles(img);
+                
+                // Fallback d'urgence avec timeout
+                setTimeout(() => {
+                  if (!img.complete || img.naturalHeight === 0) {
+                    console.log(`Timeout pour ${fix.src}, utilisation forcée du fallback`);
+                    img.src = fix.fallback;
+                    applyiOSStyles(img);
+                  }
+                }, 2000);
               });
             });
             
-            // Observer pour s'assurer que les images sont visibles
+            function applyiOSStyles(img) {
+              // Styles forcés pour iOS
+              const styles = {
+                'transform': 'translateZ(0) !important',
+                '-webkit-transform': 'translateZ(0) !important',
+                '-webkit-backface-visibility': 'hidden !important',
+                'backface-visibility': 'hidden !important',
+                'will-change': 'transform',
+                'display': 'block !important',
+                'opacity': '1 !important',
+                'visibility': 'visible !important',
+                'position': 'relative',
+                'z-index': '1',
+                'object-fit': 'contain !important',
+                'width': '96px !important',
+                'height': '96px !important',
+                'max-width': '100% !important',
+                'border-radius': '0.75rem'
+              };
+              
+              Object.keys(styles).forEach(property => {
+                img.style.setProperty(property, styles[property], 'important');
+              });
+              
+              // Forcer le recalcul du layout
+              img.offsetHeight;
+              
+              // Événement de secours
+              img.addEventListener('load', () => {
+                img.style.setProperty('opacity', '1', 'important');
+                img.style.setProperty('visibility', 'visible', 'important');
+              });
+            }
+            
+            // Observer global pour toutes les images
             const observer = new IntersectionObserver((entries) => {
               entries.forEach(entry => {
                 if (entry.isIntersecting) {
                   const img = entry.target;
-                  img.style.opacity = '1';
-                  img.style.visibility = 'visible';
-                  img.style.transform = 'translateZ(0)';
+                  if (img.tagName === 'IMG') {
+                    applyiOSStyles(img);
+                  }
                 }
               });
-            });
+            }, { threshold: 0.1 });
             
-            document.querySelectorAll('.creative-grid img, .grid-item img').forEach(img => {
-              observer.observe(img);
-            });
+            // Observer toutes les images dans les grilles créatives
+            setTimeout(() => {
+              document.querySelectorAll('.creative-grid img, .grid-item img').forEach(img => {
+                observer.observe(img);
+                applyiOSStyles(img);
+              });
+            }, 500);
           }
         }
 
@@ -4148,6 +4225,28 @@
           
           // Correctif iOS après un court délai
           setTimeout(fixiOSImageDisplay, 100);
+          
+          // Vérification finale et remplacement d'urgence
+          setTimeout(() => {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if (isIOS) {
+              console.log('Vérification finale iOS');
+              const dirigeantImg = document.querySelector('img[alt*="Dirigeant"]');
+              const artisanImg = document.querySelector('img[alt*="Artisan"]');
+              
+              if (dirigeantImg && (dirigeantImg.naturalHeight === 0 || !dirigeantImg.complete)) {
+                console.log('Image dirigeant non chargée - remplacement d\'urgence');
+                dirigeantImg.style.cssText = 'display: block !important; width: 96px !important; height: 96px !important; background: linear-gradient(45deg, #3b82f6, #8b5cf6) !important; border-radius: 0.75rem !important; opacity: 1 !important; visibility: visible !important;';
+                dirigeantImg.alt = '👔 Dirigeant';
+              }
+              
+              if (artisanImg && (artisanImg.naturalHeight === 0 || !artisanImg.complete)) {
+                console.log('Image artisan non chargée - remplacement d\'urgence');
+                artisanImg.style.cssText = 'display: block !important; width: 96px !important; height: 96px !important; background: linear-gradient(45deg, #f59e0b, #f97316) !important; border-radius: 0.75rem !important; opacity: 1 !important; visibility: visible !important;';
+                artisanImg.alt = '🛠️ Artisan';
+              }
+            }
+          }, 3000);
         });
 
         // Contrôleur pour les grilles créatives
