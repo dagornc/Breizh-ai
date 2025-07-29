@@ -99,6 +99,53 @@
         transform: translateZ(0);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+      
+      /* Forcer le rendu des images sur iOS */
+      img {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Optimisation pour les images dans les grilles créatives */
+      .creative-grid img,
+      .grid-item img {
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        will-change: transform;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      /* Correction spécifique pour les conteneurs d'images */
+      .relative img {
+        position: relative;
+        z-index: 1;
+      }
+    }
+    
+    /* Optimisations supplémentaires pour Safari iOS */
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      img {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
     }
     
@@ -2543,7 +2590,10 @@
           <div class="aurora"></div>
           <div class="text-center mb-6">
             <div class="relative mb-4 mx-auto w-fit">
-              <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 object-contain rounded-xl mx-auto block">
+              <picture>
+                <source srcset="dirigeant.jpg" type="image/jpeg">
+                <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;" loading="eager" decoding="sync">
+              </picture>
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
             </div>
             <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov1_title">Pour les Dirigeants</h3>
@@ -2561,7 +2611,7 @@
           <div class="aurora"></div>
           <div class="text-center mb-4">
             <div class="relative mb-4 mx-auto w-fit">
-              <img src="ingenieurs.jpg" alt="Ingénieur analysant des données sur un écran" class="h-24 w-24 object-contain rounded-xl mx-auto block">
+              <img src="ingenieurs.jpg" alt="Ingénieur analysant des données sur un écran" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;">
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full animate-pulse"></div>
             </div>
             <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov2_title">Pour les Ingénieurs</h3>
@@ -2589,7 +2639,7 @@
           <div class="aurora"></div>
           <div class="text-center mb-4">
             <div class="relative mb-4 mx-auto w-fit">
-              <img src="managers-digital.jpg" alt="Manager digital en réunion devant un tableau de bord" class="h-24 w-24 object-contain rounded-xl mx-auto block">
+              <img src="managers-digital.jpg" alt="Manager digital en réunion devant un tableau de bord" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;">
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-pulse"></div>
             </div>
             <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov3_title">Pour les Managers du Digital</h3>
@@ -2613,7 +2663,10 @@
           <div class="aurora"></div>
           <div class="text-center mb-4">
             <div class="relative mb-4 mx-auto w-fit">
-              <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 object-contain rounded-xl mx-auto block">
+              <picture>
+                <source srcset="artisan.jpg" type="image/jpeg">
+                <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 object-contain rounded-xl mx-auto block" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; max-width: 100%; height: auto;" loading="eager" decoding="sync">
+              </picture>
               <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full animate-pulse"></div>
             </div>
             <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov4_title">Pour les Artisans</h3>
@@ -4027,13 +4080,74 @@
          }
        }
 
-               // Initialisation des layouts asymétriques et navigation sticky
+               // Correctif spécifique pour l'affichage des images sur iOS
+        function fixiOSImageDisplay() {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+          
+          if (isIOS || isSafari) {
+            // Forcer le rechargement des images problématiques
+            const problematicImages = [
+              'dirigeant.jpg',
+              'artisan.jpg',
+              'ingenieurs.jpg',
+              'managers-digital.jpg'
+            ];
+            
+            problematicImages.forEach(imageName => {
+              const imgs = document.querySelectorAll(`img[src="${imageName}"]`);
+              imgs.forEach(img => {
+                // Forcer les propriétés CSS iOS
+                img.style.transform = 'translateZ(0)';
+                img.style.webkitTransform = 'translateZ(0)';
+                img.style.webkitBackfaceVisibility = 'hidden';
+                img.style.backfaceVisibility = 'hidden';
+                img.style.willChange = 'transform';
+                img.style.display = 'block';
+                img.style.opacity = '1';
+                img.style.visibility = 'visible';
+                img.style.position = 'relative';
+                img.style.zIndex = '1';
+                
+                // Forcer le rechargement si l'image n'est pas chargée
+                if (!img.complete || img.naturalHeight === 0) {
+                  const src = img.src;
+                  img.src = '';
+                  setTimeout(() => {
+                    img.src = src + '?t=' + Date.now();
+                  }, 10);
+                }
+              });
+            });
+            
+            // Observer pour s'assurer que les images sont visibles
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  const img = entry.target;
+                  img.style.opacity = '1';
+                  img.style.visibility = 'visible';
+                  img.style.transform = 'translateZ(0)';
+                }
+              });
+            });
+            
+            document.querySelectorAll('.creative-grid img, .grid-item img').forEach(img => {
+              observer.observe(img);
+            });
+          }
+        }
+
+        // Initialisation des layouts asymétriques et navigation sticky
         document.addEventListener('DOMContentLoaded', () => {
           new AsymmetricLayoutAnimator();
           new FloatingElementsController();
           new AdvancedParallax();
           new CreativeGridController();
           new StickyNavigationManager();
+          
+          // Correctif iOS après un court délai
+          setTimeout(fixiOSImageDisplay, 100);
         });
 
         // Contrôleur pour les grilles créatives
