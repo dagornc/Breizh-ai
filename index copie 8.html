@@ -573,472 +573,11 @@
       animation-delay: 1.5s;
     }
 
-         @keyframes float-around {
-       0%, 100% { opacity: 0; transform: translateY(0px); }
-       50% { opacity: 1; transform: translateY(-10px); }
-     }
-
-     /* Layouts Asymétriques pour plus de dynamisme */
-     .asymmetric-grid {
-       display: grid;
-       gap: clamp(1.5rem, 3vw, 2.5rem);
-       grid-template-areas: 
-         "card1 card1 card2"
-         "card3 card4 card4";
-       grid-template-columns: 1fr 1fr 1fr;
-       grid-template-rows: minmax(280px, auto) minmax(200px, auto);
-       align-items: stretch;
-     }
-
-     .asymmetric-grid .card-large {
-       grid-area: card1;
-       min-height: 300px;
-     }
-
-     .asymmetric-grid .card-tall {
-       grid-area: card2;
-       grid-row: 1 / 3;
-       min-height: 252px;
-       max-height: 302px;
-       display: flex;
-       flex-direction: column;
-     }
-
-     .asymmetric-grid .card-small-1 {
-       grid-area: card3;
-       min-height: 250px;
-     }
-
-     .asymmetric-grid .card-wide {
-       grid-area: card4;
-       min-height: 250px;
-     }
-
-     /* Responsive asymmetric grid */
-     @media (max-width: 1024px) {
-       .asymmetric-grid {
-         grid-template-areas: 
-           "card1 card2"
-           "card3 card4";
-         grid-template-columns: 1fr 1fr;
-         grid-template-rows: minmax(280px, auto) minmax(280px, auto);
-         gap: clamp(1rem, 2vw, 1.5rem);
-       }
-       
-       .asymmetric-grid .card-tall {
-         grid-row: auto;
-         min-height: 280px;
-       }
-       
-       .asymmetric-grid .card-large {
-         min-height: 280px;
-       }
-       
-       .asymmetric-grid .card-small-1,
-       .asymmetric-grid .card-wide {
-         min-height: 280px;
-       }
-     }
-
-     @media (max-width: 640px) {
-       .asymmetric-grid {
-         grid-template-areas: 
-           "card1"
-           "card2"
-           "card3"
-           "card4";
-         grid-template-columns: 1fr;
-         grid-template-rows: repeat(4, minmax(250px, auto));
-         gap: 1rem;
-       }
-       
-       .asymmetric-grid .card-large,
-       .asymmetric-grid .card-tall,
-       .asymmetric-grid .card-small-1,
-       .asymmetric-grid .card-wide {
-         min-height: 250px;
-       }
-     }
-
-     /* Layout en zigzag pour les statistiques */
-     .zigzag-layout {
-       display: flex;
-       flex-direction: column;
-       gap: 3rem;
-       max-width: 1200px;
-       margin: 0 auto;
-     }
-
-     .zigzag-item {
-       display: flex;
-       align-items: center;
-       gap: 2rem;
-       transform: translateX(0);
-       transition: transform 0.6s ease;
-     }
-
-     .zigzag-item:nth-child(even) {
-       flex-direction: row-reverse;
-       transform: translateX(2rem);
-     }
-
-     .zigzag-item:nth-child(odd) {
-       transform: translateX(-2rem);
-     }
-
-     .zigzag-item.visible {
-       transform: translateX(0);
-     }
-
-     @media (max-width: 768px) {
-       .zigzag-item,
-       .zigzag-item:nth-child(even) {
-         flex-direction: column;
-         text-align: center;
-         transform: none;
-       }
-     }
-
-     /* Layout en brique (masonry-like) */
-     .masonry-layout {
-       columns: 3;
-       column-gap: 2rem;
-       column-fill: balance;
-     }
-
-     .masonry-item {
-       break-inside: avoid;
-       margin-bottom: 2rem;
-       transform: translateY(20px);
-       opacity: 0;
-       transition: all 0.6s ease;
-     }
-
-     .masonry-item.visible {
-       transform: translateY(0);
-       opacity: 1;
-     }
-
-     @media (max-width: 1024px) {
-       .masonry-layout {
-         columns: 2;
-       }
-     }
-
-     @media (max-width: 640px) {
-       .masonry-layout {
-         columns: 1;
-       }
-     }
-
-     /* Éléments flottants et décalés */
-     .floating-element {
-       position: relative;
-       z-index: 2;
-     }
-
-     .floating-element::before {
-       content: '';
-       position: absolute;
-       top: -20px;
-       right: -20px;
-       width: 60px;
-       height: 60px;
-       background: var(--gradient-primary);
-       border-radius: 50%;
-       opacity: 0.1;
-       animation: float 6s ease-in-out infinite;
-       z-index: -1;
-     }
-
-     .floating-element::after {
-       content: '';
-       position: absolute;
-       bottom: -15px;
-       left: -15px;
-       width: 40px;
-       height: 40px;
-       background: var(--gradient-secondary);
-       border-radius: 50%;
-       opacity: 0.15;
-       animation: float 8s ease-in-out infinite reverse;
-       z-index: -1;
-     }
-
-     /* Conteneurs organiques */
-     .organic-container {
-       border-radius: 50px 20px 40px 30px;
-       position: relative;
-       overflow: visible;
-     }
-
-     .organic-container::before {
-       content: '';
-       position: absolute;
-       top: -10px;
-       left: -10px;
-       right: -10px;
-       bottom: -10px;
-       background: var(--color-bg-glass);
-       border-radius: 60px 30px 50px 40px;
-       z-index: -1;
-       opacity: 0.3;
-     }
-
-     /* Cartes avec des hauteurs variables */
-     .variable-height .glass-card:nth-child(1) { min-height: 320px; }
-     .variable-height .glass-card:nth-child(2) { min-height: 280px; }
-     .variable-height .glass-card:nth-child(3) { min-height: 350px; }
-     .variable-height .glass-card:nth-child(4) { min-height: 300px; }
-
-     /* Éviter le chevauchement dans les cartes asymétriques */
-     .asymmetric-grid .glass-card {
-       overflow: hidden;
-       box-sizing: border-box;
-       width: 100%;
-       height: 100%;
-     }
-
-     .asymmetric-grid .organic-container {
-       position: relative;
-       z-index: 1;
-     }
-
-           .asymmetric-grid .organic-container::before {
-        z-index: -1;
-      }
-
-      /* Grilles Créatives et Organiques */
-      .creative-grid {
-        display: grid;
-        gap: clamp(1rem, 2vw, 1.5rem);
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        position: relative;
-      }
-
-      .creative-grid .grid-item {
-        position: relative;
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .creative-grid .grid-item:nth-child(1) {
-        transform: rotate(-2deg) translateY(-10px);
-        grid-column: span 1;
-      }
-
-      .creative-grid .grid-item:nth-child(2) {
-        transform: rotate(1deg) translateY(15px);
-        grid-column: span 1;
-      }
-
-      .creative-grid .grid-item:nth-child(3) {
-        transform: rotate(-1deg) translateY(5px);
-        grid-column: span 1;
-      }
-
-      .creative-grid .grid-item:nth-child(4) {
-        transform: rotate(2deg) translateY(-5px);
-        grid-column: span 1;
-      }
-
-      /* Grille mosaïque dynamique */
-      .mosaic-grid {
-        display: grid;
-        gap: clamp(0.8rem, 2vw, 1.2rem);
-        grid-template-columns: repeat(6, 1fr);
-        grid-auto-rows: minmax(120px, auto);
-        position: relative;
-      }
-
-      .mosaic-item:nth-child(1) {
-        grid-column: 1 / 3;
-        grid-row: 1 / 3;
-        transform: rotateY(5deg) rotateX(2deg);
-      }
-
-      .mosaic-item:nth-child(2) {
-        grid-column: 3 / 5;
-        grid-row: 1 / 2;
-        transform: rotateY(-3deg) rotateZ(1deg);
-      }
-
-      .mosaic-item:nth-child(3) {
-        grid-column: 5 / 7;
-        grid-row: 1 / 4;
-        transform: rotateY(2deg) rotateX(-1deg);
-      }
-
-      .mosaic-item:nth-child(4) {
-        grid-column: 3 / 7;
-        grid-row: 2 / 4;
-        transform: rotateY(-1deg) rotateZ(-2deg);
-      }
-
-      /* Grille fluide avec gaps variables */
-      .fluid-grid {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1.5fr;
-        grid-template-rows: auto auto;
-        gap: 0;
-        position: relative;
-        perspective: 1000px;
-      }
-
-      .fluid-grid .fluid-item {
-        margin: clamp(0.5rem, 1.5vw, 1rem);
-        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        transform-style: preserve-3d;
-      }
-
-      .fluid-grid .fluid-item:nth-child(1) {
-        margin: 2rem 1rem 1rem 0;
-        transform: perspective(500px) rotateY(5deg) translateZ(20px);
-      }
-
-      .fluid-grid .fluid-item:nth-child(2) {
-        margin: 0.5rem 1.5rem 2rem 1.5rem;
-        transform: perspective(500px) rotateY(-3deg) translateZ(10px);
-      }
-
-      .fluid-grid .fluid-item:nth-child(3) {
-        margin: 1.5rem 0 0.5rem 1rem;
-        transform: perspective(500px) rotateY(2deg) translateZ(30px);
-      }
-
-      .fluid-grid .fluid-item:nth-child(4) {
-        margin: 1rem 2rem 1.5rem 0;
-        transform: perspective(500px) rotateY(-2deg) translateZ(15px);
-      }
-
-      /* Grille hexagonale créative */
-      .hexagonal-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-        position: relative;
-      }
-
-      .hexagonal-grid .hex-item {
-        position: relative;
-        aspect-ratio: 1;
-        clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-        transition: all 0.6s ease;
-      }
-
-      .hexagonal-grid .hex-item:nth-child(even) {
-        transform: translateY(50%) scale(0.9);
-      }
-
-      .hexagonal-grid .hex-item:hover {
-        transform: translateY(50%) scale(1.1) rotate(5deg);
-        z-index: 10;
-      }
-
-      /* Grille en spirale */
-      .spiral-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        position: relative;
-        transform-style: preserve-3d;
-      }
-
-      .spiral-grid .spiral-item {
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        transform-origin: center center;
-      }
-
-      .spiral-grid .spiral-item:nth-child(1) {
-        transform: rotate(10deg) translateX(-20px) translateY(-15px);
-      }
-
-      .spiral-grid .spiral-item:nth-child(2) {
-        transform: rotate(-5deg) translateX(10px) translateY(20px);
-      }
-
-      .spiral-grid .spiral-item:nth-child(3) {
-        transform: rotate(15deg) translateX(-10px) translateY(10px);
-      }
-
-      .spiral-grid .spiral-item:nth-child(4) {
-        transform: rotate(-10deg) translateX(25px) translateY(-10px);
-      }
-
-      /* Responsive pour grilles créatives */
-      @media (max-width: 768px) {
-        .creative-grid .grid-item,
-        .mosaic-item,
-        .fluid-grid .fluid-item,
-        .spiral-grid .spiral-item {
-          transform: none !important;
-        }
-
-        .creative-grid,
-        .mosaic-grid,
-        .fluid-grid,
-        .spiral-grid {
-          grid-template-columns: 1fr !important;
-          perspective: none;
-        }
-
-        .hexagonal-grid .hex-item {
-          clip-path: none;
-          border-radius: 20px;
-        }
-      }
-
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .mosaic-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-
-        .fluid-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      /* Interactions avancées pour grilles créatives */
-      .creative-grid .grid-item:hover,
-      .mosaic-item:hover,
-      .fluid-grid .fluid-item:hover,
-      .spiral-grid .spiral-item:hover {
-        transform: scale(1.05) rotateY(10deg) translateZ(20px);
-        z-index: 10;
-        box-shadow: 
-          0 20px 40px rgba(0, 0, 0, 0.15),
-          0 0 0 1px rgba(255, 255, 255, 0.1);
-      }
-
-      /* Animation d'entrée escalonée */
-     .staggered-entry > * {
-       opacity: 0;
-       transform: translateY(30px) rotate(2deg);
-       transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-     }
-
-     .staggered-entry.visible > *:nth-child(1) { 
-       animation-delay: 0.1s; 
-       transform: rotate(-1deg);
-     }
-     .staggered-entry.visible > *:nth-child(2) { 
-       animation-delay: 0.2s; 
-       transform: rotate(1deg);
-     }
-     .staggered-entry.visible > *:nth-child(3) { 
-       animation-delay: 0.3s; 
-       transform: rotate(-0.5deg);
-     }
-     .staggered-entry.visible > *:nth-child(4) { 
-       animation-delay: 0.4s; 
-       transform: rotate(0.5deg);
-     }
-
-     .staggered-entry.visible > * {
-       opacity: 1;
-       transform: translateY(0) rotate(0deg);
-     }
-
-     .btn-cta:hover::after {
+    @keyframes float-around {
+      0%, 100% { opacity: 0; transform: translateY(0px); }
+      50% { opacity: 1; transform: translateY(-10px); }
+    }
+    .btn-cta:hover::after {
       opacity: 1;
     }
     .btn-cta:active {
@@ -1605,240 +1144,6 @@
       }
     }
 
-    /* Éléments Sticky et Navigation Avancée */
-    .sticky-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(245, 158, 11, 0.1);
-    }
-
-    .sticky-nav.scrolled {
-      background: rgba(16, 25, 47, 0.95);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      border-bottom: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .sticky-nav.scrolled .nav-logo {
-      transform: scale(0.9);
-    }
-
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-cta) 0%, #22d3ee 50%, #a78bfa 100%);
-      z-index: 101;
-      transition: width 0.1s ease-out;
-      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-    }
-
-    .floating-nav {
-      position: fixed;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 90;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .floating-nav.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .floating-nav-item {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(245, 158, 11, 0.3);
-      border: 2px solid rgba(245, 158, 11, 0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .floating-nav-item:hover,
-    .floating-nav-item.active {
-      background: var(--color-cta);
-      border-color: var(--color-cta);
-      transform: scale(1.3);
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
-    }
-
-    .floating-nav-item::before {
-      content: attr(data-section);
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(16, 25, 47, 0.95);
-      color: var(--color-text);
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .floating-nav-item:hover::before {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(-50%) translateX(-5px);
-    }
-
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      background: var(--gradient-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 90;
-      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .back-to-top:hover {
-      transform: translateY(-3px) scale(1.1);
-      box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
-    }
-
-    .back-to-top svg {
-      width: 20px;
-      height: 20px;
-      color: white;
-    }
-
-    .sticky-cta {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, rgba(126, 34, 206, 0.95) 0%, rgba(147, 51, 234, 0.95) 100%);
-      backdrop-filter: blur(20px);
-      padding: 1rem 2rem;
-      z-index: 80;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-      border-top: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .sticky-cta.visible {
-      transform: translateY(0);
-    }
-
-    .breadcrumb {
-      position: sticky;
-      top: 80px;
-      background: rgba(16, 25, 47, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 2rem;
-      border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-      z-index: 70;
-      font-size: 0.875rem;
-      color: var(--color-text-secondary);
-    }
-
-    .breadcrumb a {
-      color: var(--color-cta);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .breadcrumb a:hover {
-      color: var(--color-text);
-    }
-
-    .section-indicator {
-      position: fixed;
-      left: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 90;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--color-cta);
-      background: rgba(16, 25, 47, 0.95);
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .section-indicator.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Responsive pour éléments sticky */
-    @media (max-width: 768px) {
-      .floating-nav {
-        right: 1rem;
-        gap: 0.75rem;
-      }
-      
-      .floating-nav-item {
-        width: 10px;
-        height: 10px;
-      }
-      
-      .floating-nav-item::before {
-        display: none;
-      }
-      
-      .back-to-top {
-        bottom: 1rem;
-        right: 1rem;
-        width: 45px;
-        height: 45px;
-      }
-      
-      .section-indicator {
-        left: 1rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-      }
-      
-      .sticky-cta {
-        padding: 0.75rem 1rem;
-      }
-      
-      .breadcrumb {
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-      }
-    }
-
     /* Menu mobile - couleurs constantes */
     #mobile-nav {
       background: rgba(16,19,26,0.98);
@@ -2073,12 +1378,9 @@
 
   <div class="grain"></div>
   
-  <!-- Barre de progression de lecture -->
-  <div class="progress-bar" id="reading-progress"></div>
-
-  <header id="header" class="sticky-nav">
+  <header id="header" class="fixed top-0 left-0 w-full z-40 transition-all backdrop-blur-lg bg-white/30 dark:bg-slate-900/60 rounded-b-2xl shadow-lg">
     <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="nav-logo flex items-center gap-3.5 sm:gap-4 md:gap-5 transition-transform duration-300">
+      <div class="flex items-center gap-3.5 sm:gap-4 md:gap-5">
         <img src="logo-breizh-ai.png" alt="Logo Breizh AI" class="h-12 sm:h-16 w-auto mr-1.5 sm:mr-2 md:mr-3" style="display:inline-block;">
         <span class="logo-breizh font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none" style="color: var(--color-text-secondary);">Breizh</span>
         <span class="font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none" style="color: var(--color-cta);">AI</span>
@@ -2157,103 +1459,71 @@
 
     <!-- Section Preuve Sociale avec Data Visualizations -->
     <section class="container mx-auto px-4 py-16 sm:py-20 md:py-24 relative overflow-hidden" id="stats-section">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 staggered-entry">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <!-- Projets IA Réalisés -->
-            <div class="stats-card floating-element" data-stat="projects">
-                <div class="glass-card p-6 sm:p-8 hover:scale-105 transition-all duration-300 cursor-pointer organic-container h-full">
-                    <div class="relative mb-4 sm:mb-6">
-                        <svg class="w-24 h-24 sm:w-32 sm:h-32 mx-auto transform rotate-90" viewBox="0 0 36 36">
-                            <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path class="circle-progress projects-progress" stroke="url(#gradient1)" stroke-width="3.8" 
-                                  fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                  style="transition: stroke-dasharray 2s ease-in-out;">
-                            </path>
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="counter text-3xl sm:text-4xl font-bold" style="color: var(--color-cta);" data-target="20">0</div>
-                                <div class="text-sm font-medium" style="color: var(--color-text-secondary);">projets</div>
-                            </div>
+            <div class="glass-card p-6 hover:scale-105 transition-all duration-300 cursor-pointer stats-card" data-stat="projects">
+                <div class="relative mb-4">
+                    <svg class="w-24 h-24 mx-auto transform rotate-90" viewBox="0 0 36 36">
+                        <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle-progress projects-progress" stroke="url(#gradient1)" stroke-width="3.8" 
+                              fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                              style="transition: stroke-dasharray 2s ease-in-out;">
+                        </path>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="counter text-2xl font-bold" style="color: var(--color-cta);" data-target="20">0</div>
+                            <div class="text-xs" style="color: var(--color-text-secondary);">projets</div>
                         </div>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-center mb-3 sm:mb-4" style="color: var(--color-text);" data-i18n="proof1">Projets IA Réalisés</h3>
-                    <p class="text-center font-light text-sm sm:text-base" style="color: var(--color-text-secondary);">Solutions développées et déployées avec succès</p>
                 </div>
+                <p class="text-lg sm:text-xl font-medium" style="color: var(--color-text-secondary);" data-i18n="proof1">Projets IA Réalisés</p>
             </div>
 
             <!-- Satisfaction Client -->
-            <div class="stats-card floating-element" data-stat="satisfaction">
-                <div class="glass-card p-6 sm:p-8 hover:scale-105 transition-all duration-300 cursor-pointer organic-container h-full">
-                    <div class="relative mb-4 sm:mb-6">
-                        <svg class="w-24 h-24 sm:w-32 sm:h-32 mx-auto transform rotate-90" viewBox="0 0 36 36">
-                            <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path class="circle-progress satisfaction-progress" stroke="url(#gradient2)" stroke-width="3.8" 
-                                  fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                  style="transition: stroke-dasharray 2s ease-in-out;">
-                            </path>
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="counter text-3xl sm:text-4xl font-bold" style="color: var(--color-cta);" data-target="98">0</div>
-                                <div class="text-sm font-medium" style="color: var(--color-text-secondary);">%</div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-center mb-3 sm:mb-4" style="color: var(--color-text);" data-i18n="proof2">Satisfaction Client</h3>
-                    <p class="text-center font-light text-sm sm:text-base mb-4" style="color: var(--color-text-secondary);">Nos clients nous font confiance et recommandent nos services</p>
-                    <div class="flex justify-center space-x-1">
-                        <div class="flex text-yellow-400">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <div class="glass-card p-6 hover:scale-105 transition-all duration-300 cursor-pointer stats-card" data-stat="satisfaction">
+                <div class="relative mb-4">
+                    <svg class="w-24 h-24 mx-auto transform rotate-90" viewBox="0 0 36 36">
+                        <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle-progress satisfaction-progress" stroke="url(#gradient2)" stroke-width="3.8" 
+                              fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                              style="transition: stroke-dasharray 2s ease-in-out;">
+                        </path>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="counter text-2xl font-bold" style="color: var(--color-cta);" data-target="98">0</div>
+                            <div class="text-xs" style="color: var(--color-text-secondary);">%</div>
                         </div>
                     </div>
                 </div>
+                <p class="text-lg sm:text-xl font-medium" style="color: var(--color-text-secondary);" data-i18n="proof2">Satisfaction Client</p>
             </div>
 
             <!-- Années d'Expertise -->
-            <div class="stats-card floating-element" data-stat="experience">
-                <div class="glass-card p-6 sm:p-8 hover:scale-105 transition-all duration-300 cursor-pointer organic-container h-full">
-                    <div class="relative mb-4 sm:mb-6">
-                        <svg class="w-24 h-24 sm:w-32 sm:h-32 mx-auto transform rotate-90" viewBox="0 0 36 36">
-                            <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path class="circle-progress experience-progress" stroke="url(#gradient3)" stroke-width="3.8" 
-                                  fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
-                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                  style="transition: stroke-dasharray 2s ease-in-out;">
-                            </path>
-                        </svg>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="counter text-3xl sm:text-4xl font-bold" style="color: var(--color-cta);" data-target="5">0</div>
-                                <div class="text-sm font-medium" style="color: var(--color-text-secondary);">ans</div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-center mb-3 sm:mb-4" style="color: var(--color-text);" data-i18n="proof3">Ans d'Expertise IA</h3>
-                    <p class="text-center font-light text-sm sm:text-base mb-3 sm:mb-4" style="color: var(--color-text-secondary);">Expertise reconnue dans le domaine de l'intelligence artificielle</p>
-                    <div class="grid grid-cols-3 gap-1 sm:gap-2 text-center">
-                        <div class="bg-gradient-to-br from-purple-500/20 to-blue-500/20 p-1 sm:p-2 rounded-lg">
-                            <div class="text-base sm:text-lg font-bold text-purple-400">200+</div>
-                            <div class="text-xs text-gray-400">Heures</div>
-                        </div>
-                        <div class="bg-gradient-to-br from-pink-500/20 to-red-500/20 p-1 sm:p-2 rounded-lg">
-                            <div class="text-base sm:text-lg font-bold text-pink-400">15+</div>
-                            <div class="text-xs text-gray-400">Clients</div>
-                        </div>
-                        <div class="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-1 sm:p-2 rounded-lg">
-                            <div class="text-base sm:text-lg font-bold text-blue-400">100%</div>
-                            <div class="text-xs text-gray-400">Succès</div>
+            <div class="glass-card p-6 hover:scale-105 transition-all duration-300 cursor-pointer stats-card" data-stat="experience">
+                <div class="relative mb-4">
+                    <svg class="w-24 h-24 mx-auto transform rotate-90" viewBox="0 0 36 36">
+                        <path class="circle-bg" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3.8" fill="transparent" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle-progress experience-progress" stroke="url(#gradient3)" stroke-width="3.8" 
+                              fill="transparent" stroke-linecap="round" stroke-dasharray="0, 100" 
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                              style="transition: stroke-dasharray 2s ease-in-out;">
+                        </path>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="counter text-2xl font-bold" style="color: var(--color-cta);" data-target="5">0</div>
+                            <div class="text-xs" style="color: var(--color-text-secondary);">ans</div>
                         </div>
                     </div>
                 </div>
+                <p class="text-lg sm:text-xl font-medium" style="color: var(--color-text-secondary);" data-i18n="proof3">Ans d'Expertise IA</p>
             </div>
         </div>
 
@@ -2276,106 +1546,53 @@
         </svg>
     </section>
 
-    <!-- Breadcrumb pour Services -->
-    <div class="breadcrumb">
-      <div class="container mx-auto px-4">
-        <a href="#hero-section-3d">Accueil</a> 
-        <span class="mx-2">•</span> 
-        <span>Services IA</span>
-      </div>
-    </div>
-
     <section id="services" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-center" data-i18n="services_title">
         Passez de l'IA qui impressionne à l'IA qui rapporte.
       </h2>
-      <div class="asymmetric-grid staggered-entry">
-        <!-- Carte large (Conseil & Stratégie) -->
-        <div class="glass-card card-large floating-element group relative px-6 py-8 flex flex-col hover:bg-sky-50/10 transition-all cursor-pointer card-aurora organic-container">
-          <div class="aurora"></div>
-          <div class="flex flex-row items-center w-full mb-6">
-            <object data="conseil-strategie-ai.svg" type="image/svg+xml" class="h-24 w-24 object-contain mr-4 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Conseil et Stratégie en IA"></object>
-            <div class="flex flex-col justify-center w-full">
-              <h3 class="font-semibold text-xl text-center w-full mb-2" data-i18n="service1_title">Conseil & Stratégie IA</h3>
-              <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full"></div>
-            </div>
-          </div>
-          <p class="text-base font-light leading-relaxed flex-grow" style="color: var(--color-text-secondary);" data-i18n="service1_desc">Audit, feuille de route, acculturation IA et accompagnement stratégique pour transformer votre vision en réalité.</p>
-          <div class="mt-4 flex items-center justify-center">
-            <span class="text-sm font-medium text-blue-400">Service Premium</span>
-          </div>
-        </div>
-
-        <!-- Carte ultra-compacte (Intégration & Déploiement) -->
-        <div class="glass-card card-tall group relative px-3 py-2 flex flex-col hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
-          <div class="aurora"></div>
-          <div class="flex flex-col items-center text-center mb-1">
-            <object data="integration-deploiement.svg" type="image/svg+xml" class="h-10 w-10 object-contain mb-1 rounded-xl" aria-label="Illustration animée pour Intégration et Déploiement"></object>
-            <h3 class="font-semibold text-xl w-full mb-1" data-i18n="service3_title">Intégration & Déploiement</h3>
-          </div>
-          <p class="text-base font-light flex-grow text-center mb-2 leading-tight" style="color: var(--color-text-secondary);" data-i18n="service3_desc">Production et maintenance IA.</p>
-          <div class="space-y-0">
-            <div class="flex items-center justify-center text-sm text-green-400">
-              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              Déploiement sécurisé
-            </div>
-            <div class="flex items-center justify-center text-sm text-green-400">
-              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              Monitoring 24/7
-            </div>
-          </div>
-        </div>
-
-        <!-- Carte petite (Réalisations sur-mesure) -->
-        <div class="glass-card card-small-1 group relative px-4 py-5 flex flex-col hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
-          <div class="aurora"></div>
-          <div class="flex flex-col items-center text-center mb-3">
-            <object data="realisations-sur-mesure.svg" type="image/svg+xml" class="h-16 w-16 object-contain mb-3 rounded-xl" aria-label="Illustration animée pour Réalisations sur-mesure"></object>
-            <h3 class="font-semibold text-xl w-full" data-i18n="service2_title">Réalisations sur-mesure</h3>
-          </div>
-          <p class="text-base font-light flex-grow text-center" style="color: var(--color-text-secondary);" data-i18n="service2_desc">Solutions IA adaptées à vos besoins métiers.</p>
-        </div>
-
-        <!-- Carte large (Analyse de Données & BI) -->
-        <div class="glass-card card-wide floating-element group relative px-6 py-6 flex flex-col hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div class="glass-card group relative px-4 py-6 flex flex-col h-full hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
           <div class="aurora"></div>
           <div class="flex flex-row items-center w-full mb-4">
-            <object data="analyse-donnees-bi.svg" type="image/svg+xml" class="h-20 w-20 object-contain mr-4 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Analyse de Données et Business Intelligence"></object>
+<object data="conseil-strategie-ai.svg" type="image/svg+xml" class="h-20 w-20 object-contain mr-3 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Conseil et Stratégie en IA"></object>
             <div class="flex flex-col justify-center w-full">
-              <h3 class="font-semibold text-xl w-full mb-2" data-i18n="service4_title">Analyse de Données & BI</h3>
-              <p class="text-base font-light" style="color: var(--color-text-secondary);" data-i18n="service4_desc">Valorisation de vos données, dashboards, reporting et dataviz IA.</p>
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service1_title">Conseil & Stratégie IA</h3>
             </div>
           </div>
-                      <div class="flex space-x-4 mt-4">
-            <div class="flex-1 text-center">
-              <div class="text-xl font-bold text-purple-400">95%</div>
-              <div class="text-sm text-gray-400">Précision</div>
-            </div>
-            <div class="flex-1 text-center">
-              <div class="text-xl font-bold text-blue-400">Real-time</div>
-              <div class="text-sm text-gray-400">Analyse</div>
-            </div>
-            <div class="flex-1 text-center">
-              <div class="text-xl font-bold text-green-400">24/7</div>
-              <div class="text-sm text-gray-400">Monitoring</div>
+          <p class="text-base font-light flex-grow" style="color: var(--color-text-secondary);" data-i18n="service1_desc">Audit, feuille de route, acculturation IA et accompagnement stratégique.</p>
+        </div>
+        <div class="glass-card group relative px-4 py-6 flex flex-col h-full hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-4">
+<object data="realisations-sur-mesure.svg" type="image/svg+xml" class="h-20 w-20 object-contain mr-3 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Réalisations sur-mesure"></object>
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service2_title">Réalisations sur-mesure</h3>
             </div>
           </div>
+          <p class="text-base font-light flex-grow" style="color: var(--color-text-secondary);" data-i18n="service2_desc">Conception et développement d'outils IA adaptés à vos besoins métiers.</p>
+        </div>
+        <div class="glass-card group relative px-4 py-6 flex flex-col h-full hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-4">
+<object data="integration-deploiement.svg" type="image/svg+xml" class="h-20 w-20 object-contain mr-3 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Intégration et Déploiement"></object>
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service3_title">Intégration & Déploiement</h3>
+            </div>
+          </div>
+          <p class="text-base font-light flex-grow" style="color: var(--color-text-secondary);" data-i18n="service3_desc">Mise en production, interfaçage, automatisation et maintenance IA.</p>
+        </div>
+        <div class="glass-card group relative px-4 py-6 flex flex-col h-full hover:bg-sky-50/10 transition-all cursor-pointer card-aurora">
+          <div class="aurora"></div>
+          <div class="flex flex-row items-center w-full mb-4">
+<object data="analyse-donnees-bi.svg" type="image/svg+xml" class="h-20 w-20 object-contain mr-3 rounded-xl flex-shrink-0" aria-label="Illustration animée pour Analyse de Données et Business Intelligence"></object>
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-xl text-center w-full" data-i18n="service4_title">Analyse de Données & BI</h3>
+            </div>
+          </div>
+          <p class="text-base font-light flex-grow" style="color: var(--color-text-secondary);" data-i18n="service4_desc">Valorisation de vos données, dashboards, reporting et dataviz IA.</p>
         </div>
       </div>
     </section>
-
-    <!-- Breadcrumb pour Outils IA -->
-    <div class="breadcrumb">
-      <div class="container mx-auto px-4">
-        <a href="#hero-section-3d">Accueil</a> 
-        <span class="mx-2">•</span> 
-        <span>Outils IA</span>
-      </div>
-    </div>
 
  <section id="tools" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-center" data-i18n="tool2_title">
@@ -2537,93 +1754,46 @@
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-center" data-i18n="innov_title">
         L'IA n'est pas magique, c'est un métier.
       </h2>
-      <div class="creative-grid">
-        <!-- Dirigeants - Position créative 1 -->
-        <div class="glass-card group relative p-6 sm:p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all card-aurora grid-item floating-element organic-container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
-          <div class="text-center mb-6">
-            <div class="relative mb-4 mx-auto w-fit">
-              <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 object-contain rounded-xl mx-auto block">
-              <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="dirigeant.jpg" alt="Dirigeant travaillant avec une interface IA" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-2xl text-center w-full" data-i18n="innov1_title">Pour les Dirigeants</h3>
             </div>
-            <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov1_title">Pour les Dirigeants</h3>
-            <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full mb-4"></div>
           </div>
-          <p class="text-base sm:text-lg font-light text-center leading-relaxed" style="color: var(--color-text-secondary);" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
-          <div class="mt-4 flex items-center justify-center space-x-2">
-            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Leadership</span>
-            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm">Vision</span>
-          </div>
+          <p class="text-lg font-light" style="color: var(--color-text-secondary);" data-i18n="innov1_desc">Pilotez la transformation IA de votre entreprise avec une vision stratégique et des résultats concrets.</p>
         </div>
-
-        <!-- Ingénieurs - Position créative 2 -->
-        <div class="glass-card group relative p-6 sm:p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all card-aurora grid-item floating-element">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
-          <div class="text-center mb-4">
-            <div class="relative mb-4 mx-auto w-fit">
-              <img src="ingenieurs.jpg" alt="Ingénieur analysant des données sur un écran" class="h-24 w-24 object-contain rounded-xl mx-auto block">
-              <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full animate-pulse"></div>
-            </div>
-            <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov2_title">Pour les Ingénieurs</h3>
-            <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-500 mx-auto rounded-full mb-4"></div>
-          </div>
-          <p class="text-base sm:text-lg font-light text-center leading-relaxed" style="color: var(--color-text-secondary);" data-i18n="innov2_desc">Collaborez sur des projets IA avancés, du prototype à la mise en production.</p>
-          <div class="mt-6 space-y-2">
-            <div class="flex items-center justify-center text-sm text-green-400">
-              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              Code Review IA
-            </div>
-            <div class="flex items-center justify-center text-sm text-cyan-400">
-              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-              </svg>
-              Équipe Tech
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="ingenieurs.jpg" alt="Ingénieur analysant des données sur un écran" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-2xl text-center w-full" data-i18n="innov2_title">Pour les Ingénieurs</h3>
             </div>
           </div>
+          <p class="text-lg font-light" style="color: var(--color-text-secondary);" data-i18n="innov2_desc">Collaborez sur des projets IA avancés, du prototype à la mise en production.</p>
         </div>
-
-        <!-- Managers Digital - Position créative 3 -->
-        <div class="glass-card group relative p-6 sm:p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all card-aurora grid-item floating-element organic-container">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
-          <div class="text-center mb-4">
-            <div class="relative mb-4 mx-auto w-fit">
-              <img src="managers-digital.jpg" alt="Manager digital en réunion devant un tableau de bord" class="h-24 w-24 object-contain rounded-xl mx-auto block">
-              <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full animate-pulse"></div>
-            </div>
-            <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov3_title">Pour les Managers du Digital</h3>
-            <div class="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-500 mx-auto rounded-full mb-4"></div>
-          </div>
-          <p class="text-base sm:text-lg font-light text-center leading-relaxed mb-4" style="color: var(--color-text-secondary);" data-i18n="innov3_desc">Accélérez l'innovation digitale grâce à l'IA, de l'idéation à l'intégration métier.</p>
-          <div class="grid grid-cols-2 gap-3 w-full text-center">
-            <div class="bg-gradient-to-br from-orange-500/20 to-red-500/20 p-3 rounded-xl">
-              <div class="text-xl font-bold text-orange-400">2x</div>
-              <div class="text-xs text-gray-400">Productivité</div>
-            </div>
-            <div class="bg-gradient-to-br from-green-500/20 to-blue-500/20 p-3 rounded-xl">
-              <div class="text-xl font-bold text-green-400">30%</div>
-              <div class="text-xs text-gray-400">ROI</div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="managers-digital.jpg" alt="Manager digital en réunion devant un tableau de bord" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-2xl text-center w-full" data-i18n="innov3_title">Pour les Managers du Digital</h3>
             </div>
           </div>
+          <p class="text-lg font-light" style="color: var(--color-text-secondary);" data-i18n="innov3_desc">Accélérez l'innovation digitale grâce à l'IA, de l'idéation à l'intégration métier.</p>
         </div>
-
-        <!-- Artisans - Position créative 4 -->
-        <div class="glass-card group relative p-6 sm:p-8 flex flex-col items-center hover:bg-sky-50/10 transition-all card-aurora grid-item floating-element">
+        <div class="glass-card group relative p-7 flex flex-col items-start hover:bg-sky-50/10 transition-all card-aurora w-full">
           <div class="aurora"></div>
-          <div class="text-center mb-4">
-            <div class="relative mb-4 mx-auto w-fit">
-              <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 object-contain rounded-xl mx-auto block">
-              <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full animate-pulse"></div>
+          <div class="flex flex-row items-center w-full mb-2">
+            <img src="artisan.jpg" alt="Artisan utilisant une tablette pour son activité" class="h-24 w-24 object-contain mr-1 rounded-xl">
+            <div class="flex flex-col justify-center w-full">
+              <h3 class="font-semibold text-2xl text-center w-full" data-i18n="innov4_title">Pour les Artisans</h3>
             </div>
-            <h3 class="font-bold text-xl sm:text-2xl mb-3" data-i18n="innov4_title">Pour les Artisans</h3>
-            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-amber-500 mx-auto rounded-full mb-4"></div>
           </div>
-          <p class="text-base sm:text-lg font-light text-center leading-relaxed mb-4" style="color: var(--color-text-secondary);" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
-          <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm">Accessibilité</span>
-            <span class="px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-sm">Simplicité</span>
-          </div>
+          <p class="text-lg font-light" style="color: var(--color-text-secondary);" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
         </div>
       </div>
     </section>
@@ -2652,45 +1822,6 @@
       </div>
     </section>
   </main>
-
-  <!-- Navigation flottante -->
-  <nav class="floating-nav" id="floating-nav">
-    <div class="floating-nav-item" data-section="Accueil" data-target="hero-section-3d"></div>
-    <div class="floating-nav-item" data-section="Statistiques" data-target="stats-section"></div>
-    <div class="floating-nav-item" data-section="Services" data-target="services"></div>
-    <div class="floating-nav-item" data-section="Outils IA" data-target="tools"></div>
-    <div class="floating-nav-item" data-section="Contact" data-target="contact"></div>
-  </nav>
-
-  <!-- Indicateur de section -->
-  <div class="section-indicator" id="section-indicator">Accueil</div>
-
-  <!-- Bouton retour en haut -->
-  <div class="back-to-top" id="back-to-top">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-    </svg>
-  </div>
-
-  <!-- CTA sticky en bas -->
-  <div class="sticky-cta" id="sticky-cta">
-    <div class="container mx-auto flex items-center justify-between">
-      <div>
-        <div class="font-bold text-white text-lg">Prêt à transformer votre entreprise ?</div>
-        <div class="text-purple-200 text-sm">Consultation gratuite • Réponse sous 24h</div>
-      </div>
-      <div class="flex gap-4">
-        <a href="mailto:contact@breizh.ai" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-          Contactez-nous
-        </a>
-        <button class="text-white hover:text-purple-200 transition-colors" onclick="document.getElementById('sticky-cta').classList.remove('visible')">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <footer class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-sky-200">
     <div class="flex items-center gap-2 font-extrabold text-xl sm:text-2xl md:text-3xl">
@@ -2774,185 +1905,6 @@
     document.querySelectorAll('#mobile-nav a').forEach(link => {
       link.addEventListener('click', () => mobileNav.classList.remove('open'));
     });
-
-    // --- Sticky Navigation et Éléments de Navigation ---
-    class StickyNavigationManager {
-      constructor() {
-        this.header = document.getElementById('header');
-        this.progressBar = document.getElementById('reading-progress');
-        this.floatingNav = document.getElementById('floating-nav');
-        this.sectionIndicator = document.getElementById('section-indicator');
-        this.backToTop = document.getElementById('back-to-top');
-        this.stickyCTA = document.getElementById('sticky-cta');
-        
-        this.sections = [
-          { element: document.getElementById('hero-section-3d'), name: 'Accueil' },
-          { element: document.getElementById('stats-section'), name: 'Statistiques' },
-          { element: document.getElementById('services'), name: 'Services' },
-          { element: document.getElementById('tools'), name: 'Outils IA' },
-          { element: document.getElementById('contact'), name: 'Contact' }
-        ];
-        
-        this.currentSection = 0;
-        this.scrollThreshold = 100;
-        this.ctaShownOnce = false;
-        
-        this.init();
-      }
-      
-      init() {
-        this.setupScrollHandler();
-        this.setupFloatingNav();
-        this.setupBackToTop();
-        this.setupIntersectionObserver();
-      }
-      
-      setupScrollHandler() {
-        let ticking = false;
-        
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(() => {
-              this.updateNavigation();
-              this.updateProgressBar();
-              this.updateBackToTop();
-              this.updateStickyCTA();
-              ticking = false;
-            });
-            ticking = true;
-          }
-        });
-      }
-      
-      updateNavigation() {
-        const scrollY = window.scrollY;
-        
-        // Navigation sticky
-        if (scrollY > this.scrollThreshold) {
-          this.header.classList.add('scrolled');
-          this.floatingNav.classList.add('visible');
-          this.sectionIndicator.classList.add('visible');
-        } else {
-          this.header.classList.remove('scrolled');
-          this.floatingNav.classList.remove('visible');
-          this.sectionIndicator.classList.remove('visible');
-        }
-      }
-      
-      updateProgressBar() {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight - windowHeight;
-        const scrollTop = window.scrollY;
-        const progress = (scrollTop / documentHeight) * 100;
-        
-        this.progressBar.style.width = Math.min(progress, 100) + '%';
-      }
-      
-      updateBackToTop() {
-        const scrollY = window.scrollY;
-        
-        if (scrollY > this.scrollThreshold * 3) {
-          this.backToTop.classList.add('visible');
-        } else {
-          this.backToTop.classList.remove('visible');
-        }
-      }
-      
-      updateStickyCTA() {
-        const scrollY = window.scrollY;
-        const documentHeight = document.documentElement.scrollHeight;
-        const windowHeight = window.innerHeight;
-        const scrollProgress = scrollY / (documentHeight - windowHeight);
-        
-        // Afficher le CTA après 40% de scroll, mais pas dans la section contact
-        if (scrollProgress > 0.4 && scrollProgress < 0.85 && !this.ctaShownOnce) {
-          this.stickyCTA.classList.add('visible');
-          this.ctaShownOnce = true;
-        }
-        
-        // Masquer dans la section contact
-        if (scrollProgress > 0.85) {
-          this.stickyCTA.classList.remove('visible');
-        }
-      }
-      
-      setupFloatingNav() {
-        const navItems = this.floatingNav.querySelectorAll('.floating-nav-item');
-        
-        navItems.forEach((item, index) => {
-          item.addEventListener('click', () => {
-            const targetId = item.getAttribute('data-target');
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-              const headerHeight = this.header.offsetHeight;
-              const targetPosition = targetElement.offsetTop - headerHeight - 20;
-              
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          });
-        });
-      }
-      
-      setupBackToTop() {
-        this.backToTop.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        });
-      }
-      
-      setupIntersectionObserver() {
-        const observerOptions = {
-          root: null,
-          rootMargin: '-20% 0px -60% 0px',
-          threshold: 0
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const sectionIndex = this.sections.findIndex(section => 
-                section.element === entry.target
-              );
-              
-              if (sectionIndex !== -1) {
-                this.updateActiveSection(sectionIndex);
-              }
-            }
-          });
-        }, observerOptions);
-        
-        this.sections.forEach(section => {
-          if (section.element) {
-            observer.observe(section.element);
-          }
-        });
-      }
-      
-      updateActiveSection(index) {
-        // Mettre à jour l'indicateur de section
-        const section = this.sections[index];
-        if (section) {
-          this.sectionIndicator.textContent = section.name;
-          this.currentSection = index;
-          
-          // Mettre à jour la navigation flottante
-          const navItems = this.floatingNav.querySelectorAll('.floating-nav-item');
-          navItems.forEach((item, i) => {
-            if (i === index) {
-              item.classList.add('active');
-            } else {
-              item.classList.remove('active');
-            }
-          });
-        }
-      }
-    }
 
     // --- Thème (dark/light)
     const html = document.documentElement;
@@ -3821,367 +2773,12 @@
      `;
      document.head.appendChild(attentionStyle);
 
-            // Initialisation
-       document.addEventListener('DOMContentLoaded', () => {
-         new CTAEnhancer();
-         setupAttentionPulse();
-       });
-     </script>
-
-     <script>
-       // --- Layouts Asymétriques et Animations Avancées
-       class AsymmetricLayoutAnimator {
-         constructor() {
-           this.setupIntersectionObserver();
-           this.setupZigzagAnimations();
-           this.setupMasonryAnimations();
-           this.setupStaggeredAnimations();
-         }
-
-         setupIntersectionObserver() {
-           this.observer = new IntersectionObserver((entries) => {
-             entries.forEach(entry => {
-               if (entry.isIntersecting) {
-                 entry.target.classList.add('visible');
-                 
-                 // Animation spécifique selon le type d'élément
-                 if (entry.target.classList.contains('zigzag-item')) {
-                   this.animateZigzagItem(entry.target);
-                 } else if (entry.target.classList.contains('masonry-item')) {
-                   this.animateMasonryItem(entry.target);
-                 } else if (entry.target.classList.contains('staggered-entry')) {
-                   this.animateStaggeredEntry(entry.target);
-                 }
-               }
-             });
-           }, { 
-             threshold: 0.1,
-             rootMargin: '50px'
-           });
-
-           // Observer tous les éléments animables
-           document.querySelectorAll('.zigzag-item, .masonry-item, .staggered-entry').forEach(el => {
-             this.observer.observe(el);
-           });
-         }
-
-         setupZigzagAnimations() {
-           const zigzagItems = document.querySelectorAll('.zigzag-item');
-           
-           zigzagItems.forEach((item, index) => {
-             // Décalage initial selon la position
-             const isEven = index % 2 === 0;
-             item.style.transform = `translateX(${isEven ? '-100px' : '100px'}) translateY(50px)`;
-             item.style.opacity = '0';
-             item.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-           });
-         }
-
-         animateZigzagItem(item) {
-           setTimeout(() => {
-             item.style.transform = 'translateX(0) translateY(0)';
-             item.style.opacity = '1';
-             
-             // Ajouter un effet de parallax léger lors du scroll
-             window.addEventListener('scroll', () => {
-               const rect = item.getBoundingClientRect();
-               const scrolled = window.pageYOffset;
-               const rate = scrolled * -0.1;
-               
-               if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                 item.style.transform = `translateY(${rate}px)`;
-               }
-             });
-           }, 200);
-         }
-
-         setupMasonryAnimations() {
-           const masonryItems = document.querySelectorAll('.masonry-item');
-           
-           masonryItems.forEach((item, index) => {
-             item.style.transform = 'translateY(60px) scale(0.8)';
-             item.style.opacity = '0';
-             item.style.transition = `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.1}s`;
-           });
-         }
-
-         animateMasonryItem(item) {
-           item.style.transform = 'translateY(0) scale(1)';
-           item.style.opacity = '1';
-         }
-
-         setupStaggeredAnimations() {
-           const staggeredContainers = document.querySelectorAll('.staggered-entry');
-           
-           staggeredContainers.forEach(container => {
-             const children = container.children;
-             Array.from(children).forEach((child, index) => {
-               child.style.transform = 'translateY(40px) rotate(3deg)';
-               child.style.opacity = '0';
-               child.style.transition = `all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.15}s`;
-             });
-           });
-         }
-
-         animateStaggeredEntry(container) {
-           const children = container.children;
-           Array.from(children).forEach((child, index) => {
-             setTimeout(() => {
-               child.style.transform = 'translateY(0) rotate(0deg)';
-               child.style.opacity = '1';
-             }, index * 150);
-           });
-         }
-       }
-
-       // Effet de profondeur avec les éléments flottants
-       class FloatingElementsController {
-         constructor() {
-           this.setupFloatingEffects();
-           this.setupMouseInteractions();
-           this.setupOrganicShapes();
-         }
-
-         setupFloatingEffects() {
-           const floatingElements = document.querySelectorAll('.floating-element');
-           
-           floatingElements.forEach((element, index) => {
-             // Animation de flottement unique pour chaque élément
-             const duration = 4 + Math.random() * 4; // 4-8 secondes
-             const delay = index * 0.5; // Décalage de 0.5s entre chaque élément
-             
-             element.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-             
-             // Ajouter une rotation subtile
-             element.addEventListener('mouseenter', () => {
-               element.style.transform += ' rotateZ(2deg)';
-               element.style.transition = 'transform 0.3s ease';
-             });
-             
-             element.addEventListener('mouseleave', () => {
-               element.style.transform = element.style.transform.replace(' rotateZ(2deg)', '');
-             });
-           });
-         }
-
-         setupMouseInteractions() {
-           document.addEventListener('mousemove', (e) => {
-             const floatingElements = document.querySelectorAll('.floating-element');
-             
-             floatingElements.forEach((element, index) => {
-               const rect = element.getBoundingClientRect();
-               const centerX = rect.left + rect.width / 2;
-               const centerY = rect.top + rect.height / 2;
-               
-               const deltaX = (e.clientX - centerX) * 0.01;
-               const deltaY = (e.clientY - centerY) * 0.01;
-               
-               element.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-             });
-           });
-         }
-
-         setupOrganicShapes() {
-           const organicContainers = document.querySelectorAll('.organic-container');
-           
-           organicContainers.forEach(container => {
-             // Ajouter des variations de forme aléatoires
-             const variations = [
-               '50px 20px 40px 30px',
-               '30px 50px 20px 40px',
-               '40px 30px 50px 20px',
-               '60px 25px 35px 45px'
-             ];
-             
-             const randomVariation = variations[Math.floor(Math.random() * variations.length)];
-             container.style.borderRadius = randomVariation;
-             
-             // Changer légèrement la forme au survol
-             container.addEventListener('mouseenter', () => {
-               const newVariation = variations[Math.floor(Math.random() * variations.length)];
-               container.style.borderRadius = newVariation;
-               container.style.transition = 'border-radius 0.5s ease';
-             });
-           });
-         }
-       }
-
-       // Parallax avancé pour les éléments asymétriques
-       class AdvancedParallax {
-         constructor() {
-           this.parallaxElements = document.querySelectorAll('.parallax');
-           this.setupParallax();
-         }
-
-         setupParallax() {
-           window.addEventListener('scroll', () => {
-             const scrolled = window.pageYOffset;
-             
-             this.parallaxElements.forEach((element, index) => {
-               const rate = (index % 2 === 0 ? -0.5 : 0.5) * scrolled * 0.1;
-               const rotation = scrolled * (index % 2 === 0 ? 0.02 : -0.02);
-               
-               element.style.transform = `translateY(${rate}px) rotate(${rotation}deg)`;
-             });
-           });
-         }
-       }
-
-               // Initialisation des layouts asymétriques et navigation sticky
-        document.addEventListener('DOMContentLoaded', () => {
-          new AsymmetricLayoutAnimator();
-          new FloatingElementsController();
-          new AdvancedParallax();
-          new CreativeGridController();
-          new StickyNavigationManager();
-        });
-
-        // Contrôleur pour les grilles créatives
-        class CreativeGridController {
-          constructor() {
-            this.setupCreativeGridAnimations();
-            this.setupGridInteractions();
-            this.setupMorphingEffects();
-          }
-
-          setupCreativeGridAnimations() {
-            const creativeGrids = document.querySelectorAll('.creative-grid, .mosaic-grid, .fluid-grid, .spiral-grid');
-            
-            const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  this.animateGridEntrance(entry.target);
-                }
-              });
-            }, { threshold: 0.2 });
-
-            creativeGrids.forEach(grid => observer.observe(grid));
-          }
-
-          animateGridEntrance(grid) {
-            const items = grid.querySelectorAll('.grid-item, .mosaic-item, .fluid-item, .spiral-item');
-            
-            items.forEach((item, index) => {
-              setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = item.style.transform + ' scale(1)';
-                
-                // Ajouter un effet de "pop" temporaire
-                setTimeout(() => {
-                  item.style.transform = item.style.transform.replace('scale(1)', 'scale(1.05)');
-                  setTimeout(() => {
-                    item.style.transform = item.style.transform.replace('scale(1.05)', 'scale(1)');
-                  }, 200);
-                }, 100);
-              }, index * 150);
-            });
-          }
-
-          setupGridInteractions() {
-            // Effet magnétique entre les cartes
-            document.addEventListener('mousemove', (e) => {
-              const gridItems = document.querySelectorAll('.grid-item, .mosaic-item, .fluid-item, .spiral-item');
-              
-              gridItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const deltaX = (e.clientX - centerX) * 0.005;
-                const deltaY = (e.clientY - centerY) * 0.005;
-                
-                const currentTransform = item.style.transform || '';
-                const baseTransform = this.getBaseTransform(item);
-                
-                item.style.transform = baseTransform + ` translate(${deltaX}px, ${deltaY}px)`;
-              });
-            });
-
-            // Interactions au survol
-            const allGridItems = document.querySelectorAll('.grid-item, .mosaic-item, .fluid-item, .spiral-item');
-            
-            allGridItems.forEach(item => {
-              item.addEventListener('mouseenter', () => {
-                this.highlightSiblings(item);
-              });
-              
-              item.addEventListener('mouseleave', () => {
-                this.resetSiblings(item);
-              });
-            });
-          }
-
-          getBaseTransform(item) {
-            if (item.classList.contains('grid-item')) {
-              const index = Array.from(item.parentNode.children).indexOf(item);
-              const rotations = ['-2deg', '1deg', '-1deg', '2deg'];
-              const translations = ['-10px', '15px', '5px', '-5px'];
-              return `rotate(${rotations[index % 4]}) translateY(${translations[index % 4]})`;
-            }
-            return '';
-          }
-
-          highlightSiblings(activeItem) {
-            const siblings = activeItem.parentNode.querySelectorAll('.grid-item, .mosaic-item, .fluid-item, .spiral-item');
-            
-            siblings.forEach(sibling => {
-              if (sibling !== activeItem) {
-                sibling.style.opacity = '0.6';
-                sibling.style.transform = sibling.style.transform + ' scale(0.95)';
-              }
-            });
-          }
-
-          resetSiblings(activeItem) {
-            const siblings = activeItem.parentNode.querySelectorAll('.grid-item, .mosaic-item, .fluid-item, .spiral-item');
-            
-            siblings.forEach(sibling => {
-              if (sibling !== activeItem) {
-                sibling.style.opacity = '1';
-                sibling.style.transform = sibling.style.transform.replace(' scale(0.95)', '');
-              }
-            });
-          }
-
-          setupMorphingEffects() {
-            // Effet de morphing sur les conteneurs organiques
-            const organicContainers = document.querySelectorAll('.organic-container');
-            
-            organicContainers.forEach(container => {
-              let morphInterval;
-              
-              container.addEventListener('mouseenter', () => {
-                morphInterval = setInterval(() => {
-                  this.morphShape(container);
-                }, 2000);
-              });
-              
-              container.addEventListener('mouseleave', () => {
-                clearInterval(morphInterval);
-              });
-            });
-          }
-
-          morphShape(element) {
-            const variations = [
-              '50px 20px 40px 30px',
-              '30px 50px 20px 40px', 
-              '40px 30px 50px 20px',
-              '60px 25px 35px 45px',
-              '45px 35px 25px 55px'
-            ];
-            
-            const currentRadius = element.style.borderRadius || '50px 20px 40px 30px';
-            let newRadius;
-            
-            do {
-              newRadius = variations[Math.floor(Math.random() * variations.length)];
-            } while (newRadius === currentRadius);
-            
-            element.style.borderRadius = newRadius;
-          }
-        }
-      </script>
+     // Initialisation
+     document.addEventListener('DOMContentLoaded', () => {
+       new CTAEnhancer();
+       setupAttentionPulse();
+     });
+   </script>
 
   <script type="module" src="https://unpkg.com/@splinetool/runtime@1.0.95/build/runtime.js"></script>
   <script type="module">
@@ -4196,7 +2793,5 @@
     }
   </script>
 
-</body>
-</html>
 </body>
 </html>

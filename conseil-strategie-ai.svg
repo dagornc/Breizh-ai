@@ -1,0 +1,118 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="rgba(79, 70, 229, 0.1)" stroke="url(#brainGradient)" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="38;40;38" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Brain outline -->
+  <path d="M25 35 C20 30, 20 25, 25 22 C30 18, 35 20, 38 25 C42 20, 47 18, 52 22 C57 25, 57 30, 52 35 C55 38, 55 43, 52 46 C47 50, 42 48, 38 43 C35 48, 30 50, 25 46 C20 43, 20 38, 25 35 Z" 
+        fill="url(#brainGradient)" 
+        opacity="0.8" 
+        filter="url(#glow)">
+    <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Circuit lines -->
+  <g stroke="url(#circuitGradient)" stroke-width="1.5" fill="none" opacity="0.9">
+    <!-- Horizontal lines -->
+    <line x1="15" y1="25" x2="25" y2="25">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="55" y1="30" x2="65" y2="30">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="10" y1="45" x2="20" y2="45">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="1.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="60" y1="50" x2="70" y2="50">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2.2s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- Vertical lines -->
+    <line x1="20" y1="15" x2="20" y2="25">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2.3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="60" y1="20" x2="60" y2="30">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="1.9s" repeatCount="indefinite"/>
+    </line>
+    <line x1="15" y1="55" x2="15" y2="65">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2.7s" repeatCount="indefinite"/>
+    </line>
+    <line x1="65" y1="40" x2="65" y2="50">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="2.1s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- Circuit nodes -->
+  <g fill="url(#circuitGradient)">
+    <circle cx="15" cy="25" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="65" cy="30" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="10" cy="45" r="2">
+      <animate attributeName="r" values="2;3;2" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="70" cy="50" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="20" cy="15" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="20" r="2">
+      <animate attributeName="r" values="2;3;2" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="15" cy="65" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="65" cy="40" r="2">
+      <animate attributeName="r" values="2;3;2" dur="2.1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Central neural network -->
+  <g stroke="rgba(79, 70, 229, 0.6)" stroke-width="1" fill="none">
+    <path d="M30 35 Q35 30 40 35 Q45 30 50 35">
+      <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M30 40 Q35 45 40 40 Q45 45 50 40">
+      <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Data points -->
+  <g fill="#F59E0B" opacity="0.8">
+    <circle cx="32" cy="32" r="1">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="48" cy="38" r="1">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="35" cy="42" r="1">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="45" cy="33" r="1">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg> 
