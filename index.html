@@ -1670,6 +1670,17 @@
       border-bottom: 1px solid rgba(245, 158, 11, 0.3);
     }
 
+    /* Mode clair - Header sticky */
+    html.light .sticky-nav {
+      border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+    }
+    
+    html.light .sticky-nav.scrolled {
+      background: rgba(241, 245, 249, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+    }
+
     .sticky-nav.scrolled .nav-logo {
       transform: scale(0.9);
     }
@@ -1683,6 +1694,11 @@
       z-index: 101;
       transition: width 0.1s ease-out;
       box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Mode clair - Barre de progression */
+    html.light .progress-bar {
+      box-shadow: 0 0 8px rgba(217, 119, 6, 0.4);
     }
 
     .floating-nav {
