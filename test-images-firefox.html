@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Images Firefox - Breizh AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .image-test {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .image-test img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        .status {
+            margin-left: auto;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .loaded { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        h1 { color: #333; }
+        h2 { color: #666; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Compatibilité Images Firefox - Breizh AI</h1>
+    
+    <div class="test-container">
+        <h2>📸 Logos principaux</h2>
+        <div class="image-test">
+            <img src="logo-breizh-ai.png" alt="Logo Breizh AI" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Logo Breizh AI</strong><br>
+                <small>logo-breizh-ai.png</small>
+            </div>
+            <div class="status" id="status-logo">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="favicon.png" alt="Favicon" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Favicon</strong><br>
+                <small>favicon.png</small>
+            </div>
+            <div class="status" id="status-favicon">🔄 Chargement...</div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>🎨 Images SVG (Services)</h2>
+        <div class="image-test">
+            <img src="conseil-strategie-ai.svg" alt="Conseil Stratégie" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Conseil & Stratégie IA</strong><br>
+                <small>conseil-strategie-ai.svg</small>
+            </div>
+            <div class="status" id="status-conseil">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="integration-deploiement.svg" alt="Intégration Déploiement" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Intégration & Déploiement</strong><br>
+                <small>integration-deploiement.svg</small>
+            </div>
+            <div class="status" id="status-integration">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="realisations-sur-mesure.svg" alt="Réalisations sur-mesure" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Réalisations sur-mesure</strong><br>
+                <small>realisations-sur-mesure.svg</small>
+            </div>
+            <div class="status" id="status-realisations">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="analyse-donnees-bi.svg" alt="Analyse Données BI" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Analyse de Données & BI</strong><br>
+                <small>analyse-donnees-bi.svg</small>
+            </div>
+            <div class="status" id="status-analyse">🔄 Chargement...</div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>👥 Images de personas</h2>
+        <div class="image-test">
+            <img src="dirigeant-ios.png" alt="Dirigeant iOS" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Dirigeant (iOS)</strong><br>
+                <small>dirigeant-ios.png</small>
+            </div>
+            <div class="status" id="status-dirigeant-ios">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="dirigeant.jpg" alt="Dirigeant" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Dirigeant (Fallback)</strong><br>
+                <small>dirigeant.jpg</small>
+            </div>
+            <div class="status" id="status-dirigeant">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="artisan-ios.png" alt="Artisan iOS" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Artisan (iOS)</strong><br>
+                <small>artisan-ios.png</small>
+            </div>
+            <div class="status" id="status-artisan-ios">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="artisan.jpg" alt="Artisan" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Artisan (Fallback)</strong><br>
+                <small>artisan.jpg</small>
+            </div>
+            <div class="status" id="status-artisan">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="ingenieurs.jpg" alt="Ingénieurs" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Ingénieurs</strong><br>
+                <small>ingenieurs.jpg</small>
+            </div>
+            <div class="status" id="status-ingenieurs">🔄 Chargement...</div>
+        </div>
+        
+        <div class="image-test">
+            <img src="managers-digital.jpg" alt="Managers Digital" onload="updateStatus(this, 'loaded')" onerror="updateStatus(this, 'error')">
+            <div>
+                <strong>Managers Digital</strong><br>
+                <small>managers-digital.jpg</small>
+            </div>
+            <div class="status" id="status-managers">🔄 Chargement...</div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>📊 Résumé des tests</h2>
+        <div id="summary">
+            <p>🔄 Tests en cours...</p>
+        </div>
+    </div>
+
+    <script>
+        let loadedCount = 0;
+        let errorCount = 0;
+        let totalImages = 0;
+
+        function updateStatus(img, status) {
+            const statusElement = img.parentNode.querySelector('.status');
+            
+            if (status === 'loaded') {
+                statusElement.textContent = '✅ Chargée';
+                statusElement.className = 'status loaded';
+                loadedCount++;
+            } else {
+                statusElement.textContent = '❌ Erreur';
+                statusElement.className = 'status error';
+                errorCount++;
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            const total = loadedCount + errorCount;
+            
+            if (total === totalImages) {
+                const percentage = Math.round((loadedCount / totalImages) * 100);
+                summary.innerHTML = `
+                    <h3>📈 Résultats des tests :</h3>
+                    <p><strong>Images chargées :</strong> ${loadedCount}/${totalImages} (${percentage}%)</p>
+                    <p><strong>Erreurs :</strong> ${errorCount}</p>
+                    ${percentage === 100 ? 
+                        '<p style="color: green; font-weight: bold;">🎉 Tous les tests sont réussis ! Compatibilité Firefox OK.</p>' : 
+                        '<p style="color: orange; font-weight: bold;">⚠️ Certaines images n\'ont pas pu se charger.</p>'
+                    }
+                `;
+            }
+        }
+
+        // Compter le nombre total d'images à tester
+        window.onload = function() {
+            totalImages = document.querySelectorAll('img').length;
+            
+            // Détecter Firefox
+            const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            if (isFirefox) {
+                document.querySelector('h1').innerHTML += ' 🦊 (Firefox détecté)';
+            }
+        };
+    </script>
+</body>
+</html>

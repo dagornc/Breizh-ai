@@ -1565,22 +1565,6 @@
       border-bottom: none !important;
     }
     
-    /* Supprimer les traits verticaux des pseudo-éléments */
-    #stats-section .stats-card .glass-card::before,
-    #stats-section .stats-card .glass-card::after {
-      display: none !important;
-    }
-    
-    /* Correction pour la lisibilité des listes déroulantes en mode sombre */
-    select option {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-    }
-    
-    select {
-      background-color: var(--color-bg-glass-light) !important;
-    }
-    
     /* Container */
     .container {
       width: 100%;
@@ -2279,9 +2263,9 @@
         <span class="font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight select-none" style="color: var(--color-cta);">AI</span>
       </div>
       <ul class="hidden md:flex items-center gap-8 font-medium">
-        <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">€€€</a></li>
-        <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Votre stratégie</a></li>
-        <li><a href="#innovation" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Notre magie</a></li>
+        <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">Services</a></li>
+        <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Outils IA</a></li>
+        <li><a href="#approach" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Approche</a></li>
       </ul>
       <div class="hidden md:flex items-center gap-5">
         <a href="#contact" class="btn-cta px-6 lg:px-7 py-2 text-base lg:text-lg shadow-md" style="font-weight:700;letter-spacing:0.01em;" data-i18n="nav_contact">Contactez-nous</a>
@@ -2302,9 +2286,9 @@
       <div class="mobile-nav-content">
         <button id="close-mobile" class="fixed top-6 right-6" aria-label="Fermer le menu">&times;</button>
         <ul class="flex flex-col gap-12 text-2xl font-semibold w-full text-center">
-          <li><a href="#services" class="nav-link" data-i18n="nav_services">€€€</a></li>
-          <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Votre stratégie</a></li>
-          <li><a href="#innovation" class="nav-link" data-i18n="nav_approach">Notre magie</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="nav_services">Services</a></li>
+          <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Outils IA</a></li>
+          <li><a href="#approach" class="nav-link" data-i18n="nav_approach">Approche</a></li>
           <li><a href="#contact" class="btn-cta" data-i18n="nav_contact">Contactez-nous</a></li>
           <li class="flex justify-center gap-4 mt-8">
             <button id="theme-toggle-mobile" class="icon-btn" aria-label="Changer de thème">
@@ -2577,28 +2561,30 @@
             </div>
         </div>
 
-        <!-- Champs organisés en grille harmonieuse -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div class="flex-1">
-                <label for="secteur-activite-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Secteur d'activité</label>
-                <select id="secteur-activite-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
-                    <option value="">Sélectionnez votre secteur</option>
-                    <option value="Technologie">Technologie</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Santé">Santé</option>
-                    <option value="Éducation">Éducation</option>
-                    <option value="Commerce">Commerce</option>
-                    <option value="Industrie">Industrie</option>
-                    <option value="Transport">Transport</option>
-                    <option value="Énergie">Énergie</option>
-                    <option value="Construction">Construction</option>
-                    <option value="Agriculture">Agriculture</option>
-                    <option value="Tourisme">Tourisme</option>
-                    <option value="Médias">Médias</option>
-                    <option value="Consulting">Consulting</option>
-                    <option value="Autre">Autre</option>
-                </select>
-            </div>
+        <!-- Secteur d'activité -->
+        <div class="mb-4">
+            <label for="secteur-activite-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Secteur d'activité</label>
+            <select id="secteur-activite-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                <option value="">Sélectionnez votre secteur</option>
+                <option value="Technologie">Technologie</option>
+                <option value="Finance">Finance</option>
+                <option value="Santé">Santé</option>
+                <option value="Éducation">Éducation</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Industrie">Industrie</option>
+                <option value="Transport">Transport</option>
+                <option value="Énergie">Énergie</option>
+                <option value="Construction">Construction</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Tourisme">Tourisme</option>
+                <option value="Médias">Médias</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Autre">Autre</option>
+            </select>
+        </div>
+
+        <!-- Taille et chiffres -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div class="flex-1">
                 <label for="taille-organisation-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Taille de l'organisation</label>
                 <select id="taille-organisation-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
@@ -2608,8 +2594,47 @@
                     <option value="GRANDE_ENTREPRISE">Grande Entreprise (5000+ employés)</option>
                 </select>
             </div>
+            <div class="flex-1">
+                <label for="chiffre-affaires-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Chiffre d'affaires</label>
+                <select id="chiffre-affaires-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="< 1M€">Moins de 1M€</option>
+                    <option value="1M€ - 10M€">1M€ - 10M€</option>
+                    <option value="10M€ - 50M€">10M€ - 50M€</option>
+                    <option value="50M€ - 100M€">50M€ - 100M€</option>
+                    <option value="100M€ - 500M€">100M€ - 500M€</option>
+                    <option value="500M€ - 1Md€">500M€ - 1Md€</option>
+                    <option value="> 1Md€">Plus de 1Md€</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="effectifs-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Effectifs</label>
+                <select id="effectifs-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="1-10">1-10 employés</option>
+                    <option value="11-50">11-50 employés</option>
+                    <option value="51-250">51-250 employés</option>
+                    <option value="251-1000">251-1000 employés</option>
+                    <option value="1001-5000">1001-5000 employés</option>
+                    <option value="5001-10000">5001-10000 employés</option>
+                    <option value="> 10000">Plus de 10000 employés</option>
+                </select>
+            </div>
         </div>
 
+        <!-- Maturité digitale -->
+        <div class="mb-4">
+            <label for="maturite-digitale-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Maturité digitale</label>
+            <select id="maturite-digitale-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                <option value="">Sélectionnez votre niveau</option>
+                <option value="INITIALE">Initiale - Début de transformation</option>
+                <option value="EXPERIMENTALE">Expérimentale - Tests en cours</option>
+                <option value="DÉVELOPPÉE">Développée - Solutions en place</option>
+                <option value="OPTIMISÉE">Optimisée - Excellence digitale</option>
+            </select>
+        </div>
+
+        <!-- Géographie et contraintes -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="flex-1">
                 <label for="geographie-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Zones d'activité</label>
@@ -2621,6 +2646,30 @@
                     <option value="Europe">Europe</option>
                     <option value="Internationale">Internationale</option>
                     <option value="Mondiale">Mondiale</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="contraintes-specifiques-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Contraintes spécifiques</label>
+                <select id="contraintes-specifiques-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="RÉGLEMENTAIRES">Réglementaires</option>
+                    <option value="BUDGÉTAIRES">Budgétaires</option>
+                    <option value="CULTURELLES">Culturelles</option>
+                    <option value="TECHNIQUES">Techniques</option>
+                    <option value="AUCUNE">Aucune contrainte majeure</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Ambition et horizon -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="flex-1">
+                <label for="ambition-transformation-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Ambition de transformation</label>
+                <select id="ambition-transformation-bc" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" required>
+                    <option value="">Sélectionnez</option>
+                    <option value="CONSERVATIVE">Conservative - Amélioration progressive</option>
+                    <option value="AMBITIEUSE">Ambitieuse - Transformation significative</option>
+                    <option value="DISRUPTIVE">Disruptive - Innovation radicale</option>
                 </select>
             </div>
             <div class="flex-1">
@@ -2649,7 +2698,7 @@
 </section>
 
 
-    <section id="innovation" class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
+    <section class="container mx-auto px-4 py-16 sm:py-24 md:py-32">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-center" data-i18n="innov_title">
         L'IA n'est pas magique, c'est un métier.
       </h2>
@@ -2748,7 +2797,7 @@
 
     <section id="contact" class="container mx-auto px-4 py-16 sm:py-24 md:py-32 text-center">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8" data-i18n="cta_title">
-        L'essentiel, intelligemment.<br>C'est tout !
+        L'essentiel, intelligemment. C'est tout !
       </h2>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
         <div class="btn-cta-container">
@@ -2775,9 +2824,8 @@
   <nav class="floating-nav" id="floating-nav">
     <div class="floating-nav-item" data-section="Accueil" data-target="hero-section-3d"></div>
     <div class="floating-nav-item" data-section="Statistiques" data-target="stats-section"></div>
-    <div class="floating-nav-item" data-section="€€€" data-target="services"></div>
-    <div class="floating-nav-item" data-section="Votre stratégie" data-target="tools"></div>
-    <div class="floating-nav-item" data-section="Notre magie" data-target="innovation"></div>
+    <div class="floating-nav-item" data-section="Services" data-target="services"></div>
+    <div class="floating-nav-item" data-section="Outils IA" data-target="tools"></div>
     <div class="floating-nav-item" data-section="Contact" data-target="contact"></div>
   </nav>
 
@@ -2903,9 +2951,8 @@
         this.sections = [
           { element: document.getElementById('hero-section-3d'), name: 'Accueil' },
           { element: document.getElementById('stats-section'), name: 'Statistiques' },
-          { element: document.getElementById('services'), name: '€€€' },
-          { element: document.getElementById('tools'), name: 'Votre stratégie' },
-          { element: document.getElementById('innovation'), name: 'Notre magie' },
+          { element: document.getElementById('services'), name: 'Services' },
+          { element: document.getElementById('tools'), name: 'Outils IA' },
           { element: document.getElementById('contact'), name: 'Contact' }
         ];
         
@@ -3094,9 +3141,9 @@
     const langIconMobile = document.getElementById('lang-icon-mobile');
     const translations = {
       en: {
-        nav_services: "€€€",
-        nav_tools: "Your strategy",
-        nav_approach: "Our magic",
+        nav_services: "Services",
+        nav_tools: "AI Tools",
+        nav_approach: "Approach",
         nav_contact: "Contact us",
         hero_title: "Stop chasing technology,<br class='md:block hidden'> put it to work.",
         hero_subtitle: "Breizh AI supports innovators in designing, developing and integrating custom AI solutions tailored to their business challenges.",
@@ -3134,7 +3181,7 @@
         innov3_desc: "Accelerate digital innovation with AI, from ideation to business integration.",
         innov4_title: "For Artisans",
         innov4_desc: "Benefit from accessible AI solutions to optimize your daily business.",
-        cta_title: "The essentials, intelligently.<br>That's all.",
+        cta_title: "The essentials, intelligently. That's all.",
         cta_email: "Send an email",
         cta_call: "Call us",
         footer_made: "Designed in Brittany, France.",
@@ -3212,7 +3259,12 @@
     const nomEntrepriseBC = document.getElementById('nom-entreprise-bc');
     const secteurActiviteBC = document.getElementById('secteur-activite-bc');
     const tailleOrganisationBC = document.getElementById('taille-organisation-bc');
+    const chiffreAffairesBC = document.getElementById('chiffre-affaires-bc');
+    const effectifsBC = document.getElementById('effectifs-bc');
+    const maturiteDigitaleBC = document.getElementById('maturite-digitale-bc');
     const geographieBC = document.getElementById('geographie-bc');
+    const contraintesSpecifiquesBC = document.getElementById('contraintes-specifiques-bc');
+    const ambitionTransformationBC = document.getElementById('ambition-transformation-bc');
     const horizonTemporelBC = document.getElementById('horizon-temporel-bc');
     const bcResult = document.getElementById('bc-result');
     const loaderBC = document.getElementById('loader-bc');
@@ -3222,7 +3274,12 @@
       const nomEntreprise = nomEntrepriseBC.value.trim();
       const secteurActivite = secteurActiviteBC.value;
       const tailleOrganisation = tailleOrganisationBC.value;
+      const chiffreAffaires = chiffreAffairesBC.value;
+      const effectifs = effectifsBC.value;
+      const maturiteDigitale = maturiteDigitaleBC.value;
       const geographie = geographieBC.value;
+      const contraintesSpecifiques = contraintesSpecifiquesBC.value;
+      const ambitionTransformation = ambitionTransformationBC.value;
       const horizonTemporel = horizonTemporelBC.value;
 
       // Validation des champs
@@ -3242,8 +3299,28 @@
         bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner la taille de votre organisation.</span>';
         return;
       }
+      if(!chiffreAffaires) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre chiffre d\'affaires.</span>';
+        return;
+      }
+      if(!effectifs) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos effectifs.</span>';
+        return;
+      }
+      if(!maturiteDigitale) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre maturité digitale.</span>';
+        return;
+      }
       if(!geographie) {
         bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos zones d\'activité.</span>';
+        return;
+      }
+      if(!contraintesSpecifiques) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos contraintes spécifiques.</span>';
+        return;
+      }
+      if(!ambitionTransformation) {
+        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre ambition de transformation.</span>';
         return;
       }
       if(!horizonTemporel) {
@@ -3268,7 +3345,12 @@
             nom_entreprise: nomEntreprise,
             secteur_activite: secteurActivite,
             taille_organisation: tailleOrganisation,
+            chiffre_affaires: chiffreAffaires,
+            effectifs: effectifs,
+            maturite_digitale: maturiteDigitale,
             geographie: geographie,
+            contraintes_specifiques: contraintesSpecifiques,
+            ambition_transformation: ambitionTransformation,
             horizon_temporel: horizonTemporel,
             email: email
           })
