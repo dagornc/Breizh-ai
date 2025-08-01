@@ -179,52 +179,60 @@
       word-wrap: break-word;
     }
     
-    /* Couleur des placeholders pour les champs email et nom entreprise en mode sombre */
+    /* Couleur des placeholders pour les champs email, nom entreprise et contexte en mode sombre */
     #email-bc::placeholder,
-    #nom-entreprise-bc::placeholder {
+    #nom-entreprise-bc::placeholder,
+    #contexte-complementaire-bc::placeholder {
       color: #4a5568 !important; /* gris anthracite */
       opacity: 1 !important;
     }
     
     /* Spécifique pour WebKit (Safari, Chrome) */
     #email-bc::-webkit-input-placeholder,
-    #nom-entreprise-bc::-webkit-input-placeholder {
+    #nom-entreprise-bc::-webkit-input-placeholder,
+    #contexte-complementaire-bc::-webkit-input-placeholder {
       color: #4a5568 !important; /* gris anthracite */
       opacity: 1 !important;
     }
     
     /* Spécifique pour Firefox */
     #email-bc::-moz-placeholder,
-    #nom-entreprise-bc::-moz-placeholder {
+    #nom-entreprise-bc::-moz-placeholder,
+    #contexte-complementaire-bc::-moz-placeholder {
       color: #4a5568 !important; /* gris anthracite */
       opacity: 1 !important;
     }
     
     /* Spécifique pour Microsoft Edge */
     #email-bc::-ms-input-placeholder,
-    #nom-entreprise-bc::-ms-input-placeholder {
+    #nom-entreprise-bc::-ms-input-placeholder,
+    #contexte-complementaire-bc::-ms-input-placeholder {
       color: #4a5568 !important; /* gris anthracite */
       opacity: 1 !important;
     }
     
     /* Mode clair - placeholders plus clairs */
     html.light #email-bc::placeholder,
-    html.light #nom-entreprise-bc::placeholder {
+    html.light #nom-entreprise-bc::placeholder,
+    html.light #contexte-complementaire-bc::placeholder {
       color: #9ca3af !important; /* gris plus clair */
     }
     
     html.light #email-bc::-webkit-input-placeholder,
-    html.light #nom-entreprise-bc::-webkit-input-placeholder {
+    html.light #nom-entreprise-bc::-webkit-input-placeholder,
+    html.light #contexte-complementaire-bc::-webkit-input-placeholder {
       color: #9ca3af !important;
     }
     
     html.light #email-bc::-moz-placeholder,
-    html.light #nom-entreprise-bc::-moz-placeholder {
+    html.light #nom-entreprise-bc::-moz-placeholder,
+    html.light #contexte-complementaire-bc::-moz-placeholder {
       color: #9ca3af !important;
     }
     
     html.light #email-bc::-ms-input-placeholder,
-    html.light #nom-entreprise-bc::-ms-input-placeholder {
+    html.light #nom-entreprise-bc::-ms-input-placeholder,
+    html.light #contexte-complementaire-bc::-ms-input-placeholder {
       color: #9ca3af !important;
     }
     
@@ -2678,6 +2686,12 @@
             </div>
         </div>
 
+        <!-- Champ contexte complémentaire -->
+        <div class="mb-4">
+            <label for="contexte-complementaire-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Contexte complémentaire <span class="text-sm font-normal opacity-75">(facultatif)</span></label>
+            <textarea id="contexte-complementaire-bc" rows="4" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all resize-none" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" placeholder="Décrivez des éléments de contexte spécifiques à votre entreprise qui pourraient influencer votre stratégie IA..."></textarea>
+        </div>
+
         <div class="btn-cta-container mx-auto">
           <button id="gen-bc" class="btn-cta px-8 py-4 mt-6 flex items-center justify-center gap-2 z-10 relative text-xl font-bold magnetic" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.025em;" data-i18n="tool2_btn">
                     <span data-i18n="tool2_btn">Obtenez votre stratégie</span>
@@ -3095,20 +3109,25 @@
     function updateFormLabelsForTheme(isLight) {
       const emailLabel = document.querySelector('label[for="email-bc"]');
       const companyLabel = document.querySelector('label[for="nom-entreprise-bc"]');
+      const contexteLabel = document.querySelector('label[for="contexte-complementaire-bc"]');
       
-      if (emailLabel && companyLabel) {
+      if (emailLabel && companyLabel && contexteLabel) {
         if (isLight) {
           // Mode clair : couleur sombre, pas d'ombre
           emailLabel.style.color = '#1e293b';
           emailLabel.style.textShadow = 'none';
           companyLabel.style.color = '#1e293b';
           companyLabel.style.textShadow = 'none';
+          contexteLabel.style.color = '#1e293b';
+          contexteLabel.style.textShadow = 'none';
         } else {
           // Mode sombre : couleur blanche avec ombre renforcée
           emailLabel.style.color = '#ffffff';
           emailLabel.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.8)';
           companyLabel.style.color = '#ffffff';
           companyLabel.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.8)';
+          contexteLabel.style.color = '#ffffff';
+          contexteLabel.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.8)';
         }
       }
     }
@@ -3262,6 +3281,7 @@
     const tailleOrganisationBC = document.getElementById('taille-organisation-bc');
     const geographieBC = document.getElementById('geographie-bc');
     const horizonTemporelBC = document.getElementById('horizon-temporel-bc');
+    const contexteComplementaireBC = document.getElementById('contexte-complementaire-bc');
     const bcResult = document.getElementById('bc-result');
     const loaderBC = document.getElementById('loader-bc');
 
@@ -3272,6 +3292,7 @@
       const tailleOrganisation = tailleOrganisationBC.value;
       const geographie = geographieBC.value;
       const horizonTemporel = horizonTemporelBC.value;
+      const contexteComplementaire = contexteComplementaireBC.value.trim();
 
       // Validation des champs
       if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
@@ -3318,6 +3339,7 @@
             taille_organisation: tailleOrganisation,
             geographie: geographie,
             horizon_temporel: horizonTemporel,
+            contexte_complementaire: contexteComplementaire,
             email: email
           })
         });
