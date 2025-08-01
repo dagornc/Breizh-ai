@@ -8,6 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="Transformez vos défis en solutions IA stratégiques avec Breizh AI. Conseil, développement, intégration et outils IA pour dirigeants, ingénieurs, managers et artisans.">
+  <script>
+    // Force le mode sombre par défaut immédiatement
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme !== 'light') {
+        document.documentElement.classList.remove('light');
+      }
+    })();
+  </script>
   <style>
     /* Variables de thème moderne avec palette enrichie */
     :root {
@@ -75,12 +84,23 @@
       --color-card-hover: rgba(217, 119, 6, 0.1);
     }
     html.light .glass-card {
-      background: rgba(30, 41, 59, 0.09);
-      border: 1px solid rgba(30, 41, 59, 0.18);
+      background: rgba(30, 41, 59, 0.15);
+      border: 1px solid rgba(30, 41, 59, 0.25);
       color: var(--color-text);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(30, 41, 59, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(30, 41, 59, 0.15);
     }
     html.light .glass-card:hover {
-      background: rgba(30, 41, 59, 0.13);
+      background: rgba(30, 41, 59, 0.20);
+      border: 1px solid rgba(30, 41, 59, 0.35);
+      box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.12),
+        0 4px 16px rgba(30, 41, 59, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 0 rgba(30, 41, 59, 0.25);
     }
     html.light .text-sky-200 {
       color: #334155 !important;
@@ -90,6 +110,122 @@
     }
     html.light .logo-breizh {
       color: #1e293b !important;
+    }
+    html.light .btn-cta.btn-secondary {
+      color: #ffffff !important;
+    }
+    html.light .btn-cta.btn-secondary:hover,
+    html.light .btn-cta.btn-secondary:focus {
+      color: #ffffff !important;
+    }
+    
+    /* Amélioration du contraste des widgets/badges en mode clair */
+    html.light .text-blue-400 {
+      color: #1e40af !important; /* blue-800 */
+    }
+    html.light .text-purple-400 {
+      color: #6b21a8 !important; /* purple-800 */
+    }
+    html.light .text-green-400 {
+      color: #166534 !important; /* green-800 */
+    }
+    html.light .text-cyan-400 {
+      color: #155e75 !important; /* cyan-800 */
+    }
+    html.light .text-orange-400 {
+      color: #c2410c !important; /* orange-700 */
+    }
+    html.light .text-gray-400 {
+      color: #374151 !important; /* gray-700 */
+    }
+    html.light .text-yellow-400 {
+      color: #b45309 !important; /* amber-700 */
+    }
+    html.light .text-amber-400 {
+      color: #b45309 !important; /* amber-700 */
+    }
+    
+    /* Amélioration spécifique pour les petits textes en gris */
+    html.light .text-xs.text-gray-400,
+    html.light .text-sm.text-gray-400 {
+      color: #1f2937 !important; /* gray-800 pour plus de contraste */
+    }
+    
+    /* Contraste des libellés de formulaire selon le thème */
+    label[for="email-bc"],
+    label[for="nom-entreprise-bc"] {
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    html.light label[for="email-bc"],
+    html.light label[for="nom-entreprise-bc"] {
+      color: #1f2937 !important; /* gray-800 */
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    /* Centrage des messages de résultat dans la carte stratégie */
+    #bc-result {
+      text-align: center !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 24px;
+      padding: 8px 16px;
+    }
+    #bc-result span {
+      display: inline-block;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    
+    /* Couleur des placeholders pour les champs email et nom entreprise en mode sombre */
+    #email-bc::placeholder,
+    #nom-entreprise-bc::placeholder {
+      color: #4a5568 !important; /* gris anthracite */
+      opacity: 1 !important;
+    }
+    
+    /* Spécifique pour WebKit (Safari, Chrome) */
+    #email-bc::-webkit-input-placeholder,
+    #nom-entreprise-bc::-webkit-input-placeholder {
+      color: #4a5568 !important; /* gris anthracite */
+      opacity: 1 !important;
+    }
+    
+    /* Spécifique pour Firefox */
+    #email-bc::-moz-placeholder,
+    #nom-entreprise-bc::-moz-placeholder {
+      color: #4a5568 !important; /* gris anthracite */
+      opacity: 1 !important;
+    }
+    
+    /* Spécifique pour Microsoft Edge */
+    #email-bc::-ms-input-placeholder,
+    #nom-entreprise-bc::-ms-input-placeholder {
+      color: #4a5568 !important; /* gris anthracite */
+      opacity: 1 !important;
+    }
+    
+    /* Mode clair - placeholders plus clairs */
+    html.light #email-bc::placeholder,
+    html.light #nom-entreprise-bc::placeholder {
+      color: #9ca3af !important; /* gris plus clair */
+    }
+    
+    html.light #email-bc::-webkit-input-placeholder,
+    html.light #nom-entreprise-bc::-webkit-input-placeholder {
+      color: #9ca3af !important;
+    }
+    
+    html.light #email-bc::-moz-placeholder,
+    html.light #nom-entreprise-bc::-moz-placeholder {
+      color: #9ca3af !important;
+    }
+    
+    html.light #email-bc::-ms-input-placeholder,
+    html.light #nom-entreprise-bc::-ms-input-placeholder {
+      color: #9ca3af !important;
     }
     
     /* Optimisations universelles pour tous les navigateurs */
@@ -599,6 +735,7 @@
     /* Variantes de boutons */
     .btn-cta.btn-secondary {
       background: var(--gradient-secondary);
+      color: #ffffff !important;
       animation: cta-breathing-secondary 4s ease-in-out infinite;
     }
 
@@ -608,6 +745,7 @@
     }
 
     .btn-cta.btn-secondary:hover, .btn-cta.btn-secondary:focus {
+      color: #ffffff !important;
       box-shadow: 
         0 16px 48px rgba(245, 158, 11, 0.5),
         0 0 0 2px rgba(245, 158, 11, 0.3),
@@ -1895,26 +2033,7 @@
       color: white;
     }
 
-    .sticky-cta {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, rgba(126, 34, 206, 0.95) 0%, rgba(147, 51, 234, 0.95) 100%);
-      backdrop-filter: blur(20px);
-      padding: 1rem 2rem;
-      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-      z-index: 80;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-      border-top: 1px solid rgba(245, 158, 11, 0.3);
-      min-height: calc(80px + env(safe-area-inset-bottom));
-      box-sizing: border-box;
-    }
 
-    .sticky-cta.visible {
-      transform: translateY(0);
-    }
 
 
 
@@ -1954,85 +2073,10 @@
         height: 45px;
       }
       
-      .sticky-cta {
-        padding: 0.75rem 1rem;
-      }
-      
-      .sticky-cta .container {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-      }
-      
-      .sticky-cta .flex.gap-4 {
-        flex-direction: column;
-        gap: 0.75rem;
-        width: 100%;
-      }
-      
-      .sticky-cta .flex.gap-4 a {
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-      }
-      
-      .sticky-cta .font-bold {
-        font-size: 1rem;
-        line-height: 1.4;
-      }
-      
-      .sticky-cta .text-purple-200 {
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-      }
-    }
-
-    /* Styles spécifiques pour très petits écrans (smartphones) */
-    @media (max-width: 480px) {
-      .sticky-cta {
-        padding: 0.75rem 1rem;
-        padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
-        min-height: calc(70px + env(safe-area-inset-bottom));
-      }
-      
-      .sticky-cta .font-bold {
-        font-size: 0.875rem;
-        line-height: 1.3;
-      }
-      
-      .sticky-cta .text-purple-200 {
-        font-size: 0.75rem;
-      }
-      
-      .sticky-cta .flex.gap-4 a {
-        padding: 0.625rem 1.25rem;
-        font-size: 0.875rem;
-        border-radius: 1.5rem;
-      }
-      
-      .sticky-cta .container {
-        gap: 0.75rem;
-      }
-      
-      /* Optimisation touch sur mobile */
-      .sticky-cta button,
-      .sticky-cta a {
-        min-height: 44px;
-        min-width: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        touch-action: manipulation;
-      }
-      
-      .sticky-cta button svg {
-        width: 20px;
-        height: 20px;
-      }
-      
 
     }
+
+
 
     /* Menu mobile - couleurs constantes */
     #mobile-nav {
@@ -2281,7 +2325,7 @@
       <ul class="hidden md:flex items-center gap-8 font-medium">
         <li><a href="#services" class="nav-link text-base lg:text-lg" data-i18n="nav_services">€€€</a></li>
         <li><a href="#tools" class="nav-link text-base lg:text-lg" data-i18n="nav_tools">Votre stratégie</a></li>
-        <li><a href="#innovation" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Notre magie</a></li>
+        <li><a href="#innovation" class="nav-link text-base lg:text-lg" data-i18n="nav_approach">Notre métier</a></li>
       </ul>
       <div class="hidden md:flex items-center gap-5">
         <a href="#contact" class="btn-cta px-6 lg:px-7 py-2 text-base lg:text-lg shadow-md" style="font-weight:700;letter-spacing:0.01em;" data-i18n="nav_contact">Contactez-nous</a>
@@ -2304,7 +2348,7 @@
         <ul class="flex flex-col gap-12 text-2xl font-semibold w-full text-center">
           <li><a href="#services" class="nav-link" data-i18n="nav_services">€€€</a></li>
           <li><a href="#tools" class="nav-link" data-i18n="nav_tools">Votre stratégie</a></li>
-          <li><a href="#innovation" class="nav-link" data-i18n="nav_approach">Notre magie</a></li>
+          <li><a href="#innovation" class="nav-link" data-i18n="nav_approach">Notre métier</a></li>
           <li><a href="#contact" class="btn-cta" data-i18n="nav_contact">Contactez-nous</a></li>
           <li class="flex justify-center gap-4 mt-8">
             <button id="theme-toggle-mobile" class="icon-btn" aria-label="Changer de thème">
@@ -2568,11 +2612,11 @@
         <!-- Informations de base -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="flex-1">
-                <label for="email-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;" data-i18n="tool2_email_label">Votre adresse email</label>
+                <label for="email-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: #ffffff; font-family: 'Poppins', sans-serif; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);" data-i18n="tool2_email_label">Votre adresse email</label>
                 <input id="email-bc" type="email" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" placeholder="Votre adresse email" required>
             </div>
             <div class="flex-1">
-                <label for="nom-entreprise-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: var(--color-text); font-family: 'Poppins', sans-serif;">Nom de votre entreprise</label>
+                <label for="nom-entreprise-bc" class="block mb-2 text-lg font-semibold z-10 relative" style="color: #ffffff; font-family: 'Poppins', sans-serif; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);">Nom de votre entreprise</label>
                 <input id="nom-entreprise-bc" type="text" class="rounded-lg px-4 py-2 z-10 relative w-full transition-all" style="background: var(--color-bg-glass-light); color: var(--color-text); border: 1px solid var(--color-border);" placeholder="Nom de votre entreprise" required>
             </div>
         </div>
@@ -2643,7 +2687,7 @@
             <span id="loader-bc" class="loader hidden"></span>
           </button>
         </div>
-        <div id="bc-result" class="mt-4 text-base"></div>
+        <div id="bc-result" class="mt-4 text-base text-center"></div>
     </div>
     </div>
 </section>
@@ -2777,7 +2821,7 @@
     <div class="floating-nav-item" data-section="Statistiques" data-target="stats-section"></div>
     <div class="floating-nav-item" data-section="€€€" data-target="services"></div>
     <div class="floating-nav-item" data-section="Votre stratégie" data-target="tools"></div>
-    <div class="floating-nav-item" data-section="Notre magie" data-target="innovation"></div>
+    <div class="floating-nav-item" data-section="Notre métier" data-target="innovation"></div>
     <div class="floating-nav-item" data-section="Contact" data-target="contact"></div>
   </nav>
 
@@ -2788,25 +2832,7 @@
     </svg>
   </div>
 
-  <!-- CTA sticky en bas -->
-  <div class="sticky-cta" id="sticky-cta">
-    <div class="container mx-auto flex items-center justify-between">
-      <div>
-        <div class="font-bold text-white text-lg">Prêt à transformer votre entreprise ?</div>
-        <div class="text-purple-200 text-sm">Consultation gratuite • Réponse sous 24h</div>
-      </div>
-      <div class="flex gap-4">
-        <a href="mailto:contact@breizh.ai" class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-          Contactez-nous
-        </a>
-        <button class="text-white hover:text-purple-200 transition-colors" onclick="document.getElementById('sticky-cta').classList.remove('visible')">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
+
 
   <footer class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-sky-200">
     <div class="flex items-center gap-2 font-extrabold text-xl sm:text-2xl md:text-3xl">
@@ -2898,20 +2924,19 @@
         this.progressBar = document.getElementById('reading-progress');
         this.floatingNav = document.getElementById('floating-nav');
         this.backToTop = document.getElementById('back-to-top');
-        this.stickyCTA = document.getElementById('sticky-cta');
+
         
         this.sections = [
           { element: document.getElementById('hero-section-3d'), name: 'Accueil' },
           { element: document.getElementById('stats-section'), name: 'Statistiques' },
           { element: document.getElementById('services'), name: '€€€' },
           { element: document.getElementById('tools'), name: 'Votre stratégie' },
-          { element: document.getElementById('innovation'), name: 'Notre magie' },
+          { element: document.getElementById('innovation'), name: 'Notre métier' },
           { element: document.getElementById('contact'), name: 'Contact' }
         ];
         
         this.currentSection = 0;
         this.scrollThreshold = 100;
-        this.ctaShownOnce = false;
         
         this.init();
       }
@@ -2932,7 +2957,6 @@
               this.updateNavigation();
               this.updateProgressBar();
               this.updateBackToTop();
-              this.updateStickyCTA();
               ticking = false;
             });
             ticking = true;
@@ -2969,24 +2993,6 @@
           this.backToTop.classList.add('visible');
         } else {
           this.backToTop.classList.remove('visible');
-        }
-      }
-      
-      updateStickyCTA() {
-        const scrollY = window.scrollY;
-        const documentHeight = document.documentElement.scrollHeight;
-        const windowHeight = window.innerHeight;
-        const scrollProgress = scrollY / (documentHeight - windowHeight);
-        
-        // Afficher le CTA après 40% de scroll, mais pas dans la section contact
-        if (scrollProgress > 0.4 && scrollProgress < 0.85 && !this.ctaShownOnce) {
-          this.stickyCTA.classList.add('visible');
-          this.ctaShownOnce = true;
-        }
-        
-        // Masquer dans la section contact
-        if (scrollProgress > 0.85) {
-          this.stickyCTA.classList.remove('visible');
         }
       }
       
@@ -3074,16 +3080,58 @@
         themeIcon.textContent = '🌙'; // Afficher la lune en mode clair
         themeIconMobile.textContent = '🌙';
         localStorage.setItem('theme','light');
+        // Adapter les couleurs des labels de formulaire pour le mode clair
+        updateFormLabelsForTheme(true);
       } else {
         html.classList.remove('light');
         themeIcon.textContent = '☀️'; // Afficher le soleil en mode sombre
         themeIconMobile.textContent = '☀️';
         localStorage.setItem('theme','dark');
+        // Adapter les couleurs des labels de formulaire pour le mode sombre
+        updateFormLabelsForTheme(false);
       }
     }
-    // Init theme
+    
+    function updateFormLabelsForTheme(isLight) {
+      const emailLabel = document.querySelector('label[for="email-bc"]');
+      const companyLabel = document.querySelector('label[for="nom-entreprise-bc"]');
+      
+      if (emailLabel && companyLabel) {
+        if (isLight) {
+          // Mode clair : couleur sombre, pas d'ombre
+          emailLabel.style.color = '#1e293b';
+          emailLabel.style.textShadow = 'none';
+          companyLabel.style.color = '#1e293b';
+          companyLabel.style.textShadow = 'none';
+        } else {
+          // Mode sombre : couleur blanche avec ombre renforcée
+          emailLabel.style.color = '#ffffff';
+          emailLabel.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.8)';
+          companyLabel.style.color = '#ffffff';
+          companyLabel.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.8)';
+        }
+      }
+    }
+    // Init theme - Mode sombre par défaut FORCÉ
     const userTheme = localStorage.getItem('theme');
-    setTheme(userTheme !== 'dark');
+    
+    // Forcer le mode sombre par défaut sur tous les navigateurs
+    // Mode clair uniquement si explicitement choisi par l'utilisateur
+    if (userTheme === 'light') {
+      console.log('Mode clair activé (choix utilisateur)');
+      setTheme(true); // Mode clair explicitement demandé
+    } else {
+      console.log('Mode sombre activé (défaut)');
+      // S'assurer que la classe light est supprimée
+      html.classList.remove('light');
+      setTheme(false); // Mode sombre par défaut
+    }
+    
+    // S'assurer que les labels sont correctement stylés au chargement
+    updateFormLabelsForTheme(userTheme === 'light'); // Immédiat
+    setTimeout(() => {
+      updateFormLabelsForTheme(userTheme === 'light'); // Backup après DOM complet
+    }, 100);
     themeBtn.addEventListener('click', () => setTheme(!html.classList.contains('light')));
     themeBtnMobile.addEventListener('click', () => setTheme(!html.classList.contains('light')));
 
@@ -3096,7 +3144,7 @@
       en: {
         nav_services: "€€€",
         nav_tools: "Your strategy",
-        nav_approach: "Our magic",
+        nav_approach: "Our craft",
         nav_contact: "Contact us",
         hero_title: "Stop chasing technology,<br class='md:block hidden'> put it to work.",
         hero_subtitle: "Breizh AI supports innovators in designing, developing and integrating custom AI solutions tailored to their business challenges.",
@@ -3134,7 +3182,7 @@
         innov3_desc: "Accelerate digital innovation with AI, from ideation to business integration.",
         innov4_title: "For Artisans",
         innov4_desc: "Benefit from accessible AI solutions to optimize your daily business.",
-        cta_title: "The essentials, intelligently.<br>That's all.",
+        cta_title: "The essentials, intelligently.<br>That's all!",
         cta_email: "Send an email",
         cta_call: "Call us",
         footer_made: "Designed in Brittany, France.",
