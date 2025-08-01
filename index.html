@@ -2797,8 +2797,8 @@
           </div>
           <p class="text-base sm:text-lg font-light text-center leading-relaxed mb-4" style="color: var(--color-text-secondary);" data-i18n="innov4_desc">Profitez de solutions IA accessibles pour optimiser votre activité au quotidien.</p>
           <div class="flex flex-wrap justify-center gap-2">
-            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm">Accessibilité</span>
-            <span class="px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-sm">Simplicité</span>
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm" data-i18n="accessibility">Accessibilité</span>
+            <span class="px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-sm" data-i18n="simplicity">Simplicité</span>
           </div>
         </div>
       </div>
@@ -3237,6 +3237,8 @@
         tech_team: "Tech Team",
         productivity: "Productivity",
         roi: "ROI",
+        accessibility: "Accessibility",
+        simplicity: "Simplicity",
         // Stats cards descriptions
         stat1_desc: "Solutions developed and deployed successfully",
         stat2_desc: "Our clients trust us and recommend our services",
@@ -3244,6 +3246,20 @@
         // Units for counter widgets
         projects_unit: "projects",
         years_unit: "years",
+        // Strategy form validation messages
+        error_email_required: "Please enter a valid email address.",
+        error_company_required: "Please enter your company name.",
+        error_sector_required: "Please select your industry sector.",
+        error_size_required: "Please select your organization size.",
+        error_geography_required: "Please select your business areas.",
+        error_timeframe_required: "Please select your time horizon.",
+        success_form_submitted: "Your request has been submitted! You will receive the document by email.",
+        error_service_unavailable: "⚠️ Service temporarily unavailable. We are resolving the issue. Please try again in a few minutes or contact us directly.",
+        error_send_failed: "Error sending",
+        error_retry: ". Please try again.",
+        error_connection: "Connection error. Please check that the n8n server is running on port 5678.",
+        error_cors: "CORS error. Configure n8n to accept cross-origin requests.",
+        error_generic: "Error",
         approach_title: "Our 4-step approach",
         approach1: "Discovery",
         approach1_desc: "Analysis of your needs and definition of objectives.",
@@ -3276,7 +3292,7 @@
       document.documentElement.lang = lang;
       const isFr = lang === 'fr';
       langIcon.textContent = isFr ? '🇬🇧' : '🇫🇷';
-      langIconMobile.textContent = isFr ? '🇫🇷' : '🇬🇧';
+      langIconMobile.textContent = isFr ? '🇬🇧' : '🇫🇷';
       localStorage.setItem('lang', lang);
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -3299,6 +3315,15 @@
           el.placeholder = el.dataset.defaultPlaceholder;
         }
       });
+    }
+
+    // Helper function to get translated messages
+    function getTranslatedMessage(key, frenchMessage) {
+      const currentLang = document.documentElement.lang || 'fr';
+      if (currentLang === 'en' && translations.en[key]) {
+        return translations.en[key];
+      }
+      return frenchMessage;
     }
 
     // Store default FR for i18n
@@ -3375,27 +3400,27 @@
 
       // Validation des champs
       if(!email || !email.match(/^\S+@\S+\.\S+$/)) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez saisir une adresse email valide.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_email_required', 'Veuillez saisir une adresse email valide.')}</span>`;
         return;
       }
       if(!nomEntreprise) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez saisir le nom de votre entreprise.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_company_required', 'Veuillez saisir le nom de votre entreprise.')}</span>`;
         return;
       }
       if(!secteurActivite) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre secteur d\'activité.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_sector_required', 'Veuillez sélectionner votre secteur d\'activité.')}</span>`;
         return;
       }
       if(!tailleOrganisation) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner la taille de votre organisation.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_size_required', 'Veuillez sélectionner la taille de votre organisation.')}</span>`;
         return;
       }
       if(!geographie) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner vos zones d\'activité.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_geography_required', 'Veuillez sélectionner vos zones d\'activité.')}</span>`;
         return;
       }
       if(!horizonTemporel) {
-        bcResult.innerHTML = '<span class="text-rose-400">Veuillez sélectionner votre horizon temporel.</span>';
+        bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_timeframe_required', 'Veuillez sélectionner votre horizon temporel.')}</span>`;
         return;
       }
 
@@ -3425,23 +3450,23 @@
         
         if (resp.ok) {
           const responseData = await resp.text();
-          bcResult.innerHTML = '<span class="text-green-400">Votre demande a bien été transmise ! Vous recevrez le document par mail.</span>';
+          bcResult.innerHTML = `<span class="text-green-400">${getTranslatedMessage('success_form_submitted', 'Votre demande a bien été transmise ! Vous recevrez le document par mail.')}</span>`;
         } else {
           const errorData = await resp.text();
           
           if (resp.status === 500 && errorData.includes('Workflow could not be started')) {
-            bcResult.innerHTML = '<span class="text-rose-400">⚠️ Service temporairement indisponible. Nous résolvons le problème. Veuillez réessayer dans quelques minutes ou contactez-nous directement.</span>';
+            bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_service_unavailable', '⚠️ Service temporairement indisponible. Nous résolvons le problème. Veuillez réessayer dans quelques minutes ou contactez-nous directement.')}</span>`;
           } else {
-            bcResult.innerHTML = `<span class="text-rose-400">Erreur lors de l'envoi (${resp.status}). Veuillez réessayer.</span>`;
+            bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_send_failed', 'Erreur lors de l\'envoi')} (${resp.status})${getTranslatedMessage('error_retry', '. Veuillez réessayer.')}</span>`;
           }
         }
       } catch(e) {
         if (e.name === 'TypeError' && e.message.includes('Failed to fetch')) {
-          bcResult.innerHTML = '<span class="text-rose-400">Erreur de connexion. Vérifiez que le serveur n8n est bien démarré sur le port 5678.</span>';
+          bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_connection', 'Erreur de connexion. Vérifiez que le serveur n8n est bien démarré sur le port 5678.')}</span>`;
         } else if (e.message.includes('CORS')) {
-          bcResult.innerHTML = '<span class="text-rose-400">Erreur CORS. Configurez n8n pour accepter les requêtes cross-origin.</span>';
+          bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_cors', 'Erreur CORS. Configurez n8n pour accepter les requêtes cross-origin.')}</span>`;
         } else {
-          bcResult.innerHTML = `<span class="text-rose-400">Erreur: ${e.message}</span>`;
+          bcResult.innerHTML = `<span class="text-rose-400">${getTranslatedMessage('error_generic', 'Erreur')}: ${e.message}</span>`;
         }
       }
       genBCBtn.disabled = false;
