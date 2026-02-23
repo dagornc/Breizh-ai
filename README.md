@@ -1,81 +1,61 @@
-# Breizh AI - Site Web
+# Breizh-AI : Solutions IA Personnalisées pour Entreprises Bretonnes
 
-## 🎯 Projet
-Site web professionnel pour Breizh AI, spécialisé dans les solutions d'intelligence artificielle.
+![HTML](https://img.shields.io/badge/HTML5-E34F26.svg?logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6.svg?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?logo=javascript&logoColor=black)
+![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-222222.svg?logo=github)
+![License](https://img.shields.io/badge/License-Propriétaire-red.svg)
 
-## ✅ Corrections effectuées
+Site web vitrine professionnel pour **Breizh-AI**, une agence spécialisée dans le développement de solutions d'intelligence artificielle sur-mesure pour entreprises. Ancrage breton, ambitions nationales.
 
-### 1. **Nettoyage du code JavaScript**
-- Suppression des `console.log` et `console.error` en production
-- Optimisation du code de gestion des erreurs
+## 🏷 Table des matières
+- [Présentation](#présentation)
+- [Offres de services](#offres-de-services)
+- [Fonctionnalités du site](#fonctionnalités-du-site)
+- [Structure du projet](#structure-du-projet)
+- [Démarrage local](#démarrage-local)
+- [Déploiement](#déploiement)
 
-### 2. **Correction des références d'images manquantes**
-- Remplacement des images `Gemini_Generated_Image_x5r79mx5r79mx5r7 (1-4).jpg` par les images disponibles :
-  - `ia-consulting-strategy.jpg`
-  - `custom-ai-development.jpg`
-  - `integration-deployment.jpg`
-  - `data-analysis-bi.jpg`
+## 🎯 Présentation
+**Breizh-AI** est un cabinet de conseil et de développement IA basé en Bretagne. Le site web présente ses offres de services dédiées aux dirigeants, artisans et managers souhaitant accélérer leur transformation digitale avec l'IA.
 
-- Correction des noms d'images avec majuscules :
-  - `Dirigeant.jpg` → `dirigeant.jpg`
-  - `Ingénieurs.jpg` → `ingenieurs.jpg`
-  - `Managers du Digital.jpg` → `managers-digital.jpg`
-  - `Artisan.jpg` → `artisan.jpg`
+## 💼 Offres de Services
+- **Conseil Stratégique IA** : Audit, roadmap digitale, positionnement concurrentiel.
+- **Développement IA Personnalisé** : Automatisation, chatbots, agents IA sur-mesure.
+- **Analyse de Données & BI** : Tableaux de bord intelligents, rapports automatiques.
+- **Intégration & Déploiement** : Cloud, API, pipeline CI/CD, mise en production.
 
-### 3. **Nettoyage des fichiers de sauvegarde**
-- Conservation de seulement 3 fichiers de sauvegarde les plus récents
-- Suppression des anciens fichiers de sauvegarde pour éviter la confusion
+## ✨ Fonctionnalités du site
+- **Design Animé** : Fond animé de particules interactives (HTML5 Canvas).
+- **Responsive** : Optimisé pour mobile, tablette et desktop.
+- **Galerie de Services** : Présentation visuelle avec images SVG et JPG dédiées.
+- **Personas Clients** : Sections dédiées par profil (Artisan, Dirigeant, Manager).
+- **Formulaire de Contact** : Intégration pour prise de contact directe.
 
 ## 📁 Structure du projet
-
 ```
 Breizh-ai/
-├── index.html                    # Fichier principal (corrigé)
-├── fond-anime.html              # Démo d'animation de fond
-├── index copie 7.html           # Sauvegarde récente
-├── index copie 9.html           # Sauvegarde récente
-├── index copie 10.html          # Sauvegarde récente
-├── cleanup_images.sh            # Script de correction d'images
-├── cleanup_backups.sh           # Script de nettoyage des sauvegardes
-├── README.md                    # Ce fichier
-└── Images/                      # Toutes les images du site
-    ├── logo-breizh-ai.png
-    ├── favicon.png
-    ├── artisan.jpg
-    ├── dirigeant.jpg
-    ├── ingenieurs.jpg
-    ├── managers-digital.jpg
-    ├── ia-consulting-strategy.jpg
-    ├── custom-ai-development.jpg
-    ├── integration-deployment.jpg
-    └── data-analysis-bi.jpg
+├── index.html                # Page principale
+├── fond-anime.html           # Démo du fond animé
+├── logo-breizh-ai.png        # Logo officiel
+├── favicon.png               # Favicon
+├── ia-consulting-strategy.jpg
+├── custom-ai-development.jpg
+├── integration-deployment.jpg
+├── data-analysis-bi.jpg
+├── artisan.jpg / dirigeant.jpg / ingenieurs.jpg
+└── README.md
 ```
 
-## 🚀 Démarrage
+## 🚀 Démarrage local
+Ouvrez directement `index.html` dans un navigateur, ou lancez un serveur local :
+```bash
+python3 -m http.server 8000
+# Ouvrez http://localhost:8000
+```
 
-1. **Serveur local** :
-   ```bash
-   python3 -m http.server 8000
-   ```
-   Puis ouvrir http://localhost:8000
-
-2. **Ouverture directe** :
-   Ouvrir `index.html` dans un navigateur
-
-## 🛠️ Scripts utiles
-
-- `./cleanup_images.sh` : Corrige automatiquement les références d'images manquantes
-- `./cleanup_backups.sh` : Nettoie les fichiers de sauvegarde
-
-## ✅ Statut
-
-- ✅ Code JavaScript nettoyé
-- ✅ Images manquantes corrigées
-- ✅ Fichiers de sauvegarde organisés
-- ✅ Validation HTML OK
-- ✅ Responsive design fonctionnel
-- ✅ Animations de fond opérationnelles
+## 🌍 Déploiement
+Le site est déployé automatiquement via **GitHub Pages** à chaque push sur la branche `main`.
 
 ## 📞 Contact
-
-Pour toute question ou modification, contactez l'équipe Breizh AI. 
+Pour toute question ou demande de partenariat : **contact@breizh.ai**
